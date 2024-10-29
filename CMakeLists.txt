@@ -1,8 +1,12 @@
 cmake_minimum_required(VERSION 3.28)
-project(CMakeSFMLProject LANGUAGES CXX)
+project(PvZ LANGUAGES CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(BUILD_SHARED_LIBS "Build shared libraries" OFF)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(FetchContent)
 FetchContent_Declare(SFML
@@ -13,14 +17,21 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(main src/main.cpp)
-target_link_libraries(main PRIVATE sfml-graphics)
-target_compile_features(main PRIVATE cxx_std_17)
+add_executable(PvZ src/PvZ.cpp)
+target_link_libraries(PvZ PRIVATE sfml-graphics sfml-audio)
+target_compile_features(PvZ PRIVATE cxx_std_23)
 
 if(WIN32)
     add_custom_command(
-        TARGET main
+        TARGET PvZ
         COMMENT "Copy OpenAL DLL"
-        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:main>
+        PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy ${SFML_SOURCE_DIR}/extlibs/bin/$<IF:$<EQUAL:${CMAKE_SIZEOF_VOID_P},8>,x64,x86>/openal32.dll $<TARGET_FILE_DIR:PvZ>
         VERBATIM)
 endif()
+
+enable_testing()
+
+add_executable(tests test/test.cpp)
+target_link_libraries(tests PRIVATE sfml-graphics sfml-audio)
+target_compile_features(tests PRIVATE cxx_std_23)
+add_test(NAME tests COMMAND $<TARGET_FILE:tests>)

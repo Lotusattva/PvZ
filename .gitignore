@@ -52,3 +52,5 @@ _deps
 CMakeUserPresets.json
 
 *.pdb
+
+.github/

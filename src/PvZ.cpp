@@ -18,9 +18,7 @@ int main()
     auto window = RenderWindow({ Settings.windowSize.x, Settings.windowSize.y }, "PvZ", Style::Close | Style::Titlebar);
     window.setFramerateLimit(Settings.frameRate);
     window.setVerticalSyncEnabled(Settings.VSync);
-    if (Settings.customCursor) {
-        window.setMouseCursor(getCustomCursor());
-    }
+    window.setMouseCursor(getCustomCursor(Settings.customCursor));
 
     // Center the window
     VideoMode desktop = VideoMode::getDesktopMode();

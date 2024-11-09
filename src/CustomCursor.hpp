@@ -3,6 +3,6 @@
 #include <SFML/Window/Cursor.hpp>
 using namespace sf;
 
-Cursor& getCustomCursor();
+Cursor& getCustomCursor(bool useCustomCursor);
 
 #endif // CUSTOMCURSOR_HPP

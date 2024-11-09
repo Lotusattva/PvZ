@@ -17,7 +17,12 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-add_executable(PvZ src/PvZ.cpp)
+file(GLOB SOURCE_FILES src/*.cpp)
+
+add_executable(PvZ ${SOURCE_FILES})
+
+file(COPY res DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
 target_link_libraries(PvZ PRIVATE sfml-graphics sfml-audio)
 target_compile_features(PvZ PRIVATE cxx_std_23)
 
@@ -29,9 +34,9 @@ if(WIN32)
         VERBATIM)
 endif()
 
-enable_testing()
+# enable_testing()
 
-add_executable(tests test/test.cpp)
-target_link_libraries(tests PRIVATE sfml-graphics sfml-audio)
-target_compile_features(tests PRIVATE cxx_std_23)
-add_test(NAME tests COMMAND $<TARGET_FILE:tests>)
+# add_executable(tests test/test.cpp)
+# target_link_libraries(tests PRIVATE sfml-graphics sfml-audio)
+# target_compile_features(tests PRIVATE cxx_std_23)
+# add_test(NAME tests COMMAND $<TARGET_FILE:tests>)

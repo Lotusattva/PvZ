@@ -9,7 +9,10 @@ void gameResume() {
 }
 
 void handleKeyPress(const Event& event) {
-    // Handle key press event
+    if (event.key.code == Keyboard::Escape) {
+        // if game is paused, resume it
+        // if game is running, pause it
+    }
 }
 
 void handleMouseClick(const Event& event) {

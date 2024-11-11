@@ -33,9 +33,6 @@ private:
         GAME_OVER_LOSE
     };
 
-    static bool PAUSED;
-    static GameState gameState;
-
     void drawScreen(RenderWindow* window) {
         if (PAUSED) {
             //draw pause screen
@@ -48,7 +45,7 @@ private:
                 window->draw(startMenuSprite);
                 auto startButtonTexture = loadTexture("../res/img/startmenu/button.png");
                 Sprite startButtonSprite(startButtonTexture);
-                startButtonSprite.setPosition(400, 400);
+                startButtonSprite.setPosition(470, 70);
                 window->draw(startButtonSprite);
                 break;
             }
@@ -57,6 +54,9 @@ private:
             }
         }
     }
+
+    bool PAUSED;
+    GameState gameState;
 
 public:
 
@@ -113,3 +113,9 @@ public:
         }
     }
 };
+
+int main() {
+    PvZ PvZgame;
+    PvZgame.game();
+    return 0;
+}

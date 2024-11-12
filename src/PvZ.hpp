@@ -2,6 +2,7 @@
 #define PVZ_HPP
 
 #include <SFML/Graphics.hpp>
+#include "Draw.hpp"
 
 using namespace sf;
 
@@ -23,21 +24,25 @@ private:
     };
 
     Settings settings;
-    bool PAUSED;
+    bool PAUSE;
+    bool ESC;
+    Vector2i MOUSE_CLICK_POS;
+    bool HOLDING_MOUSE;
     GameState gameState;
     RenderWindow window;
+    Event event;
+    Mouse mouse;
+    Draw draw;
 
-    Texture loadTexture(const std::string& path);
+    void drawScreen();
 
-    void drawScreen(RenderWindow* window);
+    void drawMainMenu();
 
-    void drawMainMenu(RenderWindow* window);
+    void drawLevel1();
 
-    void drawLevel1(RenderWindow* window);
+    void drawGameOverWin();
 
-    void drawGameOverWin(RenderWindow* window);
-
-    void drawGameOverLose(RenderWindow* window);
+    void drawGameOverLose();
 
 public:
     PvZ();

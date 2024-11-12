@@ -13,8 +13,8 @@ void PvZ::drawMainMenu() {
 
     // draw start button
     auto mousePos = mouse.getPosition(window);
-    if (HOLDING_MOUSE) {
-        if (overButton(MOUSE_CLICK_POS)) {
+    if (holdingLeftClick) {
+        if (overButton(leftClickPos)) {
             drawFromFile("../res/img/mainMenu/button.png", { 470, 70 });
         }
         else {

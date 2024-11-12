@@ -5,6 +5,20 @@
 
 using namespace sf;
 
+enum PvZ::GameState {
+    MAIN_MENU,
+    LEVEL1,
+    GAME_OVER_WIN,
+    GAME_OVER_LOSE
+};
+
+struct Settings {
+    Vector2u windowSize;
+    int frameRate;
+    bool VSync;
+    bool customCursor;
+} settings;
+
 void PvZ::drawFromFile(const char* path, Vector2f position) {
     Texture texture;
     texture.loadFromFile(path);
@@ -14,22 +28,22 @@ void PvZ::drawFromFile(const char* path, Vector2f position) {
 }
 
 void PvZ::drawScreen() {
-        switch (gameState) {
-        case MAIN_MENU:
-            drawMainMenu();
-            break;
-        case LEVEL1:
-            drawLevel1();
-            break;
-        case GAME_OVER_WIN:
-            drawGameOverWin();
-            break;
-        case GAME_OVER_LOSE:
-            drawGameOverLose();
-            break;
-        default:
-            break;
-        }
+    switch (gameState) {
+    case MAIN_MENU:
+        drawMainMenu();
+        break;
+    case LEVEL1:
+        drawLevel1();
+        break;
+    case GAME_OVER_WIN:
+        drawGameOverWin();
+        break;
+    case GAME_OVER_LOSE:
+        drawGameOverLose();
+        break;
+    default:
+        break;
+    }
 }
 
 void PvZ::drawLevel1() {
@@ -51,8 +65,8 @@ PvZ::PvZ() {
     settings.windowSize = { 900, 600 };
     PAUSE = false;
     ESC = false;
-    MOUSE_CLICK_POS = { -1, -1 };
-    HOLDING_MOUSE = false;
+    leftClickPos = { -1, -1 };
+    holdingLeftClick = false;
     gameState = MAIN_MENU;
     event = Event();
 
@@ -88,12 +102,12 @@ void PvZ::run() {
                 }
                 break;
             case Event::MouseButtonPressed:
-                MOUSE_CLICK_POS = Mouse::getPosition(window);
-                HOLDING_MOUSE = true;
+                leftClickPos = Mouse::getPosition(window);
+                holdingLeftClick = true;
                 break;
             case Event::MouseButtonReleased:
-                MOUSE_CLICK_POS = { -1, -1 };
-                HOLDING_MOUSE = false;
+                leftClickPos = { -1, -1 };
+                holdingLeftClick = false;
                 break;
             default:
                 break;

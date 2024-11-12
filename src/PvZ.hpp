@@ -8,25 +8,14 @@ using namespace sf;
 class PvZ {
 
 private:
-    struct Settings {
-        Vector2u windowSize;
-        int frameRate;
-        bool VSync;
-        bool customCursor;
-    };
+    struct Settings;
 
-    enum GameState {
-        MAIN_MENU,
-        LEVEL1,
-        GAME_OVER_WIN,
-        GAME_OVER_LOSE
-    };
+    enum GameState;
 
-    Settings settings;
     bool PAUSE;
     bool ESC;
-    Vector2i MOUSE_CLICK_POS;
-    bool HOLDING_MOUSE;
+    Vector2i leftClickPos;
+    bool holdingLeftClick;
     GameState gameState;
     RenderWindow window;
     Event event;

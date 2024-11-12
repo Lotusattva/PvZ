@@ -10,28 +10,35 @@ class PvZ {
 private:
     struct Settings;
 
-    enum GameState;
+    struct MainMenuSprites;
 
+    struct spriteDimensions;
+
+    Settings* settings;
+    MainMenuSprites* sprites;
+    spriteDimensions* dimensions;
+
+    bool overButton(Vector2f* buttonPos, Vector2f* buttonSize);
+
+protected:
     bool PAUSE;
-    bool ESC;
-    Vector2i leftClickPos;
-    bool holdingLeftClick;
-    GameState gameState;
     RenderWindow window;
     Event event;
-    Mouse mouse;
 
-    void drawFromFile(const char* path, Vector2f position = { 0, 0 });
+    /**
+     *@brief Draws a sprite at a given position
+     * 
+     * @param sprite 
+     * @param position 
+     */
+    void drawSprite(Sprite* sprite, Vector2f position);
 
-    void drawScreen();
-
-    void drawMainMenu();
-
-    void drawLevel1();
-
-    void drawGameOverWin();
-
-    void drawGameOverLose();
+    /**
+     *@brief Draws a sprite at its current position. Default position is (0, 0)
+     * 
+     * @param sprite 
+     */
+    void drawSprite(Sprite* sprite);
 
 public:
     PvZ();

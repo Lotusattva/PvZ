@@ -40,7 +40,7 @@ void PvZ::drawScreen(RenderWindow* window) {
 
 void PvZ::drawMainMenu(RenderWindow* window) {
     // draw main menu background
-    auto mainMenuBackgroundTexture = loadTexture("../res/img/startmenu/menu.png");
+    auto mainMenuBackgroundTexture = loadTexture("../res/img/mainMenu/mainMenu.png");
     Sprite mainMenuBackgroundSprite(mainMenuBackgroundTexture);
     window->draw(mainMenuBackgroundSprite);
 
@@ -53,10 +53,10 @@ void PvZ::drawMainMenu(RenderWindow* window) {
     if (mousePos.x >= startButtonPos.x && mousePos.x <= startButtonPos.x + buttonSize.x &&
         mousePos.y >= startButtonPos.y && mousePos.y <= startButtonPos.y + buttonSize.y) {
         // if mouse is hovering over the start button
-        startButtonTexture = loadTexture("../res/img/startmenu/buttonHighlight.png");
+        startButtonTexture = loadTexture("../res/img/mainMenu/buttonHighlight.png");
     }
     else {
-        startButtonTexture = loadTexture("../res/img/startmenu/button.png");
+        startButtonTexture = loadTexture("../res/img/mainMenu/button.png");
     }
     Sprite startButtonSprite(startButtonTexture);
     startButtonSprite.setPosition(startButtonPos);

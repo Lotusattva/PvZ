@@ -9,24 +9,24 @@ bool overButton(Vector2i mousePos) {
 
 void PvZ::drawMainMenu() {
     // draw main menu background
-    draw.drawFromFile("../res/img/mainMenu/mainMenu.png");
+    drawFromFile("../res/img/mainMenu/mainMenu.png");
 
     // draw start button
     auto mousePos = mouse.getPosition(window);
     if (HOLDING_MOUSE) {
         if (overButton(MOUSE_CLICK_POS)) {
-            draw.drawFromFile("../res/img/mainMenu/button.png", { 470, 70 });
+            drawFromFile("../res/img/mainMenu/button.png", { 470, 70 });
         }
         else {
-            draw.drawFromFile("../res/img/mainMenu/buttonHighlight.png", { 470, 70 });
+            drawFromFile("../res/img/mainMenu/buttonHighlight.png", { 470, 70 });
         }
     }
     else {
         if (overButton(mousePos)) {
-            draw.drawFromFile("../res/img/mainMenu/buttonHighlight.png", { 470, 70 });
+            drawFromFile("../res/img/mainMenu/buttonHighlight.png", { 470, 70 });
         }
         else {
-            draw.drawFromFile("../res/img/mainMenu/button.png", { 470, 70 });
+            drawFromFile("../res/img/mainMenu/button.png", { 470, 70 });
         }
     }
 }

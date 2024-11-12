@@ -5,6 +5,14 @@
 
 using namespace sf;
 
+void PvZ::drawFromFile(const char* path, Vector2f position) {
+    Texture texture;
+    texture.loadFromFile(path);
+    Sprite sprite = Sprite(texture);
+    sprite.setPosition(position);
+    window.draw(sprite);
+}
+
 void PvZ::drawScreen() {
         switch (gameState) {
         case MAIN_MENU:
@@ -47,7 +55,6 @@ PvZ::PvZ() {
     HOLDING_MOUSE = false;
     gameState = MAIN_MENU;
     event = Event();
-    draw = Draw(&window);
 
     window.create(VideoMode(settings.windowSize.x, settings.windowSize.y), "PvZ", Style::Close | Style::Titlebar);
     window.setFramerateLimit(settings.frameRate);

@@ -2,7 +2,6 @@
 #define PVZ_HPP
 
 #include <SFML/Graphics.hpp>
-#include "Draw.hpp"
 
 using namespace sf;
 
@@ -32,7 +31,8 @@ private:
     RenderWindow window;
     Event event;
     Mouse mouse;
-    Draw draw;
+
+    void drawFromFile(const char* path, Vector2f position = { 0, 0 });
 
     void drawScreen();
 

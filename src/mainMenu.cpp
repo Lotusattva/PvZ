@@ -1,6 +1,6 @@
-#include "PvZ.hpp"
+#include "../inc/PvZ.hpp"
 
-PvZ::GAME_STATE PvZ::mainMenu() {
+PvZ::GameState PvZ::mainMenu() {
     if (pressedEscape) {
         window.close();
     }
@@ -19,7 +19,7 @@ PvZ::GAME_STATE PvZ::mainMenu() {
     case Event::MouseButtonReleased:
         if (clickedStart && hoverOverArea(mainMenuSprites->buttonPos, mainMenuSprites->buttonSize)) {
             clickedStart = false;
-            return LEVEL1;
+            return GameState::LEVEL1;
         }
         holdingClick = false;
         break;
@@ -35,6 +35,6 @@ PvZ::GAME_STATE PvZ::mainMenu() {
     }
     else
         drawSprite(mainMenuSprites->button);
-    
-    return MAIN_MENU;
+
+    return GameState::MAIN_MENU;
 }

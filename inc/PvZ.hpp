@@ -11,12 +11,12 @@ class PvZ {
 private:
     struct Settings {
         Vector2u windowSize;
-        int frameRate;
+        short int frameRate;
         bool VSync;
         bool customCursor;
     };
 
-    enum GAME_STATE {
+    enum class GameState {
         MAIN_MENU,
         LEVEL1,
         GAME_WIN,
@@ -27,12 +27,12 @@ private:
     Event event;
 
     Settings settings;
-    GAME_STATE gameState;
+    GameState gameState;
     bool PAUSE;
     bool pressedEscape;
 
 
-    bool hoverOverArea(const Vector2f& buttonPos, const Vector2f& buttonSize);
+    bool hoverOverArea(const Vector2f& buttonPos, const Vector2f& buttonSize) const;
 
     /**
      *@brief Draws a sprite at a given position
@@ -47,17 +47,17 @@ private:
      *
      * @param sprite
      */
-    void drawSprite(Sprite& sprite);
+    void drawSprite(const Sprite& sprite);
 
     void loadNewSprites();
 
     MainMenuSprites* mainMenuSprites;
     Level1Sprites* level1Sprites;
 
-    GAME_STATE mainMenu();
-    GAME_STATE level1();
-    GAME_STATE gameWin();
-    GAME_STATE gameLose();
+    GameState mainMenu();
+    GameState level1();
+    GameState gameWin();
+    GameState gameLose();
 
 public:
     PvZ();

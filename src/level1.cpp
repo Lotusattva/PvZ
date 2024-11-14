@@ -1,10 +1,10 @@
-#include "PvZ.hpp"
+#include "../inc/PvZ.hpp"
 
-PvZ::GAME_STATE PvZ::level1() {
+PvZ::GameState PvZ::level1() {
 
     if (pressedEscape) {
         pressedEscape = false;
-        return MAIN_MENU;
+        return GameState::MAIN_MENU;
     }
 
     window.draw(level1Sprites->background);
@@ -22,5 +22,5 @@ PvZ::GAME_STATE PvZ::level1() {
         break;
     }
 
-    return LEVEL1;
+    return GameState::LEVEL1;
 }

@@ -1,4 +1,4 @@
-#include "PvZSprites.hpp"
+#include "../inc/PvZSprites.hpp"
 
 MainMenuSprites::MainMenuSprites() {
     buttonPos = { 480, 80 };
@@ -15,8 +15,6 @@ MainMenuSprites::MainMenuSprites() {
     buttonHighlight.setTexture(buttonHighlightTexture);
     buttonHighlight.setPosition(buttonPos);
 }
-
-
 
 Level1Sprites::Level1Sprites() {
     topbarPos = { 280, 0 };

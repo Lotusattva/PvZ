@@ -7,7 +7,7 @@ class SunPlant : public Plant {
 private:
     const short int sunProduction;
     const short int cooldown;
-protected:
+public:
     SunPlant(short int health, short int col, short int row, short int sunProduction, short int cooldown) :
         Plant(health, col, row), sunProduction(sunProduction), cooldown(cooldown) {}
     virtual ~SunPlant() = 0 {}

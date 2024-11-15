@@ -4,10 +4,10 @@
 class Actor {
 private:
     short int health;
-    bool isAlive;
-protected:
-    Actor(short int health) : health(health), isAlive(false) {}
-    virtual ~Actor() = 0 {}
+    bool alive;
+public:
+    Actor(short int health) : health(health), alive(false) {}
+    virtual ~Actor() = default;
 
     /**
      * @brief actor performs an action
@@ -15,14 +15,21 @@ protected:
      * @return true if the action was successful
      * @return false if the actor is dead
      */
-    virtual bool action();
+    virtual void action() = 0;
 
     /**
      * @brief actor takes damage
      * 
      * @param damage
      */
-    virtual void takeDamage(short int damage);
+    virtual void takeDamage(short int damage) {
+        health -= damage;
+        if (health <= 0) {
+            alive = false;
+        }
+    }
+
+    bool isAlive() const { return alive; }
 };
 
 #endif // ACTOR_HPP

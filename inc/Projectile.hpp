@@ -2,7 +2,6 @@
 #define PROJECTILE_HPP
 
 enum class ProjectileType {
-    NONE,
     PEA,
     SNOWPEA
 };
@@ -10,9 +9,9 @@ enum class ProjectileType {
 class Projectile {
     private:
     const short int damage;
-protected:
+public:
     Projectile(short int damage) : damage(damage) {}
-    virtual ~Projectile() = 0 {}
+    virtual ~Projectile() = default;
 };
 
 Projectile* createProjectile(ProjectileType projectileType);

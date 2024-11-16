@@ -14,8 +14,8 @@ private:
     const std::chrono::milliseconds cooldown;
     time_point<steady_clock> lastShot;
 public:
-    ShooterPlant(sf::RenderWindow* window, short int health, short int col, short int row, ProjectileType projectileType, short int range, int cooldown) :
-        Plant(window, health, col, row), projectileType(projectileType), range(range), cooldown(cooldown), lastShot(steady_clock::now()) {
+    ShooterPlant(sf::RenderWindow* window, short int health, short int col, ProjectileType projectileType, short int range, int cooldown) :
+        Plant(window, health, col), projectileType(projectileType), range(range), cooldown(cooldown), lastShot(steady_clock::now()) {
     }
     virtual ~ShooterPlant() = default;
 

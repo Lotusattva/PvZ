@@ -5,7 +5,7 @@
 
 class Peashooter : public ShooterPlant {
 public:
-    Peashooter(RenderWindow* window, short int col, short int row);
+    Peashooter(RenderWindow* window, short int col);
     ~Peashooter();
 
     virtual bool action() override;

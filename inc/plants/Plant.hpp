@@ -13,13 +13,11 @@ enum class PlantType {
 class Plant : public Actor {
 private:
     const short int col;
-    const short int row;
 public:
-    Plant(RenderWindow* window, short int health, short int col, short int row) : Actor(window, health), col(col), row(row) {}
+    Plant(RenderWindow* window, short int health, short int col) : Actor(window, health), col(col) {}
     virtual ~Plant() = default;
 
     short int getCol() const { return col; }
-    short int getRow() const { return row; }
 };
 
 Plant* createPlant(RenderWindow* window, PlantType plantType);

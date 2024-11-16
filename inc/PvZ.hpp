@@ -3,6 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include "PvZSprites.hpp"
+#include "levels/Level.hpp"
 
 using namespace sf;
 
@@ -62,6 +63,8 @@ private:
 public:
     PvZ();
     void run();
+
+    friend class Level;
 };
 
 #endif // PVZ_HPP

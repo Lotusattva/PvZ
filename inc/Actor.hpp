@@ -1,12 +1,18 @@
 #ifndef ACTOR_HPP
 #define ACTOR_HPP
 
+#include <SFML/Graphics.hpp>
+
+using namespace sf;
+
 class Actor {
 private:
     short int health;
     bool alive;
 public:
-    Actor(short int health) : health(health), alive(false) {}
+    RenderWindow* window;
+    
+    Actor(RenderWindow* window, short int health) : window(window), health(health), alive(false) {}
     virtual ~Actor() = default;
 
     /**
@@ -15,7 +21,7 @@ public:
      * @return true if the action was successful
      * @return false if the actor is dead
      */
-    virtual void action() = 0;
+    virtual bool action() = 0;
 
     /**
      * @brief actor takes damage

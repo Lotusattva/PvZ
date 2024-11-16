@@ -5,10 +5,10 @@
 
 class Peashooter : public ShooterPlant {
 public:
-    Peashooter(short int col, short int row);
+    Peashooter(RenderWindow* window, short int col, short int row);
     ~Peashooter();
 
-    virtual void action() override;
+    virtual bool action() override;
     virtual void shoot() override;
 };
 

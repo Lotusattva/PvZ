@@ -17,12 +17,10 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
-
-add_executable(PvZ ${SOURCE_FILES})
-
 file(COPY res DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
 
+file(GLOB_RECURSE SOURCE_FILES src/*.cpp)
+add_executable(PvZ ${SOURCE_FILES})
 target_link_libraries(PvZ PRIVATE sfml-graphics sfml-audio)
 target_compile_features(PvZ PRIVATE cxx_std_23)
 

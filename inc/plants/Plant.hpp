@@ -1,7 +1,7 @@
 #ifndef PLANT_HPP
 #define PLANT_HPP
 
-#include "Actor.hpp"
+#include "../Actor.hpp"
 
 enum class PlantType {
     SUNFLOWER,
@@ -15,13 +15,13 @@ private:
     const short int col;
     const short int row;
 public:
-    Plant(short int health, short int col, short int row) : Actor(health), col(col), row(row) {}
+    Plant(RenderWindow* window, short int health, short int col, short int row) : Actor(window, health), col(col), row(row) {}
     virtual ~Plant() = default;
 
     short int getCol() const { return col; }
     short int getRow() const { return row; }
 };
 
-Plant* createPlant(PlantType plantType);
+Plant* createPlant(RenderWindow* window, PlantType plantType);
 
 #endif // PLANT_HPP

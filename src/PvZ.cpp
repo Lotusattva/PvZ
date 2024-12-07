@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "../inc/CustomCursor.hpp"
+#include "../inc/levels/Level1.hpp"
 
 using namespace sf;
 
@@ -20,25 +21,14 @@ void PvZ::drawSprite(const Sprite& sprite) {
     window.draw(sprite);
 }
 
-void PvZ::loadNewSprites() {
-    switch (gameState) {
-    case GameState::MAIN_MENU:
-        mainMenuSprites = new MainMenuSprites();
-        break;
-    case GameState::LEVEL1:
-        level1Sprites = new Level1Sprites();
-        break;
-    }
-}
-
 PvZ::PvZ() :
     gameState(GameState::MAIN_MENU),
+    levelState(LevelState::NONE),
+    level(nullptr),
     PAUSE(false),
     pressedEscape(false),
     mainMenuSprites(new MainMenuSprites()),
-    level1Sprites(nullptr),
-    settings({ { 900, 600 }, 60, true, true })
-{
+    settings({ { 900, 600 }, 60, true, true }) {
     ////// Init window
     // Set window size
     window.create(VideoMode(settings.windowSize.x, settings.windowSize.y),
@@ -62,43 +52,75 @@ void PvZ::run() {
         window.clear();
         while (window.pollEvent(event)) {
             switch (event.type) {
-            case Event::Closed:
-                window.close();
-                return;
-            case Event::LostFocus:
-                PAUSE = true;
-                break;
-            case Event::GainedFocus:
-                PAUSE = false;
-                break;
-            case Event::KeyPressed:
-                if (event.key.code == Keyboard::Escape) {
-                    pressedEscape = true;
-                }
-                break;
-            default:
-                break;
+                case Event::Closed:
+                    window.close();
+                    return;
+                case Event::LostFocus:
+                    PAUSE = true;
+                    break;
+                case Event::GainedFocus:
+                    PAUSE = false;
+                    break;
+                case Event::KeyPressed:
+                    if (event.key.code == Keyboard::Escape) {
+                        pressedEscape = true;
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
         switch (gameState) {
-        case GameState::MAIN_MENU:
-            gameState = mainMenu();
-            if (gameState != GameState::MAIN_MENU) {
-                delete mainMenuSprites;
-                mainMenuSprites = nullptr;
-                loadNewSprites();
-            }
-            break;
-        case GameState::LEVEL1:
-            gameState = level1();
-            if (gameState != GameState::LEVEL1) {
-                delete level1Sprites;
-                level1Sprites = nullptr;
-                loadNewSprites();
-            }
-            break;
+            case GameState::MAIN_MENU:
+                gameState = mainMenu();
+                if (gameState == GameState::PLAY) {
+                    level = makeLevel();
+                }
+                break;
+            case GameState::PLAY:
+                gameState = playLevel(level);
+                if (gameState != GameState::PLAY) {
+                    delete level;
+                }
+                break;
+            case GameState::GAME_WIN:
+                break;
+            case GameState::GAME_LOSE:
+                break;
         }
         window.display();
     }
+}
+
+Level* PvZ::makeLevel() {
+    switch (levelState) {
+        case LevelState::LEVEL1:
+            return new Level1();
+            break;
+        default:
+            return nullptr;
+    }
+}
+
+PvZ::GameState PvZ::playLevel(Level* level) {
+
+    if (pressedEscape) {
+        pressedEscape = false;
+        return GameState::MAIN_MENU;
+    }
+
+    // handle events
+    switch (event.type) {
+        case Event::LostFocus:
+            PAUSE = true;
+            break;
+        case Event::GainedFocus:
+            PAUSE = false;
+            break;
+        default:
+            break;
+    }
+
+    return GameState::PLAY;
 }

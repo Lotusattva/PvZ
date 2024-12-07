@@ -8,8 +8,8 @@ public:
     Peashooter(RenderWindow* window, short int col);
     ~Peashooter();
 
-    virtual bool action() override;
-    virtual void shoot() override;
+    bool action() override;
+    void shoot() override;
 };
 
 #endif // PEASHOOTER_HPP

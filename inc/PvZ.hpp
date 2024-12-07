@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include "PvZSprites.hpp"
 #include "../inc/levels/Level.hpp"
-#include "../inc/Actor.hpp"
 
 using namespace sf;
 
@@ -20,9 +19,14 @@ private:
 
     enum class GameState {
         MAIN_MENU,
-        LEVEL1,
+        PLAY,
         GAME_WIN,
         GAME_LOSE
+    };
+
+    enum class LevelState {
+        NONE,
+        LEVEL1
     };
 
     RenderWindow window;
@@ -30,8 +34,11 @@ private:
 
     Settings settings;
     GameState gameState;
+    LevelState levelState;
+    Level* level;
     bool PAUSE;
     bool pressedEscape;
+    MainMenuSprites* mainMenuSprites;
 
 
     bool hoverOverArea(const Vector2f& buttonPos, const Vector2f& buttonSize) const;
@@ -51,13 +58,14 @@ private:
      */
     void drawSprite(const Sprite& sprite);
 
-    void loadNewSprites();
 
-    MainMenuSprites* mainMenuSprites;
-    Level1Sprites* level1Sprites;
+
+
+
+    Level* makeLevel();
 
     GameState mainMenu();
-    GameState level1();
+    GameState playLevel(Level* level);
     GameState gameWin();
     GameState gameLose();
 

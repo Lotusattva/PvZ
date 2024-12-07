@@ -6,7 +6,7 @@
 class NullPlant : public Plant {
 public:
     NullPlant() : Plant(nullptr, 0, 0) {}
-    ~NullPlant() {}
+    ~NullPlant() = default;
 
     virtual bool action() override { return true; }
 };

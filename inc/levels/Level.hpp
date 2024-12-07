@@ -7,12 +7,11 @@
 using namespace sf;
 
 class Level {
-private:
-    RenderWindow* window;
-    const Row* rows;
-    const short int numRows;
+protected:
+    vector<Row*>* rows;
+    const short numRows;
 public:
-    Level(RenderWindow* window, const Row* rows, short int numRows) : window(window), rows(rows), numRows(numRows) {}
+    Level(vector<Row*>* rows, short numRows) : rows(rows), numRows(numRows) {}
     virtual ~Level() = default;
 };
 

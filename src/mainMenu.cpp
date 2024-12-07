@@ -19,7 +19,7 @@ PvZ::GameState PvZ::mainMenu() {
     case Event::MouseButtonReleased:
         if (clickedStart && hoverOverArea(mainMenuSprites->buttonPos, mainMenuSprites->buttonSize)) {
             clickedStart = false;
-            return GameState::LEVEL1;
+            return GameState::PLAY;
         }
         holdingClick = false;
         break;

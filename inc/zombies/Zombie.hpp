@@ -1,7 +1,7 @@
 #ifndef ZOMBIE_HPP
 #define ZOMBIE_HPP
 
-#include "Actor.hpp"
+#include "../Actor.hpp"
 #include <chrono>
 
 using namespace std::chrono;

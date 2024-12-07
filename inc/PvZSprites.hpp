@@ -21,17 +21,4 @@ public:
     MainMenuSprites();
 };
 
-class Level1Sprites {
-public:
-    Sprite background;
-    Texture backgroundTexture;
-
-    Sprite topbar;
-    Texture topbarTexture;
-    Vector2f topbarPos;
-    Vector2f topbarSize;
-
-    Level1Sprites();
-};
-
 #endif // PVZSPRITES_HPP

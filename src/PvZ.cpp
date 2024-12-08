@@ -2,7 +2,6 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "../inc/CustomCursor.hpp"
-#include "../inc/levels/Level1.hpp"
 
 using namespace sf;
 
@@ -23,7 +22,7 @@ void PvZ::drawSprite(const Sprite& sprite) {
 
 PvZ::PvZ() :
     gameState(GameState::MAIN_MENU),
-    levelState(LevelState::NONE),
+    levelState(LevelState::LEVEL1),
     level(nullptr),
     PAUSE(false),
     pressedEscape(false),
@@ -79,7 +78,7 @@ void PvZ::run() {
                 }
                 break;
             case GameState::PLAY:
-                gameState = playLevel(level);
+                gameState = playLevel();
                 if (gameState != GameState::PLAY) {
                     delete level;
                 }
@@ -96,31 +95,19 @@ void PvZ::run() {
 Level* PvZ::makeLevel() {
     switch (levelState) {
         case LevelState::LEVEL1:
-            return new Level1();
+            return new Level1(&window);
             break;
         default:
             return nullptr;
     }
 }
 
-PvZ::GameState PvZ::playLevel(Level* level) {
-
+PvZ::GameState PvZ::playLevel() {
     if (pressedEscape) {
         pressedEscape = false;
         return GameState::MAIN_MENU;
     }
-
-    // handle events
-    switch (event.type) {
-        case Event::LostFocus:
-            PAUSE = true;
-            break;
-        case Event::GainedFocus:
-            PAUSE = false;
-            break;
-        default:
-            break;
-    }
+    level->action();
 
     return GameState::PLAY;
 }

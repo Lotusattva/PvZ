@@ -1,9 +1,9 @@
 #include "../../inc/levels/Row.hpp"
 
-Row::Row(short numCols, vector<Zombie*>* zombies, vector<std::chrono::milliseconds>* zombieSpawnTimes) :
-    numCols(numCols), plants(numCols), zombies(zombies), zombieSpawnTimes(zombieSpawnTimes) {
+Row::Row(short numCols, vector<Zombie*>* zombies) :
+    numCols(numCols), plants(numCols), zombies(zombies), levelStart(clk::now()) {
     for (size_t col = 0; col < numCols; col++) {
-        plants.push_back(new NullPlant());
+        plants[col] = new NullPlant();
     }
 }
 
@@ -15,7 +15,6 @@ Row::~Row() {
         delete zombie;
     }
     delete zombies;
-    delete zombieSpawnTimes;
 }
 
 void Row::action() {
@@ -25,6 +24,7 @@ void Row::action() {
             plant = new NullPlant();
         }
     }
+
     for (auto zombie : *zombies) {
         if (!zombie->action()) {
             delete zombie;

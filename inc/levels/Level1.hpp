@@ -28,7 +28,7 @@ private:
     Level1Sprites* sprites;
 public:
 
-    Level1(RenderWindow* window) : sprites(new Level1Sprites()), Level(window, nullptr, 3) { }
+    Level1(RenderWindow* window) : sprites(new Level1Sprites()), Level(window, makeRows(), 3) { }
     ~Level1();
     void action() override;
 };

@@ -2,6 +2,7 @@
 #include <iostream>
 #include <SFML/Graphics.hpp>
 #include "../inc/CustomCursor.hpp"
+#include "../inc/levels/Level1.hpp"
 
 using namespace sf;
 

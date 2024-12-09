@@ -4,8 +4,9 @@
 #include "../Actor.hpp"
 #include <chrono>
 
-using namespace std::chrono;
-using namespace sf;
+using namespace std;
+using ms = chrono::milliseconds;
+using clk = chrono::steady_clock;
 
 enum class ZombieType {
     NORMAL,
@@ -18,15 +19,19 @@ enum class ZombieType {
 
 class Zombie : public Actor {
 private:
-    std::chrono::milliseconds movementSpeed;
-    std::chrono::milliseconds attackSpeed;
-    time_point<steady_clock> lastAttack;
+    ms movementSpeed;
+    ms attackSpeed;
+    chrono::time_point<clk> lastAttack;
+    chrono::time_point<clk> lastMove;
+    chrono::time_point<clk> lastSlowed;
+    chrono::time_point<clk> spawnTime;
     bool slowed;
+    bool spawned;
 
 public:
-    Zombie(RenderWindow* window, short int health, std::chrono::milliseconds movementSpeed, std::chrono::milliseconds attackSpeed) :
-        Actor(window, health), movementSpeed(movementSpeed), attackSpeed(attackSpeed), lastAttack(steady_clock::now()), slowed(false) {
-    }
+    Zombie(RenderWindow* window, short int health, ms movementSpeed, ms attackSpeed, ms spawnTime) :
+        Actor(window, health), movementSpeed(movementSpeed), attackSpeed(attackSpeed), lastAttack(clk::now()),
+        lastMove(clk::now()), lastSlowed(clk::now()), spawnTime(clk::now() + spawnTime), slowed(false), spawned(false) { }
     virtual ~Zombie() = default;
 
     virtual void move() = 0;

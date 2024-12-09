@@ -8,17 +8,19 @@
 #include "../zombies/Zombie.hpp"
 #include "../zombies/NullZombie.hpp"
 
-using namespace std::chrono;
+
+
 using namespace std;
+using clk = chrono::steady_clock;
 
 class Row {
 public:
     const short numCols;
     vector<Plant*> plants;
     vector<Zombie*>* zombies;
-    vector<std::chrono::milliseconds>* zombieSpawnTimes;
+    chrono::time_point<clk> levelStart;
 
-    Row(short numCols, vector<Zombie*>* zombies, vector<std::chrono::milliseconds>* zombieSpawnTimes);
+    Row(short numCols, vector<Zombie*>* zombies);
     ~Row();
 
     void action();

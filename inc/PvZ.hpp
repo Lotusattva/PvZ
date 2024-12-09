@@ -4,7 +4,6 @@
 #include <SFML/Graphics.hpp>
 #include "PvZSprites.hpp"
 #include "../inc/levels/Level.hpp"
-#include "../inc/levels/Level1.hpp"
 
 using namespace sf;
 

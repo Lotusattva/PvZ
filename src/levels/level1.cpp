@@ -1,4 +1,4 @@
-#include "../../inc/levels/Level1.hpp"
+#include "levels/Level1.hpp"
 
 Level1Sprites::Level1Sprites() {
     topbarPos = { 280, 0 };

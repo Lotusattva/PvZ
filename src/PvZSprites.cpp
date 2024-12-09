@@ -1,4 +1,4 @@
-#include "../inc/PvZSprites.hpp"
+#include "PvZSprites.hpp"
 
 MainMenuSprites::MainMenuSprites() {
     buttonPos = { 480, 80 };

@@ -1,4 +1,4 @@
-#include "../../inc/levels/Row.hpp"
+#include "levels/Row.hpp"
 
 Row::Row(short numCols, vector<Zombie*>* zombies) :
     numCols(numCols), plants(numCols), zombies(zombies), levelStart(clk::now()) {

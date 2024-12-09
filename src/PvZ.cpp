@@ -1,8 +1,8 @@
-#include "../inc/PvZ.hpp"
+#include "PvZ.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "../inc/CustomCursor.hpp"
-#include "../inc/levels/Level1.hpp"
+#include "CustomCursor.hpp"
+#include "levels/Level1.hpp"
 
 using namespace sf;
 

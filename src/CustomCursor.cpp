@@ -1,4 +1,4 @@
-#include "../inc/CustomCursor.hpp"
+#include "CustomCursor.hpp"
 #include <iostream>
 #include <filesystem>
 #include <SFML/Graphics/Image.hpp>

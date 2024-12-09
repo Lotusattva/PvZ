@@ -1,7 +1,7 @@
-#include "../inc/PvZ.hpp"
+#include "PvZ.hpp"
 
 PvZ::GameState PvZ::mainMenu() {
-    if (pressedEscape){
+    if (pressedEscape) {
         window.close();
         return GameState::MAIN_MENU;
     }

@@ -1,4 +1,4 @@
-#include "../inc/PvZ.hpp"
+#include "PvZ.hpp"
 
 int main() {
     PvZ PvZgame;

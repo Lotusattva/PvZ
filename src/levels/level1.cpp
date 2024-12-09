@@ -1,6 +1,5 @@
 #include "levels/Level1.hpp"
 
-
 class Level1::Sprites {
 private:
     Texture backgroundTexture;
@@ -59,14 +58,18 @@ Level1::~Level1() {
 GameState Level1::play(Event& event) {
     drawSprite(sprites->background);
     drawSprite(sprites->topbar);
-
-    switch (event.type) {
-        case Event::KeyPressed:
-            if (event.key.code == Keyboard::Escape) {
+    while (window.pollEvent(event)) {
+        switch (event.type) {
+            case Event::Closed:
+                window.close();
                 return GameState::MAIN_MENU;
-            }
-        default:
-            break;
+            case Event::KeyPressed:
+                if (event.key.code == Keyboard::Escape) {
+                    return GameState::MAIN_MENU;
+                }
+            default:
+                break;
+        }
     }
     for (Row* row : *rows) {
         row->action();

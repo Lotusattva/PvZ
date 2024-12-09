@@ -23,18 +23,10 @@ void PvZ::run() {
     while (stage->window.isOpen()) {
         // always clear window and draw background
         stage->window.clear();
-        while (stage->window.pollEvent(event)) {
-            switch (event.type) {
-                case Event::Closed:
-                    stage->window.close();
-                    return;
-                default:
-                    nextState = stage->play(event);
-                    break;
-            }
-        }
 
-        if (nextState != gameState) {
+        nextState = stage->play(event);
+
+        if (gameState != nextState) {
             gameState = nextState;
             delete stage;
             stage = makeStage(gameState);

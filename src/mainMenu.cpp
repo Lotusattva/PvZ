@@ -1,5 +1,6 @@
 #include "MainMenu.hpp"
 
+RenderWindow Stage::window;
 
 class MainMenu::Sprites {
 private:
@@ -45,28 +46,33 @@ GameState MainMenu::play(Event& event) {
     static bool holdingClick = false;
 
     drawSprite(sprites->background);
-    // handle events
-    switch (event.type) {
-        case Event::KeyPressed:
-            if (event.key.code == Keyboard::Escape) {
+
+    while (window.pollEvent(event)) {
+        switch (event.type) {
+            case Event::Closed:
                 window.close();
                 return GameState::MAIN_MENU;
-            }
-            break;
-        case Event::MouseButtonPressed:
-            holdingClick = true;
-            if (hoverOverArea(sprites->buttonPos, sprites->buttonSize))
-                clickedStart = true;
-            break;
-        case Event::MouseButtonReleased:
-            if (clickedStart && hoverOverArea(sprites->buttonPos, sprites->buttonSize)) {
-                clickedStart = false;
-                return GameState::PLAY;
-            }
-            holdingClick = false;
-            break;
-        default:
-            break;
+            case Event::KeyPressed:
+                if (event.key.code == Keyboard::Escape) {
+                    window.close();
+                    return GameState::MAIN_MENU;
+                }
+                break;
+            case Event::MouseButtonPressed:
+                holdingClick = true;
+                if (hoverOverArea(sprites->buttonPos, sprites->buttonSize))
+                    clickedStart = true;
+                break;
+            case Event::MouseButtonReleased:
+                if (clickedStart && hoverOverArea(sprites->buttonPos, sprites->buttonSize)) {
+                    clickedStart = false;
+                    return GameState::PLAY;
+                }
+                holdingClick = false;
+                break;
+            default:
+                break;
+        }
     }
 
     if (hoverOverArea(sprites->buttonPos, sprites->buttonSize)) {

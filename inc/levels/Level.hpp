@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Row.hpp"
-#include "PvZ.hpp"
 #include "Stage.hpp"
 
 using namespace sf;
@@ -13,7 +12,7 @@ protected:
     vector<Row*>* rows;
     const short numRows;
 public:
-    Level( vector<Row*>* rows, short numRows) : rows(rows), numRows(numRows) { }
+    Level(vector<Row*>* rows, short numRows) : rows(rows), numRows(numRows) { }
     virtual ~Level() = default;
 
     virtual GameState play(Event& event) = 0;

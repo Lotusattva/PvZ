@@ -6,16 +6,6 @@
 
 using namespace sf;
 
-enum class GameState {
-    MAIN_MENU,
-    PLAY,
-    GAME_WIN,
-    GAME_LOSE
-};
-
-enum class LevelState {
-    LEVEL1
-};
 
 class PvZ {
 

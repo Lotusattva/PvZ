@@ -2,7 +2,7 @@
 #define STAGE_HPP
 
 #include <SFML/Graphics.hpp>
-#include "PvZ.hpp"
+#include "enum.hpp"
 
 using namespace sf;
 

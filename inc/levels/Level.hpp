@@ -3,19 +3,22 @@
 
 #include <SFML/Graphics.hpp>
 #include "Row.hpp"
+#include "PvZ.hpp"
+#include "Stage.hpp"
 
 using namespace sf;
 
-class Level {
+class Level : public Stage {
 protected:
     vector<Row*>* rows;
     const short numRows;
-    RenderWindow* window;
 public:
-    Level(RenderWindow* window, vector<Row*>* rows, short numRows) : window(window), rows(rows), numRows(numRows) { }
+    Level( vector<Row*>* rows, short numRows) : rows(rows), numRows(numRows) { }
     virtual ~Level() = default;
 
-    virtual void action() = 0;
+    virtual GameState play(Event& event) = 0;
+
+    static Level* makeLevel(LevelState levelState);
 };
 
 #endif // LEVEL_HPP

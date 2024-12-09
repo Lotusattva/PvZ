@@ -2,10 +2,20 @@
 #define PVZ_HPP
 
 #include <SFML/Graphics.hpp>
-#include "PvZSprites.hpp"
-#include "../inc/levels/Level.hpp"
+#include "Stage.hpp"
 
 using namespace sf;
+
+enum class GameState {
+    MAIN_MENU,
+    PLAY,
+    GAME_WIN,
+    GAME_LOSE
+};
+
+enum class LevelState {
+    LEVEL1
+};
 
 class PvZ {
 
@@ -17,53 +27,19 @@ private:
         bool customCursor;
     };
 
-    enum class GameState {
-        MAIN_MENU,
-        PLAY,
-        GAME_WIN,
-        GAME_LOSE
-    };
-
-    enum class LevelState {
-        LEVEL1
-    };
-
-    RenderWindow window;
     Event event;
 
     Settings settings;
     GameState gameState;
     LevelState levelState;
-    Level* level;
+    Stage* stage;
     bool PAUSE;
     bool pressedEscape;
-    MainMenuSprites* mainMenuSprites;
 
-    Level* makeLevel();
+    Stage* makeStage(GameState gameState);
 
-    GameState mainMenu();
-    GameState playLevel();
-    GameState gameWin();
-    GameState gameLose();
 
 public:
-
-    bool hoverOverArea(const Vector2f& buttonPos, const Vector2f& buttonSize) const;
-
-    /**
-     *@brief Draws a sprite at a given position
-     *
-     * @param sprite
-     * @param position
-     */
-    void drawSprite(Sprite& sprite, const Vector2f& position);
-
-    /**
-     *@brief Draws a sprite at its current position. Default position is (0, 0)
-     *
-     * @param sprite
-     */
-    void drawSprite(const Sprite& sprite);
 
     PvZ();
     void run();

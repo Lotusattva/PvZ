@@ -1,6 +1,21 @@
 #include "levels/Level1.hpp"
 
-Level1Sprites::Level1Sprites() {
+
+class Level1::Sprites {
+private:
+    Texture backgroundTexture;
+    Texture topbarTexture;
+public:
+    Sprite background;
+    Sprite topbar;
+
+    Vector2f topbarPos;
+    Vector2f topbarSize;
+
+    Sprites();
+};
+
+Level1::Sprites::Sprites() {
     topbarPos = { 280, 0 };
     topbarSize = { 522, 87 };
 
@@ -31,6 +46,8 @@ Row* Level1::makeRow3() {
     return new Row(9, zombies);
 }
 
+Level1::Level1() : sprites(new Sprites()), Level(makeRows(), 3) { }
+
 Level1::~Level1() {
     delete sprites;
     for (Row* row : *rows) {
@@ -39,10 +56,20 @@ Level1::~Level1() {
     delete rows;
 }
 
-void Level1::action() {
-    window->draw(sprites->background);
-    window->draw(sprites->topbar);
+GameState Level1::play(Event& event) {
+    drawSprite(sprites->background);
+    drawSprite(sprites->topbar);
+
+    switch (event.type) {
+        case Event::KeyPressed:
+            if (event.key.code == Keyboard::Escape) {
+                return GameState::MAIN_MENU;
+            }
+        default:
+            break;
+    }
     for (Row* row : *rows) {
         row->action();
     }
+    return GameState::PLAY;
 }

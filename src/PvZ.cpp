@@ -1,114 +1,56 @@
 #include "PvZ.hpp"
 #include <iostream>
 #include <SFML/Graphics.hpp>
-#include "CustomCursor.hpp"
-#include "levels/Level1.hpp"
+#include "MainMenu.hpp"
+#include "levels/Level.hpp"
 
 using namespace sf;
 
-bool PvZ::hoverOverArea(const Vector2f& buttonPos, const Vector2f& buttonSize) const {
-    Vector2i mousePos = Mouse::getPosition(window);
-    return mousePos.x >= buttonPos.x && mousePos.x <= buttonPos.x + buttonSize.x &&
-        mousePos.y >= buttonPos.y && mousePos.y <= buttonPos.y + buttonSize.y;
-}
 
-void PvZ::drawSprite(Sprite& sprite, const Vector2f& position) {
-    sprite.setPosition(position);
-    window.draw(sprite);
-}
-
-void PvZ::drawSprite(const Sprite& sprite) {
-    window.draw(sprite);
-}
 
 PvZ::PvZ() :
     gameState(GameState::MAIN_MENU),
     levelState(LevelState::LEVEL1),
-    level(nullptr),
+    stage(makeStage(GameState::MAIN_MENU)),
     PAUSE(false),
     pressedEscape(false),
-    mainMenuSprites(new MainMenuSprites()),
     settings({ { 900, 600 }, 60, true, true }) {
-    ////// Init window
-    // Set window size
-    window.create(VideoMode(settings.windowSize.x, settings.windowSize.y),
-        "PvZ", Style::Close | Style::Titlebar);
-    // Set frame rate
-    window.setFramerateLimit(settings.frameRate);
-    // Set VSync
-    window.setVerticalSyncEnabled(settings.VSync);
-    // Set custom cursor
-    window.setMouseCursor(getCustomCursor(settings.customCursor));
-    // Center the window
-    VideoMode desktop = VideoMode::getDesktopMode();
-    int posX = (desktop.width - settings.windowSize.x) / 2;
-    int posY = (desktop.height - settings.windowSize.y) / 2;
-    window.setPosition(Vector2i(posX, posY));
+    Stage::setWindow(settings.windowSize, settings.frameRate, settings.VSync, settings.customCursor);
 }
 
 void PvZ::run() {
-    while (window.isOpen()) {
+    GameState nextState = gameState;
+    while (stage->window.isOpen()) {
         // always clear window and draw background
-        window.clear();
-        while (window.pollEvent(event)) {
+        stage->window.clear();
+        while (stage->window.pollEvent(event)) {
             switch (event.type) {
                 case Event::Closed:
-                    window.close();
+                    stage->window.close();
                     return;
-                case Event::LostFocus:
-                    PAUSE = true;
-                    break;
-                case Event::GainedFocus:
-                    PAUSE = false;
-                    break;
-                case Event::KeyPressed:
-                    if (event.key.code == Keyboard::Escape) {
-                        pressedEscape = true;
-                    }
-                    break;
                 default:
+                    nextState = stage->play(event);
                     break;
             }
         }
 
-        switch (gameState) {
-            case GameState::MAIN_MENU:
-                gameState = mainMenu();
-                if (gameState == GameState::PLAY) {
-                    level = makeLevel();
-                }
-                break;
-            case GameState::PLAY:
-                gameState = playLevel();
-                if (gameState != GameState::PLAY) {
-                    delete level;
-                }
-                break;
-            case GameState::GAME_WIN:
-                break;
-            case GameState::GAME_LOSE:
-                break;
+        if (nextState != gameState) {
+            gameState = nextState;
+            delete stage;
+            stage = makeStage(gameState);
         }
-        window.display();
+
+        stage->window.display();
     }
 }
 
-Level* PvZ::makeLevel() {
-    switch (levelState) {
-        case LevelState::LEVEL1:
-            return new Level1(&window);
-            break;
+Stage* PvZ::makeStage(GameState gameState) {
+    switch (gameState) {
+        case GameState::MAIN_MENU:
+            return new MainMenu();
+        case GameState::PLAY:
+            return Level::makeLevel(levelState);
         default:
             return nullptr;
     }
-}
-
-PvZ::GameState PvZ::playLevel() {
-    if (pressedEscape) {
-        pressedEscape = false;
-        return GameState::MAIN_MENU;
-    }
-    level->action();
-
-    return GameState::PLAY;
 }

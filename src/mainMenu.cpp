@@ -1,24 +1,65 @@
-#include "PvZ.hpp"
+#include "MainMenu.hpp"
 
-PvZ::GameState PvZ::mainMenu() {
-    if (pressedEscape) {
-        window.close();
-        return GameState::MAIN_MENU;
-    }
+
+class MainMenu::Sprites {
+private:
+    Texture backgroundTexture;
+    Texture buttonTexture;
+    Texture buttonHighlightTexture;
+
+public:
+    Sprite background;
+    Sprite button;
+    Sprite buttonHighlight;
+    Vector2f buttonPos;
+    Vector2f buttonSize;
+    Sprites();
+};
+
+MainMenu::Sprites::Sprites() {
+    buttonPos = { 480, 80 };
+    buttonSize = { 331, 145 };
+
+    backgroundTexture.loadFromFile("res/img/mainMenu/mainMenu.png");
+    background.setTexture(backgroundTexture);
+
+    buttonTexture.loadFromFile("res/img/mainMenu/button.png");
+    button.setTexture(buttonTexture);
+    button.setPosition(buttonPos);
+
+    buttonHighlightTexture.loadFromFile("res/img/mainMenu/buttonHighlight.png");
+    buttonHighlight.setTexture(buttonHighlightTexture);
+    buttonHighlight.setPosition(buttonPos);
+}
+
+MainMenu::MainMenu() {
+    sprites = new Sprites();
+}
+
+MainMenu::~MainMenu() {
+    delete sprites;
+}
+
+GameState MainMenu::play(Event& event) {
     static bool clickedStart = false;
     static bool holdingClick = false;
 
-    window.draw(mainMenuSprites->background);
+    drawSprite(sprites->background);
     // handle events
     switch (event.type) {
-
+        case Event::KeyPressed:
+            if (event.key.code == Keyboard::Escape) {
+                window.close();
+                return GameState::MAIN_MENU;
+            }
+            break;
         case Event::MouseButtonPressed:
             holdingClick = true;
-            if (hoverOverArea(mainMenuSprites->buttonPos, mainMenuSprites->buttonSize))
+            if (hoverOverArea(sprites->buttonPos, sprites->buttonSize))
                 clickedStart = true;
             break;
         case Event::MouseButtonReleased:
-            if (clickedStart && hoverOverArea(mainMenuSprites->buttonPos, mainMenuSprites->buttonSize)) {
+            if (clickedStart && hoverOverArea(sprites->buttonPos, sprites->buttonSize)) {
                 clickedStart = false;
                 return GameState::PLAY;
             }
@@ -28,13 +69,13 @@ PvZ::GameState PvZ::mainMenu() {
             break;
     }
 
-    if (hoverOverArea(mainMenuSprites->buttonPos, mainMenuSprites->buttonSize)) {
+    if (hoverOverArea(sprites->buttonPos, sprites->buttonSize)) {
         if (holdingClick && clickedStart)
-            drawSprite(mainMenuSprites->button);
+            drawSprite(sprites->button);
         else
-            drawSprite(mainMenuSprites->buttonHighlight);
+            drawSprite(sprites->buttonHighlight);
     } else
-        drawSprite(mainMenuSprites->button);
+        drawSprite(sprites->button);
 
     return GameState::MAIN_MENU;
 }

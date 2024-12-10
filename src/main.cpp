@@ -1,7 +1,7 @@
-#include "PvZ.hpp"
+#include "Game.hpp"
 
 int main() {
-    PvZ game;
-    game.run();
+    PvZ::Game PvZgame;
+    PvZgame.run();
     return 0;
 }

@@ -1,41 +1,43 @@
 #ifndef ACTOR_HPP
 #define ACTOR_HPP
 
-#include <SFML/Graphics.hpp>
+#include "Stage.hpp"
 
-using namespace sf;
+namespace PvZ {
 
-class Actor {
-private:
-    short int health;
-    bool alive;
-public:
-    RenderWindow* window;
-    
-    Actor(RenderWindow* window, short int health) : window(window), health(health), alive(false) {}
-    virtual ~Actor() = default;
+    class Actor {
+    private:
+        short health;
+        bool alive;
 
-    /**
-     * @brief actor performs an action
-     * 
-     * @return true if the action was successful
-     * @return false if the actor is dead
-     */
-    virtual bool action() = 0;
+    public:
 
-    /**
-     * @brief actor takes damage
-     * 
-     * @param damage
-     */
-    virtual void takeDamage(short int damage) {
-        health -= damage;
-        if (health <= 0) {
-            alive = false;
+        Actor(short health) : health(health), alive(false) { }
+        virtual ~Actor() = default;
+
+        /**
+         * @brief actor performs an action
+         *
+         * @return true if the action was successful
+         * @return false if the actor is dead
+         */
+        virtual bool action() = 0;
+
+        /**
+         * @brief actor takes damage
+         *
+         * @param damage
+         */
+        virtual void takeDamage(short damage) {
+            health -= damage;
+            if (health <= 0) {
+                alive = false;
+            }
         }
-    }
 
-    bool isAlive() const { return alive; }
-};
+        bool isAlive() const { return alive; }
+    };
+
+}
 
 #endif // ACTOR_HPP

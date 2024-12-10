@@ -1,29 +1,25 @@
 #ifndef ROW_HPP
 #define ROW_HPP
 
-#include <chrono>
-#include <vector>
 #include "../plants/Plant.hpp"
-#include "../plants/NullPlant.hpp"
 #include "../zombies/Zombie.hpp"
-#include "../zombies/NullZombie.hpp"
 
 
+// TODO: Figure out how to sync time across all actors
 
-using namespace std;
-using clk = chrono::steady_clock;
+namespace PvZ {
+    class Row {
+    public:
+        const short numCols;
+        vector<Plant*> plants;
+        vector<Zombie*>* zombies;
+        time_point levelStart;
 
-class Row {
-public:
-    const short numCols;
-    vector<Plant*> plants;
-    vector<Zombie*>* zombies;
-    chrono::time_point<clk> levelStart;
+        Row(short numCols, vector<Zombie*>* zombies);
+        ~Row();
 
-    Row(short numCols, vector<Zombie*>* zombies);
-    ~Row();
-
-    void action();
-};
+        void action();
+    };
+}
 
 #endif // ROW_HPP

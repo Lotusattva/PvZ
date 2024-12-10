@@ -3,16 +3,18 @@
 
 #include "Plant.hpp"
 
-class SunPlant : public Plant {
-private:
-    const short int sunProduction;
-    const short int cooldown;
-public:
-    SunPlant(sf::RenderWindow* window, short int health, short int col, short int sunProduction, short int cooldown) :
-        Plant(window, health, col), sunProduction(sunProduction), cooldown(cooldown) {}
-    virtual ~SunPlant() = 0 {}
+namespace PvZ {
+    class SunPlant : public Plant {
+    private:
+        const short int sunProduction;
+        const short int cooldown;
+    public:
+        SunPlant(short int health, short int col, short int sunProduction, short int cooldown) :
+            Plant(health, col), sunProduction(sunProduction), cooldown(cooldown) { }
+        virtual ~SunPlant() = default;
 
-    virtual void produceSun();
-};
+        virtual void produceSun();
+    };
+}
 
 #endif // SUNPLANT_HPP

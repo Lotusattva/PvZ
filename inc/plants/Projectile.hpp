@@ -1,24 +1,21 @@
 #ifndef PROJECTILE_HPP
 #define PROJECTILE_HPP
 
-#include <SFML/Graphics.hpp>
+namespace PvZ {
+    enum class ProjectileType {
+        PEA,
+        SNOWPEA
+    };
 
-using namespace sf;
+    class Projectile {
+    private:
+        const short int damage;
+    public:
+        Projectile(short int damage) : damage(damage) { }
+        virtual ~Projectile() = default;
+    };
 
-enum class ProjectileType {
-    PEA,
-    SNOWPEA
-};
-
-class Projectile {
-private:
-    const short int damage;
-    RenderWindow* window;
-public:
-    Projectile(RenderWindow* window, short int damage) : window(window), damage(damage) {}
-    virtual ~Projectile() = default;
-};
-
-Projectile* createProjectile(RenderWindow* window, ProjectileType projectileType);
+    Projectile* createProjectile(ProjectileType projectileType);
+}
 
 #endif // PROJECTILE_HPP

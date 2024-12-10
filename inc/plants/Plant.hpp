@@ -3,23 +3,25 @@
 
 #include "../Actor.hpp"
 
-enum class PlantType {
-    SUNFLOWER,
-    PEASHOOTER,
-    WALLNUT,
-    CHERRYBOMB
-};
+namespace PvZ {
+    enum class PlantType {
+        SUNFLOWER,
+        PEASHOOTER,
+        WALLNUT,
+        CHERRYBOMB
+    };
 
-class Plant : public Actor {
-private:
-    const short int col;
-public:
-    Plant(RenderWindow* window, short int health, short int col) : Actor(window, health), col(col) {}
-    virtual ~Plant() = default;
+    class Plant : public Actor {
+    private:
+        const short int col;
+    public:
+        Plant(short int health, short int col) : Actor(health), col(col) { }
+        virtual ~Plant() = default;
 
-    short int getCol() const { return col; }
-};
+        short int getCol() const { return col; }
+    };
 
-Plant* createPlant(RenderWindow* window, PlantType plantType);
+    Plant* createPlant(PlantType plantType);
+}
 
 #endif // PLANT_HPP

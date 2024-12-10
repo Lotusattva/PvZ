@@ -47,10 +47,17 @@ namespace PvZ {
         window.draw(sprite);
     }
 
-    inline bool hoverOverArea(const Vector2f& buttonPos, const Vector2f& buttonSize) {
+    /**
+     * @brief Checks whether the mouse is hovering over a given area
+     * 
+     * @param spritePos
+     * @param spriteSize
+     * @return true if the mouse is hovering over the area, false otherwise
+     */
+    inline bool hoverOverArea(const Vector2f& spritePos, const Vector2f& spriteSize) {
         Vector2i mousePos = Mouse::getPosition(window);
-        return mousePos.x >= buttonPos.x && mousePos.x <= buttonPos.x + buttonSize.x &&
-            mousePos.y >= buttonPos.y && mousePos.y <= buttonPos.y + buttonSize.y;
+        return mousePos.x >= spritePos.x && mousePos.x <= spritePos.x + spriteSize.x &&
+            mousePos.y >= spritePos.y && mousePos.y <= spritePos.y + spriteSize.y;
     }
 
     inline Cursor& getCustomCursor(bool useCustomCursor) {

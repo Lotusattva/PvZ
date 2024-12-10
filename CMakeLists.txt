@@ -22,10 +22,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY})
 add_executable(PvZ
     src/Game.cpp
     src/MainMenu.cpp
-    src/levels/Row.cpp
     src/levels/Level.cpp
     src/levels/Level1.cpp
     src/main.cpp
+    src/levels/cards/Card.cpp
 )
 target_include_directories(PvZ PRIVATE inc src)
 target_link_libraries(PvZ PRIVATE sfml-graphics sfml-audio)

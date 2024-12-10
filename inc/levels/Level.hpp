@@ -1,17 +1,20 @@
 #ifndef LEVEL_HPP
 #define LEVEL_HPP
 
-#include "Row.hpp"
 #include "Stage.hpp"
+#include "Actor.hpp"
 
 namespace PvZ {
 
     class Level : public Stage {
     protected:
-        vector<Row*>* rows;
-        const short numRows;
+        inline static Vector2u gridOrigin = { 260,80 };
+        inline static short cellWidth = 80;
+        inline static short cellHeight = 96;
+        short numRows;
+        vector<Actor*> actors;
     public:
-        Level(vector<Row*>* rows, short numRows) : rows(rows), numRows(numRows) { }
+        Level(short numRows) : numRows(numRows) { }
         virtual ~Level() = default;
 
         virtual GameState play(Event& event) = 0;

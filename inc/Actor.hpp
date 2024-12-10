@@ -12,7 +12,7 @@ namespace PvZ {
 
     public:
 
-        Actor(short health) : health(health), alive(false) { }
+        Actor(short health) : health(health), alive(true) { }
         virtual ~Actor() = default;
 
         /**

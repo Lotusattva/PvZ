@@ -9,11 +9,6 @@ namespace PvZ {
     private:
         class Sprites;
 
-        static vector<Row*>* makeRows();
-        static Row* makeRow1();
-        static Row* makeRow2();
-        static Row* makeRow3();
-
         Sprites* sprites;
     public:
 

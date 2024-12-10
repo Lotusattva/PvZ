@@ -1,7 +1,7 @@
 #ifndef PLANT_HPP
 #define PLANT_HPP
 
-#include "../Actor.hpp"
+#include "Actor.hpp"
 
 namespace PvZ {
     enum class PlantType {

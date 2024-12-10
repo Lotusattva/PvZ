@@ -1,5 +1,5 @@
 #include "levels/Level1.hpp"
-#include "zombies/NullZombie.hpp"
+#include "NullActor.hpp"
 
 namespace PvZ {
     class Level1::Sprites {
@@ -28,33 +28,17 @@ namespace PvZ {
         topbar.setPosition(topbarPos);
     }
 
-    vector<Row*>* Level1::makeRows() {
-        return  new vector<Row*>{ makeRow1(), makeRow2(), makeRow3() };
-    }
 
-    Row* Level1::makeRow1() {
-        vector<Zombie*>* zombies = new vector<Zombie*>{ new NullZombie(), new NullZombie() };
-        return new Row(9, zombies);
+    Level1::Level1() : sprites(new Sprites()), Level(3) {
+        actors.push_back(new NullActor());
+        actors.push_back(new NullActor());
     }
-
-    Row* Level1::makeRow2() {
-        vector<Zombie*>* zombies = new vector<Zombie*>{ new NullZombie(), new NullZombie() };
-        return new Row(9, zombies);
-    }
-
-    Row* Level1::makeRow3() {
-        vector<Zombie*>* zombies = new vector<Zombie*>{ new NullZombie(), new NullZombie() };
-        return new Row(9, zombies);
-    }
-
-    Level1::Level1() : sprites(new Sprites()), Level(makeRows(), 3) { }
 
     Level1::~Level1() {
         delete sprites;
-        for (Row* row : *rows) {
-            delete row;
+        for (auto actor : actors) {
+            delete actor;
         }
-        delete rows;
     }
 
     GameState Level1::play(Event& event) {
@@ -73,8 +57,11 @@ namespace PvZ {
                     break;
             }
         }
-        for (Row* row : *rows) {
-            row->action();
+        for (auto actor : actors) {
+            if (!actor->action()) {
+                delete actor;
+                actor = new NullActor();
+            }
         }
         return GameState::PLAY;
     }

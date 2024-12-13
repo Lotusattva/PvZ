@@ -5,6 +5,9 @@
 
 namespace PvZ {
 
+    /**
+     * @brief Abstract base class for plants and zombies.
+     */
     class Actor {
     private:
         short health;

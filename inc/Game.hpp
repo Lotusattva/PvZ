@@ -5,6 +5,9 @@
 
 namespace PvZ {
 
+    /**
+     * @brief Main game class
+     */
     class Game {
 
     private:
@@ -24,6 +27,9 @@ namespace PvZ {
         bool PAUSE;
         bool pressedEscape;
 
+        /**
+         * @brief Makes a new stage when game state is changed
+         */
         Stage* makeStage(GameState gameState);
 
 

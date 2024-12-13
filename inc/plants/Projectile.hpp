@@ -7,6 +7,9 @@ namespace PvZ {
         SNOWPEA
     };
 
+    /**
+     * @brief Base class for projectiles
+     */
     class Projectile {
     private:
         const short int damage;

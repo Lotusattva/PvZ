@@ -14,6 +14,9 @@ namespace PvZ {
         FOOTBALL
     };
 
+    /**
+     * @brief Abstract base class for zombies
+     */
     class Zombie : public Actor {
     private:
         ms movementSpeed;
@@ -31,7 +34,14 @@ namespace PvZ {
             lastMove(clk::now()), lastSlowed(clk::now()), spawnTime(clk::now() + spawnTime), slowed(false), spawned(false) { }
         virtual ~Zombie() = default;
 
+        /**
+         * @brief zombie moves
+         */
         virtual void move() = 0;
+
+        /**
+         * @brief zombie attacks
+         */
         virtual void attack() = 0;
     };
 

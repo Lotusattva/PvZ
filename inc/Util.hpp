@@ -12,6 +12,10 @@ using clk = chrono::steady_clock;
 using time_point = chrono::time_point<clk>;
 using namespace sf;
 
+/*
+This header provides a series of utility functions and variables that are used throughout the project.
+*/
+
 namespace PvZ {
 
     inline RenderWindow window;
@@ -60,6 +64,12 @@ namespace PvZ {
             mousePos.y >= spritePos.y && mousePos.y <= spritePos.y + spriteSize.y;
     }
 
+    /**
+     * @brief Returns a custom cursor if useCustomCursor is true, otherwise returns the default cursor
+     * 
+     * @param useCustomCursor
+     * @return a custom cursor if useCustomCursor is true, otherwise returns the default cursor
+     */
     inline Cursor& getCustomCursor(bool useCustomCursor) {
         if (!useCustomCursor) {
             static Cursor defaultCursor;
@@ -82,6 +92,9 @@ namespace PvZ {
         return customCursor;
     }
 
+    /**
+     * @brief Sets the window size, frame rate, VSync, and custom cursor. Constructs the window.
+     */
     inline void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor) {
         ////// Init window
         // Set window size

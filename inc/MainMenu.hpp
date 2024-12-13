@@ -5,6 +5,9 @@
 
 namespace PvZ {
 
+    /**
+     * @brief Main menu GUI
+     */
     class MainMenu : public Stage {
     protected:
         class Sprites;

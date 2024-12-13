@@ -4,6 +4,7 @@
 #include "Actor.hpp"
 
 namespace PvZ {
+
     enum class PlantType {
         SUNFLOWER,
         PEASHOOTER,
@@ -11,6 +12,9 @@ namespace PvZ {
         CHERRYBOMB
     };
 
+    /**
+     * @brief Base class for plants
+     */
     class Plant : public Actor {
     private:
         const short int col;

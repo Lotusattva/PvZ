@@ -4,6 +4,10 @@
 #include "ShooterPlant.hpp"
 
 namespace PvZ {
+
+    /**
+     * @brief Peashooter class -- to be implemented
+     */
     class Peashooter : public ShooterPlant {
     public:
         Peashooter(short int col);

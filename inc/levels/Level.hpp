@@ -6,6 +6,9 @@
 
 namespace PvZ {
 
+    /**
+     * @brief Abstract base class for levels
+     */
     class Level : public Stage {
     protected:
         inline static Vector2u gridOrigin = { 260,80 };

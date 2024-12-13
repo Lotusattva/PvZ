@@ -4,6 +4,10 @@
 #include "Plant.hpp"
 
 namespace PvZ {
+
+    /**
+     * @brief Base class for sun-producing plants
+     */
     class SunPlant : public Plant {
     private:
         const short int sunProduction;
@@ -13,6 +17,9 @@ namespace PvZ {
             Plant(health, col), sunProduction(sunProduction), cooldown(cooldown) { }
         virtual ~SunPlant() = default;
 
+        /**
+         * @brief plant produces sun
+         */
         virtual void produceSun();
     };
 }

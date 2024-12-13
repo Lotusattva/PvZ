@@ -5,6 +5,9 @@
 
 namespace PvZ {
 
+    /**
+     * @brief Level 1
+     */
     class Level1 : public Level {
     private:
         class Sprites;

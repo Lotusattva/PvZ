@@ -4,6 +4,9 @@
 #include "Actor.hpp"
 
 namespace PvZ {
+    /**
+     * @brief Null actor for placeholders after plants and zombies die
+     */
     class NullActor : public Actor {
     public:
         NullActor() : Actor(0) { }

@@ -4,6 +4,9 @@
 #include "Zombie.hpp"
 
 namespace PvZ {
+    /**
+     * @brief Regular zombie class -- to be implemented
+     */
     class RegularZombie : public Zombie { 
         public:
         RegularZombie(ms spawnTime);

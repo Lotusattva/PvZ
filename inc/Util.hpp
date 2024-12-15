@@ -12,6 +12,8 @@ using clk = chrono::steady_clock;
 using time_point = chrono::time_point<clk>;
 using namespace sf;
 
+typedef unsigned short ushort;
+
 /*
 This header provides a series of utility functions and variables that are used throughout the project.
 */
@@ -66,7 +68,7 @@ namespace PvZ {
     /**
      * @brief Sets the window size, frame rate, VSync, and custom cursor. Constructs the window.
      */
-    void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor);
+    void setWindow(Vector2u windowSize, ushort frameRate, bool VSync, bool customCursor);
 }
 
 #endif // UTIL_HPP

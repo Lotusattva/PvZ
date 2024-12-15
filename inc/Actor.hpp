@@ -15,7 +15,7 @@ namespace PvZ {
 
     public:
 
-        Actor(short health) : health(health), alive(true) { }
+        Actor(short health, bool alive = true) : health(health), alive(alive) { }
         virtual ~Actor() = default;
 
         /**
@@ -31,7 +31,7 @@ namespace PvZ {
          *
          * @param damage
          */
-        virtual void takeDamage(short damage) {
+        virtual void takeDamage(ushort damage) {
             health -= damage;
             if (health <= 0) {
                 alive = false;

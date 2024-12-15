@@ -1,8 +1,8 @@
 #include "plants/Peashooter.hpp"
 
 namespace PvZ {
-    Peashooter::Peashooter(short col) :
-        ShooterPlant(6, col, ProjectileType::PEA, 8, 1000) { }
+    Peashooter::Peashooter(ushort col) :
+        ShooterPlant(6, col, ProjectileType::PEA, 8, 1000ms) { }
 
     Peashooter::~Peashooter() { }
 

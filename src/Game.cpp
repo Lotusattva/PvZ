@@ -9,9 +9,8 @@ namespace PvZ {
         levelState(LevelState::LEVEL1),
         stage(makeStage(GameState::MAIN_MENU)),
         PAUSE(false),
-        pressedEscape(false),
-        settings({ { 900, 600 }, 60, true, true }) {
-        setWindow(settings.windowSize, settings.frameRate, settings.VSync, settings.customCursor);
+        pressedEscape(false) {
+        setWindow({ 900u,600u }, 60, true, true);
     }
 
     void Game::run() {
@@ -35,9 +34,9 @@ namespace PvZ {
     Stage* Game::makeStage(GameState gameState) {
         switch (gameState) {
             case GameState::MAIN_MENU:
-                return new MainMenu();
+                return new MainMenu;
             case GameState::PLAY:
-                return Level::makeLevel(levelState);
+                return makeLevel(levelState);
             default:
                 return nullptr;
         }

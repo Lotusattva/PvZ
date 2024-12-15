@@ -11,18 +11,18 @@ namespace PvZ {
      */
     class Level : public Stage {
     protected:
-        inline static Vector2u gridOrigin = { 260,80 };
-        inline static short cellWidth = 80;
-        inline static short cellHeight = 96;
-        short numRows;
+        inline static const Vector2u gridOrigin = { 260u,80u };
+        inline static const ushort cellWidth = 80;
+        inline static const ushort cellHeight = 96;
+        const ushort numRows;
         vector<Actor*> actors;
     public:
-        Level(short numRows) : numRows(numRows) { }
+        Level(ushort numRows) : numRows(numRows) { }
         virtual ~Level() = default;
 
         virtual GameState play(Event& event) = 0;
-
-        static Level* makeLevel(LevelState levelState);
     };
+
+    Level* makeLevel(LevelState levelState);
 }
 #endif // LEVEL_HPP

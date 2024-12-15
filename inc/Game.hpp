@@ -11,16 +11,9 @@ namespace PvZ {
     class Game {
 
     private:
-        struct Settings {
-            Vector2u windowSize;
-            short int frameRate;
-            bool VSync;
-            bool customCursor;
-        };
 
         Event event;
 
-        Settings settings;
         GameState gameState;
         LevelState levelState;
         Stage* stage;

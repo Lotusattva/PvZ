@@ -1,6 +1,6 @@
 #include "Util.hpp"
 
-namespace PvZ{
+namespace PvZ {
     bool hoverOverArea(const Vector2f& spritePos, const Vector2f& spriteSize) {
         Vector2i mousePos = Mouse::getPosition(window);
         return mousePos.x >= spritePos.x && mousePos.x <= spritePos.x + spriteSize.x &&
@@ -38,7 +38,7 @@ namespace PvZ{
         return customCursor;
     }
 
-    void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor) {
+    void setWindow(Vector2u windowSize, ushort frameRate, bool VSync, bool customCursor) {
         ////// Init window
         // Set window size
         window.create(VideoMode(windowSize.x, windowSize.y),
@@ -51,8 +51,8 @@ namespace PvZ{
         window.setMouseCursor(getCustomCursor(customCursor));
         // Center the window
         VideoMode desktop = VideoMode::getDesktopMode();
-        int posX = (desktop.width - windowSize.x) / 2;
-        int posY = (desktop.height - windowSize.y) / 2;
+        auto posX = (desktop.width - windowSize.x) / 2;
+        auto posY = (desktop.height - windowSize.y) / 2;
         window.setPosition(Vector2i(posX, posY));
     }
 }

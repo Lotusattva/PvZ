@@ -9,7 +9,7 @@ namespace PvZ {
      */
     class NullActor : public Actor {
     public:
-        NullActor() : Actor(0) { }
+        NullActor() : Actor(0, false) { }
         ~NullActor() = default;
         bool action() override { return true; }
     };

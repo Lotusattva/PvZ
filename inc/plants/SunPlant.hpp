@@ -10,10 +10,10 @@ namespace PvZ {
      */
     class SunPlant : public Plant {
     private:
-        const short int sunProduction;
-        const short int cooldown;
+        const ushort sunProduction;
+        const ms cooldown;
     public:
-        SunPlant(short int health, short int col, short int sunProduction, short int cooldown) :
+        SunPlant(short health, ushort col, ushort sunProduction, ms cooldown) :
             Plant(health, col), sunProduction(sunProduction), cooldown(cooldown) { }
         virtual ~SunPlant() = default;
 

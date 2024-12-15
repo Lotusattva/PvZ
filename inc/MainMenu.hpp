@@ -12,7 +12,7 @@ namespace PvZ {
     protected:
         class Sprites;
 
-        Sprites* sprites;
+        Sprites* const sprites;
     public:
         MainMenu();
         ~MainMenu();

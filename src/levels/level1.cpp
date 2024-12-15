@@ -17,8 +17,8 @@ namespace PvZ {
     };
 
     Level1::Sprites::Sprites() {
-        topbarPos = { 280, 0 };
-        topbarSize = { 522, 87 };
+        topbarPos = { 280.f, 0.f };
+        topbarSize = { 522.f, 87.f };
 
         backgroundTexture.loadFromFile("res/img/level/frontyard_3row.jpg");
         background.setTexture(backgroundTexture);
@@ -29,9 +29,9 @@ namespace PvZ {
     }
 
 
-    Level1::Level1() : sprites(new Sprites()), Level(3) {
-        actors.push_back(new NullActor());
-        actors.push_back(new NullActor());
+    Level1::Level1() : sprites(new Sprites), Level(3) {
+        actors.push_back(new NullActor);
+        actors.push_back(new NullActor);
     }
 
     Level1::~Level1() {
@@ -60,7 +60,7 @@ namespace PvZ {
         for (auto actor : actors) {
             if (!actor->action()) {
                 delete actor;
-                actor = new NullActor();
+                actor = new NullActor;
             }
         }
         return GameState::PLAY;

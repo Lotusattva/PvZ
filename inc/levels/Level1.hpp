@@ -12,7 +12,7 @@ namespace PvZ {
     private:
         class Sprites;
 
-        Sprites* sprites;
+        Sprites* const sprites;
     public:
 
         Level1();

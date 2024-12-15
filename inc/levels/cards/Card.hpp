@@ -9,7 +9,7 @@ namespace PvZ {
      */
     class Card {
     protected:
-        short sunCost;
+        const ushort sunCost;
         ms rechargeTime;
         ms lastUsed;
         bool isReady;
@@ -24,7 +24,7 @@ namespace PvZ {
         Vector2f position;
 
     public:
-        Card(short sunCost, ms rechargeTime, const string& cardTexturePath, const string& plantTexturePath, const Vector2f& position);
+        Card(ushort sunCost, ms rechargeTime, const string& cardTexturePath, const string& plantTexturePath, const Vector2f& position);
 
         ~Card() = default;
 

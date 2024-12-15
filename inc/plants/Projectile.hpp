@@ -12,9 +12,9 @@ namespace PvZ {
      */
     class Projectile {
     private:
-        const short int damage;
+        const ushort damage;
     public:
-        Projectile(short int damage) : damage(damage) { }
+        Projectile(ushort damage) : damage(damage) { }
         virtual ~Projectile() = default;
     };
 

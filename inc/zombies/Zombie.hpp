@@ -43,6 +43,8 @@ namespace PvZ {
          * @brief zombie attacks
          */
         virtual void attack() = 0;
+
+        bool isZombie() const override { return true; }
     };
 
 }

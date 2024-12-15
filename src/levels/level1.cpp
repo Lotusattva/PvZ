@@ -30,8 +30,8 @@ namespace PvZ {
 
 
     Level1::Level1() : sprites(new Sprites), Level(3) {
-        actors.push_back(new NullActor);
-        actors.push_back(new NullActor);
+        actors.emplace_front(new NullActor);
+        actors.emplace_front(new NullActor);
     }
 
     Level1::~Level1() {
@@ -57,12 +57,16 @@ namespace PvZ {
                     break;
             }
         }
-        for (auto actor : actors) {
-            if (!actor->action()) {
-                delete actor;
-                actor = new NullActor;
+        // bool zombieLeft{false};
+        for (auto it{ actors.before_begin() }; it != actors.end(); ++it) {
+            if (!(*it)->action()) {
+                delete* it;
+                it = actors.erase_after(it);
             }
         }
+        // if (!zombieLeft) {
+        //     return GameState::GAME_WIN;
+        // }
         return GameState::PLAY;
     }
 }

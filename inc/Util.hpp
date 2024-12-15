@@ -3,7 +3,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <chrono>
-#include <vector>
+#include <forward_list>
 #include <iostream>
 
 using namespace std;

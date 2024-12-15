@@ -39,6 +39,8 @@ namespace PvZ {
         }
 
         bool isAlive() const { return alive; }
+
+        virtual bool isZombie() const { return false; }
     };
 
 }

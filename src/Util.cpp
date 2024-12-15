@@ -1,0 +1,58 @@
+#include "Util.hpp"
+
+namespace PvZ{
+    bool hoverOverArea(const Vector2f& spritePos, const Vector2f& spriteSize) {
+        Vector2i mousePos = Mouse::getPosition(window);
+        return mousePos.x >= spritePos.x && mousePos.x <= spritePos.x + spriteSize.x &&
+            mousePos.y >= spritePos.y && mousePos.y <= spritePos.y + spriteSize.y;
+    }
+
+    void drawSprite(Sprite& sprite, const Vector2f& position) {
+        sprite.setPosition(position);
+        window.draw(sprite);
+    }
+
+    void drawSprite(const Sprite& sprite) {
+        window.draw(sprite);
+    }
+
+    Cursor& getCustomCursor(bool useCustomCursor) {
+        if (!useCustomCursor) {
+            static Cursor defaultCursor;
+            defaultCursor.loadFromSystem(Cursor::Arrow);
+            return defaultCursor;
+        }
+        Image cursorImage;
+        if (!cursorImage.loadFromFile("res/img/cursor/spike.png")) {
+            std::cerr << "Error: Unable to load cursor image from 'res/img/cursor/spike.png'" << std::endl;
+            static Cursor defaultCursor;
+            defaultCursor.loadFromSystem(Cursor::Arrow);
+            return defaultCursor;
+        }
+        Vector2u cursorSize = cursorImage.getSize();
+        Vector2u cursorHotspot = { 0u, 0u };
+
+        static Cursor customCursor;
+        customCursor.loadFromPixels(cursorImage.getPixelsPtr(), cursorSize, cursorHotspot);
+
+        return customCursor;
+    }
+
+    void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor) {
+        ////// Init window
+        // Set window size
+        window.create(VideoMode(windowSize.x, windowSize.y),
+            "PvZ", Style::Close | Style::Titlebar);
+        // Set frame rate
+        window.setFramerateLimit(frameRate);
+        // Set VSync
+        window.setVerticalSyncEnabled(VSync);
+        // Set custom cursor
+        window.setMouseCursor(getCustomCursor(customCursor));
+        // Center the window
+        VideoMode desktop = VideoMode::getDesktopMode();
+        int posX = (desktop.width - windowSize.x) / 2;
+        int posY = (desktop.height - windowSize.y) / 2;
+        window.setPosition(Vector2i(posX, posY));
+    }
+}

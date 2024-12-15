@@ -20,6 +20,9 @@ This header provides a series of utility functions and variables that are used t
 
 namespace PvZ {
 
+    /**
+     * @brief Global window variable. Everything should be drawn to this window.
+     */
     inline RenderWindow window;
 
     enum class GameState {

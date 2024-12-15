@@ -3,7 +3,7 @@
 
 #include "Util.hpp"
 
-namespace {
+namespace PvZ {
     /**
      * @brief Base class for plant cards
      */

@@ -19,6 +19,7 @@ FetchContent_MakeAvailable(SFML)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY})
 
 add_executable(PvZ
+    src/Util.cpp
     src/Game.cpp
     src/MainMenu.cpp
     src/levels/Level.cpp

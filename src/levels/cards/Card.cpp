@@ -2,7 +2,7 @@
 
 namespace PvZ {
     Card::Card(ushort sunCost, ms rechargeTime, const string& cardTexturePath, const string& plantTexturePath, const Vector2f& position) :
-        sunCost(sunCost), rechargeTime(rechargeTime), lastUsed(0ms), isReady(true), isDragged(false), position(position) {
+        sunCost{ sunCost }, rechargeTime{ rechargeTime }, lastUsed{ 0ms }, isReady{ true }, isDragged{ false }, position{ position } {
         cardTexture.loadFromFile(cardTexturePath);
         cardSprite.setTexture(cardTexture);
         cardSprite.setPosition(position);
@@ -14,7 +14,7 @@ namespace PvZ {
     void Card::draw() {
         drawSprite(cardSprite);
         if (isDragged) {
-            Vector2i mousePos = Mouse::getPosition(window);
+            auto mousePos = Mouse::getPosition(window);
             plantSprite.setPosition(mousePos.x, mousePos.y);
             drawSprite(plantSprite);
         }

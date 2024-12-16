@@ -30,8 +30,8 @@ namespace PvZ {
 
     public:
         Zombie(ushort health, ms movementSpeed, ms attackSpeed, ms spawnTime) :
-            Actor(health), movementSpeed(movementSpeed), attackSpeed(attackSpeed), lastAttack(clk::now()),
-            lastMove(clk::now()), lastSlowed(clk::now()), spawnTime(clk::now() + spawnTime), slowed(false), spawned(false) { }
+            Actor{ health }, movementSpeed{ movementSpeed }, attackSpeed{ attackSpeed }, lastAttack{ clk::now() },
+            lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime{ clk::now() + spawnTime }, slowed{ false }, spawned{ false } {}
         virtual ~Zombie() = default;
 
         /**

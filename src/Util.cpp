@@ -2,7 +2,7 @@
 
 namespace PvZ {
     bool hoverOverArea(const Vector2f& spritePos, const Vector2f& spriteSize) {
-        Vector2i mousePos = Mouse::getPosition(window);
+        auto mousePos = Mouse::getPosition(window);
         return mousePos.x >= spritePos.x && mousePos.x <= spritePos.x + spriteSize.x &&
             mousePos.y >= spritePos.y && mousePos.y <= spritePos.y + spriteSize.y;
     }
@@ -50,7 +50,7 @@ namespace PvZ {
         // Set custom cursor
         window.setMouseCursor(getCustomCursor(customCursor));
         // Center the window
-        VideoMode desktop = VideoMode::getDesktopMode();
+        auto desktop = VideoMode::getDesktopMode();
         auto posX = (desktop.width - windowSize.x) / 2;
         auto posY = (desktop.height - windowSize.y) / 2;
         window.setPosition(Vector2i(posX, posY));

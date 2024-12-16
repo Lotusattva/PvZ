@@ -5,11 +5,11 @@
 
 namespace PvZ {
     Game::Game() :
-        gameState(GameState::MAIN_MENU),
-        levelState(LevelState::LEVEL1),
-        stage(makeStage(GameState::MAIN_MENU)),
-        PAUSE(false),
-        pressedEscape(false) {
+        gameState{ GameState::MAIN_MENU },
+        levelState{ LevelState::LEVEL1 },
+        stage{ makeStage(GameState::MAIN_MENU) },
+        PAUSE{ false },
+        pressedEscape{ false } {
         setWindow({ 900u,600u }, 60, true, true);
     }
 

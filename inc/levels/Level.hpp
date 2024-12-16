@@ -3,6 +3,7 @@
 
 #include "Stage.hpp"
 #include "Actor.hpp"
+#include <list>
 
 namespace PvZ {
 
@@ -12,13 +13,13 @@ namespace PvZ {
     class Level : public Stage {
     protected:
         inline static const Vector2u gridOrigin = { 260u,80u };
-        inline static const ushort cellWidth = 80;
-        inline static const ushort cellHeight = 96;
+        inline static const ushort cellWidth{ 80 };
+        inline static const ushort cellHeight{ 96 };
         const ushort numRows;
 
-        forward_list<Actor*> actors;
+        list<Actor*> actors;
     public:
-        Level(ushort numRows) : numRows(numRows) { }
+        Level(ushort numRows) : numRows(numRows) {}
         virtual ~Level() = default;
 
         virtual GameState play(Event& event) = 0;

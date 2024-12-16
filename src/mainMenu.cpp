@@ -16,10 +16,7 @@ namespace PvZ {
         Sprites();
     };
 
-    MainMenu::Sprites::Sprites() {
-        buttonPos = { 480.f, 80.f };
-        buttonSize = { 331.f, 145.f };
-
+    MainMenu::Sprites::Sprites() : buttonPos{ 480.f, 80.f }, buttonSize{ 331.f, 145.f } {
         backgroundTexture.loadFromFile("res/img/mainMenu/mainMenu.png");
         background.setTexture(backgroundTexture);
 
@@ -32,7 +29,7 @@ namespace PvZ {
         buttonHighlight.setPosition(buttonPos);
     }
 
-    MainMenu::MainMenu() : sprites(new Sprites) { }
+    MainMenu::MainMenu() : sprites{ new Sprites } {}
 
     MainMenu::~MainMenu() {
         delete sprites;

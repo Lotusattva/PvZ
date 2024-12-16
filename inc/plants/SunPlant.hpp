@@ -14,7 +14,7 @@ namespace PvZ {
         const ms cooldown;
     public:
         SunPlant(short health, ushort col, ushort sunProduction, ms cooldown) :
-            Plant(health, col), sunProduction(sunProduction), cooldown(cooldown) { }
+            Plant{ health, col }, sunProduction{ sunProduction }, cooldown{ cooldown } {}
         virtual ~SunPlant() = default;
 
         /**

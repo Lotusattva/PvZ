@@ -16,10 +16,7 @@ namespace PvZ {
         Sprites();
     };
 
-    Level1::Sprites::Sprites() {
-        topbarPos = { 280.f, 0.f };
-        topbarSize = { 522.f, 87.f };
-
+    Level1::Sprites::Sprites() : topbarPos{ 280.f, 0.f }, topbarSize{ 522.f, 87.f } {
         backgroundTexture.loadFromFile("res/img/level/frontyard_3row.jpg");
         background.setTexture(backgroundTexture);
 
@@ -29,7 +26,7 @@ namespace PvZ {
     }
 
 
-    Level1::Level1() : sprites(new Sprites), Level(3) {
+    Level1::Level1() : sprites{ new Sprites }, Level{ 3 } {
         actors.emplace_front(new NullActor);
         actors.emplace_front(new NullActor);
     }
@@ -58,11 +55,16 @@ namespace PvZ {
             }
         }
         // bool zombieLeft{false};
-        for (auto it{ actors.before_begin() }; it != actors.end(); ++it) {
+        for (auto it{ actors.begin() }; it != actors.end();) {
             if (!(*it)->action()) {
                 delete* it;
-                it = actors.erase_after(it);
+                it = actors.erase(it);
+            } else {
+                ++it;
             }
+            // else if ((*it)->isZombie()) {
+            //     zombieLeft = true;s
+            // }
         }
         // if (!zombieLeft) {
         //     return GameState::GAME_WIN;

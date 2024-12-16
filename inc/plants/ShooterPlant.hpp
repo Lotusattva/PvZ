@@ -31,7 +31,7 @@ namespace PvZ {
 
     public:
         ShooterPlant(short health, ushort col, ProjectileType projectileType, ushort range, ms cooldown) :
-            Plant(health, col), projectileType(projectileType), range(range), cooldown(cooldown), lastShot(clk::now()) { }
+            Plant{ health, col }, projectileType{ projectileType }, range{ range }, cooldown{ cooldown }, lastShot{ clk::now() } {}
         virtual ~ShooterPlant() = default;
 
         /**

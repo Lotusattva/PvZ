@@ -19,7 +19,7 @@ namespace PvZ {
     private:
         const ushort col;
     public:
-        Plant(short health, ushort col) : Actor(health), col(col) { }
+        Plant(short health, ushort col) : Actor{ health }, col{ col } {}
         virtual ~Plant() = default;
 
         const ushort getCol() const { return col; }

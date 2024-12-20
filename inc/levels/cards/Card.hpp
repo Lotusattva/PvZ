@@ -11,21 +11,18 @@ namespace PvZ {
     protected:
         const short sunCost;
         ms rechargeTime;
-        ms lastUsed;
-        bool isReady;
-        bool isDragged;
+        time_point lastUsed;
+        bool isReady, isDragged;
 
-        Texture cardTexture;
-        Sprite cardSprite;
-
-        Texture plantTexture;
-        Sprite plantSprite;
+        Texture cardTexture, plantTexture;
+        Sprite cardSprite, plantSprite;
 
         Vector2f position;
 
     public:
         Card(short sunCost, ms rechargeTime, const string& cardTexturePath, const string& plantTexturePath, const Vector2f& position);
-
+        Card(const Card&) = delete;
+        Card(Card&&) = delete;
         ~Card() = default;
 
         /**

@@ -29,8 +29,8 @@ namespace PvZ {
             defaultCursor.loadFromSystem(Cursor::Arrow);
             return defaultCursor;
         }
-        Vector2u cursorSize = cursorImage.getSize();
-        Vector2u cursorHotspot = { 0u, 0u };
+        Vector2u cursorSize{ cursorImage.getSize() };
+        Vector2u cursorHotspot{ 0u, 0u };
 
         static Cursor customCursor;
         customCursor.loadFromPixels(cursorImage.getPixelsPtr(), cursorSize, cursorHotspot);
@@ -50,15 +50,15 @@ namespace PvZ {
         // Set custom cursor
         window.setMouseCursor(getCustomCursor(customCursor));
         // Center the window
-        auto desktop = VideoMode::getDesktopMode();
-        auto posX = (desktop.width - windowSize.x) / 2;
-        auto posY = (desktop.height - windowSize.y) / 2;
+        auto desktop{ VideoMode::getDesktopMode() };
+        auto posX{ (desktop.width - windowSize.x) / 2 };
+        auto posY{ (desktop.height - windowSize.y) / 2 };
         window.setPosition(Vector2i(posX, posY));
     }
 
     Frames::Frames(const short frameCount, const Texture textures[]) :
-        frameCount{ frameCount }, currentFrame{ 0 }, sprites{ new Sprite[frameCount] }, lastFrame(clk::now()) {
-        for (short i = 0; i < frameCount; ++i) {
+        frameCount{ frameCount }, currentFrame{ 0 }, sprites{ new Sprite[frameCount] }, lastFrame{ clk::now() } {
+        for (short i : range(0, frameCount)) {
             sprites[i].setTexture(textures[i]);
         }
     }
@@ -68,7 +68,7 @@ namespace PvZ {
     }
 
     Sprite& Frames::getFrame(Vector2f& position) {
-        auto now = clk::now();
+        auto now{ clk::now() };
         if (now - lastFrame >= frameInterval) {
             lastFrame = now;
             currentFrame = (currentFrame + 1) % frameCount;

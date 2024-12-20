@@ -12,14 +12,15 @@ namespace PvZ {
      */
     class Level : public Stage {
     protected:
-        inline static const Vector2u gridOrigin = { 260u,80u };
-        inline static const short cellWidth{ 80 };
-        inline static const short cellHeight{ 96 };
-        const short numRows;
+        static inline const Vector2u gridOrigin{ 260u,80u };
+        static inline const short cellWidth{ 80 }, cellHeight{ 96 };
 
+        const short numRows;
         list<Actor*> actors;
     public:
         Level(short numRows) : numRows(numRows) {}
+        Level(const Level&) = delete;
+        Level(Level&&) = delete;
         virtual ~Level() = default;
 
         virtual GameState play(Event& event) = 0;

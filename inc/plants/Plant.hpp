@@ -20,6 +20,8 @@ namespace PvZ {
         const short col;
     public:
         Plant(short health, short col) : Actor{ health }, col{ col } {}
+        Plant(const Plant&) = delete;
+        Plant(Plant&&) = delete;
         virtual ~Plant() = default;
 
         const short getCol() const { return col; }

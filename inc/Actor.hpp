@@ -16,6 +16,8 @@ namespace PvZ {
     public:
 
         Actor(short health, bool alive = true) : health{ health }, alive{ alive } {}
+        Actor(const Actor&) = delete;
+        Actor& operator=(const Actor&) = delete;
         virtual ~Actor() = default;
 
         /**

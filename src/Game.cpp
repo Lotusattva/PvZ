@@ -4,17 +4,12 @@
 #include "levels/Level.hpp"
 
 namespace PvZ {
-    Game::Game() :
-        gameState{ GameState::MAIN_MENU },
-        levelState{ LevelState::LEVEL1 },
-        stage{ makeStage(GameState::MAIN_MENU) },
-        PAUSE{ false },
-        pressedEscape{ false } {
+    Game::Game() {
         setWindow({ 900u,600u }, 60, true, true);
     }
 
     void Game::run() {
-        GameState nextState = gameState;
+        GameState nextState{ gameState };
         while (window.isOpen()) {
             // always clear window and draw background
             window.clear();

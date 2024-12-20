@@ -32,6 +32,8 @@ namespace PvZ {
     public:
         ShooterPlant(short health, short col, ProjectileType projectileType, short range, ms cooldown) :
             Plant{ health, col }, projectileType{ projectileType }, range{ range }, cooldown{ cooldown }, lastShot{ clk::now() } {}
+        ShooterPlant(const ShooterPlant&) = delete;
+        ShooterPlant(ShooterPlant&&) = delete;
         virtual ~ShooterPlant() = default;
 
         /**

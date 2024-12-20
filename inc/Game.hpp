@@ -14,21 +14,23 @@ namespace PvZ {
 
         Event event;
 
-        GameState gameState;
-        LevelState levelState;
-        Stage* stage;
-        bool PAUSE;
-        bool pressedEscape;
+        GameState gameState{ GameState::MAIN_MENU };
+        LevelState levelState{ LevelState::LEVEL1 };
+        Stage* stage{ makeStage(GameState::MAIN_MENU) };
+        bool PAUSE{ false };
+        bool pressedEscape{ false };
 
         /**
          * @brief Makes a new stage when game state is changed
          */
         Stage* makeStage(GameState gameState);
 
-
     public:
-
         Game();
+        Game(const Game&) = delete;
+        Game& operator=(const Game&) = delete;
+        ~Game() = default;
+
         void run();
     };
 

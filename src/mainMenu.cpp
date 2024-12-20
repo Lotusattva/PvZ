@@ -1,22 +1,7 @@
 #include "MainMenu.hpp"
 
 namespace PvZ {
-    class MainMenu::Sprites {
-    private:
-        Texture backgroundTexture;
-        Texture buttonTexture;
-        Texture buttonHighlightTexture;
-
-    public:
-        Sprite background;
-        Sprite button;
-        Sprite buttonHighlight;
-        Vector2f buttonPos;
-        Vector2f buttonSize;
-        Sprites();
-    };
-
-    MainMenu::Sprites::Sprites() : buttonPos{ 480.f, 80.f }, buttonSize{ 331.f, 145.f } {
+    MainMenu::Sprites::Sprites() {
         backgroundTexture.loadFromFile("res/img/mainMenu/mainMenu.png");
         background.setTexture(backgroundTexture);
 
@@ -29,15 +14,12 @@ namespace PvZ {
         buttonHighlight.setPosition(buttonPos);
     }
 
-    MainMenu::MainMenu() : sprites{ new Sprites } {}
-
     MainMenu::~MainMenu() {
         delete sprites;
     }
 
     GameState MainMenu::play(Event& event) {
-        static bool clickedStart = false;
-        static bool holdingClick = false;
+        static bool clickedStart{ false }, holdingClick{ false };
 
         drawSprite(sprites->background);
 

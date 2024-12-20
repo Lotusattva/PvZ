@@ -3,21 +3,8 @@
 #include "zombies/RegularZombie.hpp"
 
 namespace PvZ {
-    class Level1::Sprites {
-    private:
-        Texture backgroundTexture;
-        Texture topbarTexture;
-    public:
-        Sprite background;
-        Sprite topbar;
 
-        Vector2f topbarPos;
-        Vector2f topbarSize;
-
-        Sprites();
-    };
-
-    Level1::Sprites::Sprites() : topbarPos{ 280.f, 0.f }, topbarSize{ 522.f, 87.f } {
+    Level1::Sprites::Sprites() {
         backgroundTexture.loadFromFile("res/img/level/frontyard_3row.jpg");
         background.setTexture(backgroundTexture);
 
@@ -26,7 +13,7 @@ namespace PvZ {
         topbar.setPosition(topbarPos);
     }
 
-    Level1::Level1() : sprites{ new Sprites }, Level{ 3 } {
+    Level1::Level1() : Level{ 3 } {
         actors.emplace_front(new NullActor);
         actors.emplace_front(new RegularZombie{ 1000ms });
     }

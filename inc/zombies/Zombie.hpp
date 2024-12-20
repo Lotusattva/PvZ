@@ -19,20 +19,16 @@ namespace PvZ {
      */
     class Zombie : public Actor {
     private:
-        ms movementSpeed;
-        ms attackSpeed;
-        time_point lastAttack;
-        time_point lastMove;
-        time_point lastSlowed;
-        time_point spawnTime;
-        bool slowed;
-        bool spawned;
+        ms movementSpeed, attackSpeed; // TODO: maybe there's a better data type for this
+        time_point lastAttack{ clk::now() }, lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime;
+        bool slowed{ false }, spawned{ false };
         Vector2f position;
 
     public:
         Zombie(short health, ms movementSpeed, ms attackSpeed, ms spawnTime) :
-            Actor{ health }, movementSpeed{ movementSpeed }, attackSpeed{ attackSpeed }, lastAttack{ clk::now() },
-            lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime{ clk::now() + spawnTime }, slowed{ false }, spawned{ false } {}
+            Actor{ health }, movementSpeed{ movementSpeed }, attackSpeed{ attackSpeed }, spawnTime{ clk::now() + spawnTime } {}
+        Zombie(const Zombie&) = delete;
+        Zombie& operator=(const Zombie&) = delete;
         virtual ~Zombie() = default;
 
         /**

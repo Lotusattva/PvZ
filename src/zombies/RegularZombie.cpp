@@ -2,20 +2,19 @@
 
 namespace PvZ {
 
-    const RegularZombie::Textures RegularZombie::textures{ Textures() };
-
     RegularZombie::Textures::Textures() {
+        string path{ "res/img/zombie_idle/" }, ext{ ".png" };
         for (short i : range(1, IDLE_FRAMES + 1)) {
-            idle[i].loadFromFile("res/img/zombie_idle/" + to_string(i) + ".png");
+            idle[i].loadFromFile(path + to_string(i) + ext);
         }
         for (short i : range(1, WALK_FRAMES + 1)) {
-            walk[i].loadFromFile("res/img/zombie_walk/" + to_string(i) + ".png");
+            walk[i].loadFromFile(path + to_string(i) + ext);
         }
         for (short i : range(1, ATTACK_FRAMES + 1)) {
-            attack[i].loadFromFile("res/img/zombie_attack/" + to_string(i) + ".png");
+            attack[i].loadFromFile(path + to_string(i) + ext);
         }
         for (short i : range(1, DEATH_FRAMES + 1)) {
-            death[i].loadFromFile("res/img/zombie_death/" + to_string(i) + ".png");
+            death[i].loadFromFile(path + to_string(i) + ext);
         }
     }
 

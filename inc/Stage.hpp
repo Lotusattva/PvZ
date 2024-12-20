@@ -10,10 +10,13 @@ namespace PvZ {
      */
     class Stage {
     public:
+        Stage() = default;
+        Stage(const Stage&) = delete;
+        Stage(Stage&&) = delete;
         virtual ~Stage() = default;
 
         /**
-         * @brief Handle events, draw sprites, and update game state. 
+         * @brief Handle events, draw sprites, and update game state.
          * This is the method to be called in each iteration of the main game loop.
          */
         virtual GameState play(Event& event) = 0;

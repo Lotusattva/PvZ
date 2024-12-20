@@ -10,12 +10,25 @@ namespace PvZ {
      */
     class Level1 : public Level {
     private:
-        class Sprites;
+        class Sprites {
+        private:
+            Texture backgroundTexture, topbarTexture;
+        public:
+            Sprite background, topbar;
+            static inline const Vector2f topbarPos{ 280.f, 0.f }, topbarSize{ 522.f, 87.f };
 
-        Sprites* const sprites;
+            Sprites();
+            Sprites(const Sprites&) = delete;
+            Sprites(Sprites&&) = delete;
+            ~Sprites() = default;
+        };
+
+        Sprites* const sprites{ new Sprites };
     public:
 
         Level1();
+        Level1(const Level1&) = delete;
+        Level1(Level1&&) = delete;
         ~Level1();
         GameState play(Event& event) override;
     };

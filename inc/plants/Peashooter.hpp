@@ -11,6 +11,8 @@ namespace PvZ {
     class Peashooter : public ShooterPlant {
     public:
         Peashooter(short col);
+        Peashooter(const Peashooter&) = delete;
+        Peashooter(Peashooter&&) = delete;
         ~Peashooter();
 
         bool action() override;

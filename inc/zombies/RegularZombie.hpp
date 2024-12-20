@@ -11,24 +11,24 @@ namespace PvZ {
      */
     class RegularZombie : public Zombie {
     private:
-        static const short IDLE_FRAMES{ 11 };
-        static const short WALK_FRAMES{ 22 };
-        static const short ATTACK_FRAMES{ 21 };
-        static const short DEATH_FRAMES{ 20 };
+        static inline const short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 21 }, DEATH_FRAMES{ 20 };
         class Textures {
-            public:
+        public:
             Texture idle[IDLE_FRAMES], walk[WALK_FRAMES], attack[ATTACK_FRAMES], death[DEATH_FRAMES];
             Textures();
         };
 
-        static const Textures textures;
+        static inline const Textures textures;
 
         Frames idleFrames{ IDLE_FRAMES, textures.idle }, walkFrames{ WALK_FRAMES, textures.walk },
             attackFrames{ ATTACK_FRAMES, textures.attack }, deathFrames{ DEATH_FRAMES, textures.death };
 
     public:
         RegularZombie(ms spawnTime);
+        RegularZombie(const RegularZombie&) = delete;
+        RegularZombie(RegularZombie&&) = delete;
         ~RegularZombie() = default;
+
         bool action() override;
         void move() override;
         void attack() override;

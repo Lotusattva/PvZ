@@ -23,7 +23,7 @@ namespace PvZ {
     /**
      * @brief Returns a range of numbers from start (inclusive) to end (exclusive)
      */
-    constexpr auto range = [](auto start, auto end) { return ranges::views::iota(start, end); };
+    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end); };
 
     /**
      * @brief Global window variable. Everything should be drawn to this window.
@@ -78,7 +78,7 @@ namespace PvZ {
      */
     void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor);
 
-    inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1s };
+    constexpr inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1s };
 
     class Frames {
     private:
@@ -89,6 +89,8 @@ namespace PvZ {
 
     public:
         Frames(const short frameCount, const Texture textures[]);
+        Frames(const Frames&) = delete;
+        Frames(Frames&&) = delete;
         ~Frames();
 
         Sprite& getFrame(Vector2f& position);

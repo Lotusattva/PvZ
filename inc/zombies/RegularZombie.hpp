@@ -15,16 +15,16 @@ namespace PvZ {
         static const short WALK_FRAMES{ 22 };
         static const short ATTACK_FRAMES{ 21 };
         static const short DEATH_FRAMES{ 20 };
-        class Sprites {
+        class Textures {
             public:
             Texture idle[IDLE_FRAMES], walk[WALK_FRAMES], attack[ATTACK_FRAMES], death[DEATH_FRAMES];
-            Sprites();
+            Textures();
         };
 
-        static const Sprites sprites;
+        static const Textures textures;
 
-        Frames idleFrames{ IDLE_FRAMES, sprites.idle }, walkFrames{ WALK_FRAMES, sprites.walk },
-            attackFrames{ ATTACK_FRAMES, sprites.attack }, deathFrames{ DEATH_FRAMES, sprites.death };
+        Frames idleFrames{ IDLE_FRAMES, textures.idle }, walkFrames{ WALK_FRAMES, textures.walk },
+            attackFrames{ ATTACK_FRAMES, textures.attack }, deathFrames{ DEATH_FRAMES, textures.death };
 
     public:
         RegularZombie(ms spawnTime);

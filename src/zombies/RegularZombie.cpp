@@ -2,9 +2,9 @@
 
 namespace PvZ {
 
-    const RegularZombie::Sprites RegularZombie::sprites{ Sprites() };
+    const RegularZombie::Textures RegularZombie::textures{ Textures() };
 
-    RegularZombie::Sprites::Sprites() {
+    RegularZombie::Textures::Textures() {
         for (short i : range(1, IDLE_FRAMES + 1)) {
             idle[i].loadFromFile("res/img/zombie_idle/" + to_string(i) + ".png");
         }

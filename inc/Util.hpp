@@ -4,20 +4,26 @@
 #include <SFML/Graphics.hpp>
 #include <chrono>
 #include <iostream>
-
-using namespace std;
-using ms = chrono::milliseconds;
-using clk = chrono::steady_clock;
-using time_point = chrono::time_point<clk>;
-using namespace sf;
-
-typedef unsigned short ushort;
+#include <vector>
+#include <string>
+#include <ranges>
 
 /*
 This header provides a series of utility functions and variables that are used throughout the project.
 */
 
 namespace PvZ {
+
+    using namespace std;
+    using ms = chrono::milliseconds;
+    using clk = chrono::steady_clock;
+    using time_point = chrono::time_point<clk>;
+    using namespace sf;
+
+    /**
+     * @brief Returns a range of numbers from start (inclusive) to end (exclusive)
+     */
+    constexpr auto range = [](short start, short end) { return ranges::views::iota(start, end); };
 
     /**
      * @brief Global window variable. Everything should be drawn to this window.
@@ -70,7 +76,23 @@ namespace PvZ {
     /**
      * @brief Sets the window size, frame rate, VSync, and custom cursor. Constructs the window.
      */
-    void setWindow(Vector2u windowSize, ushort frameRate, bool VSync, bool customCursor);
+    void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor);
+
+    inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1s };
+
+    class Frames {
+    private:
+        Sprite* const sprites;
+        short currentFrame;
+        const short frameCount;
+        time_point lastFrame;
+
+    public:
+        Frames(const short frameCount, const Texture textures[]);
+        ~Frames();
+
+        const Sprite& getFrame(Vector2f& position);
+    };
 }
 
 #endif // UTIL_HPP

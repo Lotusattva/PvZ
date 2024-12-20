@@ -38,7 +38,7 @@ namespace PvZ {
         return customCursor;
     }
 
-    void setWindow(Vector2u windowSize, ushort frameRate, bool VSync, bool customCursor) {
+    void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor) {
         ////// Init window
         // Set window size
         window.create(VideoMode(windowSize.x, windowSize.y),
@@ -54,5 +54,26 @@ namespace PvZ {
         auto posX = (desktop.width - windowSize.x) / 2;
         auto posY = (desktop.height - windowSize.y) / 2;
         window.setPosition(Vector2i(posX, posY));
+    }
+
+    Frames::Frames(const short frameCount, const Texture textures[]) :
+        frameCount{ frameCount }, currentFrame{ 0 }, sprites{ new Sprite[frameCount] }, lastFrame(clk::now()) {
+        for (short i = 0; i < frameCount; ++i) {
+            sprites[i].setTexture(textures[i]);
+        }
+    }
+
+    Frames::~Frames() {
+        delete[] sprites;
+    }
+
+    const Sprite& Frames::getFrame(Vector2f& position) {
+        auto now = clk::now();
+        if (now - lastFrame >= frameInterval) {
+            lastFrame = now;
+            currentFrame = (currentFrame + 1) % frameCount;
+        }
+        sprites[currentFrame].setPosition(position);
+        return sprites[currentFrame];
     }
 }

@@ -10,7 +10,7 @@ namespace PvZ {
      */
     class Peashooter : public ShooterPlant {
     public:
-        Peashooter(ushort col);
+        Peashooter(short col);
         ~Peashooter();
 
         bool action() override;

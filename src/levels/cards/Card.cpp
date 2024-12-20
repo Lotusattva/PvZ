@@ -1,7 +1,7 @@
 #include "levels/cards/Card.hpp"
 
 namespace PvZ {
-    Card::Card(ushort sunCost, ms rechargeTime, const string& cardTexturePath, const string& plantTexturePath, const Vector2f& position) :
+    Card::Card(short sunCost, ms rechargeTime, const string& cardTexturePath, const string& plantTexturePath, const Vector2f& position) :
         sunCost{ sunCost }, rechargeTime{ rechargeTime }, lastUsed{ 0ms }, isReady{ true }, isDragged{ false }, position{ position } {
         cardTexture.loadFromFile(cardTexturePath);
         cardSprite.setTexture(cardTexture);

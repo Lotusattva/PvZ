@@ -17,12 +17,12 @@ namespace PvZ {
      */
     class Plant : public Actor {
     private:
-        const ushort col;
+        const short col;
     public:
-        Plant(short health, ushort col) : Actor{ health }, col{ col } {}
+        Plant(short health, short col) : Actor{ health }, col{ col } {}
         virtual ~Plant() = default;
 
-        const ushort getCol() const { return col; }
+        const short getCol() const { return col; }
     };
 
     Plant* createPlant(PlantType plantType);

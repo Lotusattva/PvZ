@@ -12,7 +12,7 @@ namespace PvZ {
     class ShooterPlant : public Plant {
     private:
         const ProjectileType projectileType;
-        const ushort range;
+        const short range;
         const ms cooldown;
         time_point lastShot;
 
@@ -30,7 +30,7 @@ namespace PvZ {
         bool withInRange(Actor* actor) const;
 
     public:
-        ShooterPlant(short health, ushort col, ProjectileType projectileType, ushort range, ms cooldown) :
+        ShooterPlant(short health, short col, ProjectileType projectileType, short range, ms cooldown) :
             Plant{ health, col }, projectileType{ projectileType }, range{ range }, cooldown{ cooldown }, lastShot{ clk::now() } {}
         virtual ~ShooterPlant() = default;
 
@@ -44,7 +44,7 @@ namespace PvZ {
          *
          * @return the range of the plant
          */
-        const ushort getRange() const { return range; }
+        const short getRange() const { return range; }
 
         /**
          * @brief Checks if the plant is on cooldown

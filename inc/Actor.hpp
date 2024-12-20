@@ -31,7 +31,7 @@ namespace PvZ {
          *
          * @param damage
          */
-        virtual void takeDamage(ushort damage) {
+        virtual void takeDamage(short damage) {
             health -= damage;
             if (health <= 0) {
                 alive = false;

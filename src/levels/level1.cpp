@@ -1,5 +1,6 @@
 #include "levels/Level1.hpp"
 #include "NullActor.hpp"
+#include "zombies/RegularZombie.hpp"
 
 namespace PvZ {
     class Level1::Sprites {
@@ -25,10 +26,9 @@ namespace PvZ {
         topbar.setPosition(topbarPos);
     }
 
-
     Level1::Level1() : sprites{ new Sprites }, Level{ 3 } {
         actors.emplace_front(new NullActor);
-        actors.emplace_front(new NullActor);
+        actors.emplace_front(new RegularZombie{ 1000ms });
     }
 
     Level1::~Level1() {

@@ -27,9 +27,10 @@ namespace PvZ {
         time_point spawnTime;
         bool slowed;
         bool spawned;
+        Vector2f position;
 
     public:
-        Zombie(ushort health, ms movementSpeed, ms attackSpeed, ms spawnTime) :
+        Zombie(short health, ms movementSpeed, ms attackSpeed, ms spawnTime) :
             Actor{ health }, movementSpeed{ movementSpeed }, attackSpeed{ attackSpeed }, lastAttack{ clk::now() },
             lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime{ clk::now() + spawnTime }, slowed{ false }, spawned{ false } {}
         virtual ~Zombie() = default;

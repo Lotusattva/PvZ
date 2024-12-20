@@ -26,6 +26,7 @@ add_executable(PvZ
     src/levels/Level1.cpp
     src/main.cpp
     src/levels/cards/Card.cpp
+    src/zombies/RegularZombie.cpp
 )
 target_include_directories(PvZ PRIVATE inc src)
 target_link_libraries(PvZ PRIVATE sfml-graphics sfml-audio)

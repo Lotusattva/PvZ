@@ -91,7 +91,7 @@ namespace PvZ {
         Frames(const short frameCount, const Texture textures[]);
         ~Frames();
 
-        const Sprite& getFrame(Vector2f& position);
+        Sprite& getFrame(Vector2f& position);
     };
 }
 

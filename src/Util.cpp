@@ -67,7 +67,7 @@ namespace PvZ {
         delete[] sprites;
     }
 
-    const Sprite& Frames::getFrame(Vector2f& position) {
+    Sprite& Frames::getFrame(Vector2f& position) {
         auto now = clk::now();
         if (now - lastFrame >= frameInterval) {
             lastFrame = now;

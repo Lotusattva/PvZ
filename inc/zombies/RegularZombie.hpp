@@ -16,12 +16,17 @@ namespace PvZ {
         public:
             Texture idle[IDLE_FRAMES], walk[WALK_FRAMES], attack[ATTACK_FRAMES], death[DEATH_FRAMES];
             Textures();
+            Textures(const Textures&) = delete;
+            Textures(Textures&&) = delete;
+            ~Textures() = default;
         };
 
         static inline const Textures textures;
 
         Frames idleFrames{ IDLE_FRAMES, textures.idle }, walkFrames{ WALK_FRAMES, textures.walk },
             attackFrames{ ATTACK_FRAMES, textures.attack }, deathFrames{ DEATH_FRAMES, textures.death };
+
+        // the attack animation is funky
 
     public:
         RegularZombie(ms spawnTime);

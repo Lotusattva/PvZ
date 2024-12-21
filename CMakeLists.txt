@@ -23,7 +23,7 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
 add_executable(PvZ ${SOURCES})
 
-target_include_directories(PvZ PRIVATE inc src)
+target_include_directories(PvZ PRIVATE inc)
 target_link_libraries(PvZ PRIVATE sfml-graphics sfml-audio)
 target_compile_features(PvZ PRIVATE cxx_std_23)
 

@@ -78,14 +78,14 @@ namespace PvZ {
      */
     void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor);
 
-    constexpr inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1.0 };
+    constexpr inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1.0 }; // FIXME: find the correct value/ratio
 
     class Frames {
     private:
         Sprite* const sprites;
-        short currentFrame;
+        short currentFrame{ 0 };
         const short frameCount;
-        time_point lastFrame;
+        time_point lastFrame{ clk::now() };
 
     public:
         Frames(const short frameCount, const Texture textures[]);

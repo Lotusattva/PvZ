@@ -57,7 +57,7 @@ namespace PvZ {
     }
 
     Frames::Frames(const short frameCount, const Texture textures[]) :
-        frameCount{ frameCount }, currentFrame{ 0 }, sprites{ new Sprite[frameCount] }, lastFrame{ clk::now() } {
+        frameCount{ frameCount }, sprites{ new Sprite[frameCount] } {
         for (short i : range(0, frameCount)) {
             sprites[i].setTexture(textures[i]);
         }
@@ -71,8 +71,7 @@ namespace PvZ {
         auto now{ clk::now() };
         if (now - lastFrame >= frameInterval) {
             lastFrame = now;
-            currentFrame++;
-            currentFrame %= frameCount;
+            currentFrame = (currentFrame + 1) % frameCount;
         }
         sprites[currentFrame].setPosition(position);
         return sprites[currentFrame];

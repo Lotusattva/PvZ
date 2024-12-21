@@ -71,7 +71,8 @@ namespace PvZ {
         auto now{ clk::now() };
         if (now - lastFrame >= frameInterval) {
             lastFrame = now;
-            currentFrame = (currentFrame + 1) % frameCount;
+            currentFrame++;
+            currentFrame %= frameCount;
         }
         sprites[currentFrame].setPosition(position);
         return sprites[currentFrame];

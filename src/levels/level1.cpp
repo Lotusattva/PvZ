@@ -28,19 +28,7 @@ namespace PvZ {
     GameState Level1::play(Event& event) {
         drawSprite(sprites->background);
         drawSprite(sprites->topbar);
-        while (window.pollEvent(event)) {
-            switch (event.type) {
-                case Event::Closed:
-                    window.close();
-                    return GameState::MAIN_MENU;
-                case Event::KeyPressed:
-                    if (event.key.code == Keyboard::Escape) {
-                        return GameState::MAIN_MENU;
-                    }
-                default:
-                    break;
-            }
-        }
+        
         // bool zombieLeft{false};
         for (auto it{ actors.begin() }; it != actors.end();) {
             if (!(*it)->action()) {
@@ -56,6 +44,21 @@ namespace PvZ {
         // if (!zombieLeft) {
         //     return GameState::GAME_WIN;
         // }
+        
+        while (window.pollEvent(event)) {
+            switch (event.type) {
+                case Event::Closed:
+                    window.close();
+                    return GameState::MAIN_MENU;
+                case Event::KeyPressed:
+                    if (event.key.code == Keyboard::Escape) {
+                        return GameState::MAIN_MENU;
+                    }
+                default:
+                    break;
+            }
+        }
+
         return GameState::PLAY;
     }
 }

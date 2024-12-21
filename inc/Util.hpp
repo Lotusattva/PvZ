@@ -78,7 +78,7 @@ namespace PvZ {
      */
     void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor);
 
-    constexpr inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1s };
+    constexpr inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1.0 };
 
     class Frames {
     private:

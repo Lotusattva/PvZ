@@ -22,9 +22,11 @@ namespace PvZ {
     RegularZombie::RegularZombie(ms spawnTime) : Zombie{ 10, 100ms, 100ms, spawnTime } {}
 
     bool RegularZombie::action() {
+        
+        // just testing the animation out for now
         Vector2f pos{ 200.f, 200.f };
 
-        drawSprite(attackFrames.getFrame(pos));
+        drawSprite(attackFrames.getFrame(pos)); 
         return true;
     }
 

@@ -5,16 +5,16 @@ namespace PvZ {
     RegularZombie::Textures::Textures() {
         string root_path{ "res/img/zombie_" }, idle_path{ root_path + "idle/" }, walk_path{ root_path + "walk/" },
             attack_path{ root_path + "attack/" }, death_path{ root_path + "death/" }, ext{ ".png" };
-        for (short i : range(1, IDLE_FRAMES + 1)) {
+        for (short i  = 1; i <= IDLE_FRAMES; ++i) {
             idle[i - 1].loadFromFile(idle_path + to_string(i) + ext);
         }
-        for (short i : range(1, WALK_FRAMES + 1)) {
+        for (short i  = 1; i <= WALK_FRAMES; ++i) {
             walk[i - 1].loadFromFile(walk_path + to_string(i) + ext);
         }
-        for (short i : range(1, ATTACK_FRAMES + 1)) {
+        for (short i  = 1; i <= ATTACK_FRAMES; ++i) {
             attack[i - 1].loadFromFile(attack_path + to_string(i) + ext);
         }
-        for (short i : range(1, DEATH_FRAMES + 1)) {
+        for (short i  = 1; i <= DEATH_FRAMES; ++i) {
             death[i - 1].loadFromFile(death_path + to_string(i) + ext);
         }
     }

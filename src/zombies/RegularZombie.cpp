@@ -26,7 +26,7 @@ namespace PvZ {
         // just testing the animation out for now
         Vector2f pos{ 200.f, 200.f };
 
-        drawSprite(attackFrames.getFrame(pos)); 
+        drawSprite(walkFrames.getFrame(pos)); 
         return true;
     }
 

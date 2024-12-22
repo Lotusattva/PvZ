@@ -3,6 +3,14 @@
 namespace PvZ {
     MainMenu::Sprites::Sprites() {
         backgroundTexture.loadFromFile("res/img/mainMenu/mainMenu.png");
+        /*
+        if (load success) {
+        log (success message)
+        }
+        else {
+        log (error message)
+        }
+        */
         background.setTexture(backgroundTexture);
 
         buttonTexture.loadFromFile("res/img/mainMenu/button.png");

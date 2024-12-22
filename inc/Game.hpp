@@ -31,6 +31,9 @@ namespace PvZ {
         Game& operator=(const Game&) = delete;
         ~Game() = default;
 
+        /**
+         * @brief Main game loop
+         */
         void run();
     };
 

@@ -29,6 +29,7 @@ namespace PvZ {
         MainMenu(const MainMenu&) = delete;
         MainMenu(MainMenu&&) = delete;
         ~MainMenu();
+
         GameState play(Event& event) override;
     };
 }

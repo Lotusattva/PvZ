@@ -58,7 +58,7 @@ namespace PvZ {
 
     Frames::Frames(const short frameCount, const Texture textures[]) :
         frameCount{ frameCount }, sprites{ new Sprite[frameCount] } {
-        for (short i : range(0, frameCount)) {
+        for (short i = 0 ; i <frameCount; ++i) {
             sprites[i].setTexture(textures[i]);
         }
     }

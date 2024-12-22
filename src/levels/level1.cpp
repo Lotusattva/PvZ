@@ -15,7 +15,7 @@ namespace PvZ {
 
     Level1::Level1() : Level{ 3 } {
         actors.emplace_front(new NullActor);
-        actors.emplace_front(new RegularZombie{ 1000ms });
+        actors.emplace_front(new NullActor);
     }
 
     Level1::~Level1() {

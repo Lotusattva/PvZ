@@ -5,37 +5,33 @@ namespace PvZ {
     RegularZombie::Textures::Textures() {
         string root_path{ "res/img/zombie_" }, idle_path{ root_path + "idle/" }, walk_path{ root_path + "walk/" },
             attack_path{ root_path + "attack/" }, death_path{ root_path + "death/" }, ext{ ".png" };
-        for (short i  = 1; i <= IDLE_FRAMES; ++i) {
-            idle[i - 1].loadFromFile(idle_path + to_string(i) + ext);
+        idle.reserve(IDLE_FRAMES);
+        for (short i : range(1, IDLE_FRAMES + 1)) {
+            idle.push_back(Texture{ idle_path + to_string(i) + ext });
         }
-        for (short i  = 1; i <= WALK_FRAMES; ++i) {
-            walk[i - 1].loadFromFile(walk_path + to_string(i) + ext);
+        walk.reserve(WALK_FRAMES);
+        for (short i : range(1, WALK_FRAMES + 1)) {
+            walk.push_back(Texture{ walk_path + to_string(i) + ext });
         }
-        for (short i  = 1; i <= ATTACK_FRAMES; ++i) {
-            attack[i - 1].loadFromFile(attack_path + to_string(i) + ext);
+        attack.reserve(ATTACK_FRAMES);
+        for (short i : range(1, ATTACK_FRAMES + 1)) {
+            attack.push_back(Texture{ attack_path + to_string(i) + ext });
         }
-        for (short i  = 1; i <= DEATH_FRAMES; ++i) {
-            death[i - 1].loadFromFile(death_path + to_string(i) + ext);
+        death.reserve(DEATH_FRAMES);
+        for (short i : range(1, DEATH_FRAMES + 1)) {
+            death.push_back(Texture{ death_path + to_string(i) + ext });
         }
     }
 
     RegularZombie::RegularZombie(ms spawnTime) : Zombie{ 10, 100ms, 100ms, spawnTime } {}
 
     bool RegularZombie::action() {
-        
+
         // just testing the animation out for now
         Vector2f pos{ 200.f, 200.f };
 
-        drawSprite(walkFrames.getFrame(pos)); 
+        drawSprite(walk.getFrame(pos));
         return true;
-    }
-
-    void RegularZombie::move() {
-        return;
-    }
-
-    void RegularZombie::attack() {
-        return;
     }
 
 }

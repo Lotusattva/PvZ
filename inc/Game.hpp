@@ -12,8 +12,6 @@ namespace PvZ {
 
     private:
 
-        Event event;
-
         GameState gameState{ GameState::MAIN_MENU };
         LevelState levelState{ LevelState::LEVEL1 };
         Stage* stage{ makeStage(GameState::MAIN_MENU) };

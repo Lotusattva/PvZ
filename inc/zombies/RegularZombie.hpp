@@ -14,7 +14,7 @@ namespace PvZ {
         static inline const short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 20 }, DEATH_FRAMES{ 20 };
         class Textures {
         public:
-            Texture idle[IDLE_FRAMES], walk[WALK_FRAMES], attack[ATTACK_FRAMES], death[DEATH_FRAMES];
+            vector<Texture> idle, walk, attack, death;
             Textures();
             Textures(const Textures&) = delete;
             Textures(Textures&&) = delete;
@@ -23,8 +23,8 @@ namespace PvZ {
 
         static inline const Textures textures;
 
-        Frames idleFrames{ IDLE_FRAMES, textures.idle }, walkFrames{ WALK_FRAMES, textures.walk },
-            attackFrames{ ATTACK_FRAMES, textures.attack }, deathFrames{ DEATH_FRAMES, textures.death };
+        Frames idle{ textures.idle }, walk{ textures.walk },
+            attack{ textures.attack }, death{ textures.death };
 
         // the attack animation is funky
 
@@ -35,8 +35,6 @@ namespace PvZ {
         ~RegularZombie() = default;
 
         bool action() override;
-        void move() override;
-        void attack() override;
     };
 }
 

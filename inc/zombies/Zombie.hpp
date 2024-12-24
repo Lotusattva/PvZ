@@ -31,16 +31,6 @@ namespace PvZ {
         Zombie& operator=(const Zombie&) = delete;
         virtual ~Zombie() = default;
 
-        /**
-         * @brief zombie moves
-         */
-        virtual void move() = 0;
-
-        /**
-         * @brief zombie attacks
-         */
-        virtual void attack() = 0;
-
         bool isZombie() const override { return true; }
     };
 

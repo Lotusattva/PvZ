@@ -1,71 +1,52 @@
 #include "MainMenu.hpp"
 
 namespace PvZ {
-    MainMenu::Sprites::Sprites() {
-        backgroundTexture.loadFromFile("res/img/mainMenu/mainMenu.png");
-        /*
-        if (load success) {
-        log (success message)
-        }
-        else {
-        log (error message)
-        }
-        */
-        background.setTexture(backgroundTexture);
-
-        buttonTexture.loadFromFile("res/img/mainMenu/button.png");
-        button.setTexture(buttonTexture);
+    MainMenu::MainMenu() {
         button.setPosition(buttonPos);
-
-        buttonHighlightTexture.loadFromFile("res/img/mainMenu/buttonHighlight.png");
-        buttonHighlight.setTexture(buttonHighlightTexture);
         buttonHighlight.setPosition(buttonPos);
     }
 
-    MainMenu::~MainMenu() {
-        delete sprites;
-    }
-
-    GameState MainMenu::play(Event& event) {
+    GameState MainMenu::play() {
         static bool clickedStart{ false }, holdingClick{ false };
 
-        drawSprite(sprites->background);
+        drawSprite(background);
 
-        while (window.pollEvent(event)) {
-            switch (event.type) {
-                case Event::Closed:
+        while (const auto event{ window.pollEvent() }) {
+            if (event->is<Event::Closed>()) {
+                window.close();
+                return GameState::MAIN_MENU;
+            }
+            if (const auto * keyPressed{ event->getIf<Event::KeyPressed>() }) {
+                if (keyPressed->scancode == Keyboard::Scancode::Escape) {
                     window.close();
                     return GameState::MAIN_MENU;
-                case Event::KeyPressed:
-                    if (event.key.code == Keyboard::Escape) {
-                        window.close();
-                        return GameState::MAIN_MENU;
-                    }
-                    break;
-                case Event::MouseButtonPressed:
+                }
+            }
+            if (const auto * mouseButtonPressed{ event->getIf<Event::MouseButtonPressed>() }) {
+                if (mouseButtonPressed->button == Mouse::Button::Left) {
                     holdingClick = true;
-                    if (hoverOverArea(sprites->buttonPos, sprites->buttonSize))
+                    if (hoverOverArea(buttonPos, buttonSize))
                         clickedStart = true;
-                    break;
-                case Event::MouseButtonReleased:
-                    if (clickedStart && hoverOverArea(sprites->buttonPos, sprites->buttonSize)) {
+                }
+            }
+            if (const auto * mouseButtonReleased{ event->getIf<Event::MouseButtonReleased>() }) {
+                if (mouseButtonReleased->button == Mouse::Button::Left) {
+                    if (clickedStart && hoverOverArea(buttonPos, buttonSize)) {
                         clickedStart = false;
                         return GameState::PLAY;
                     }
                     holdingClick = false;
-                    break;
-                default:
-                    break;
+                }
             }
         }
 
-        if (hoverOverArea(sprites->buttonPos, sprites->buttonSize)) {
+        if (hoverOverArea(buttonPos, buttonSize)) {
             if (holdingClick && clickedStart)
-                drawSprite(sprites->button);
+                drawSprite(button);
             else
-                drawSprite(sprites->buttonHighlight);
+                drawSprite(buttonHighlight);
         } else
-            drawSprite(sprites->button);
+            drawSprite(button);
 
         return GameState::MAIN_MENU;
     }

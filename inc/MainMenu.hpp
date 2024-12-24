@@ -10,27 +10,22 @@ namespace PvZ {
      */
     class MainMenu : public Stage {
     protected:
-        class Sprites {
-        private:
-            Texture backgroundTexture, buttonTexture, buttonHighlightTexture;
+        const Texture backgroundTexture{ "res/img/mainMenu/mainMenu.png" },
+            buttonTexture{ "res/img/mainMenu/button.png" },
+            buttonHighlightTexture{ "res/img/mainMenu/buttonHighlight.png" };
 
-        public:
-            Sprite background, button, buttonHighlight;
-            static inline const Vector2f buttonPos{ 480.f, 80.f }, buttonSize{ 331.f, 145.f };
-            Sprites();
-            Sprites(const Sprites&) = delete;
-            Sprites(Sprites&&) = delete;
-            ~Sprites() = default;
-        };
+        Sprite background{ backgroundTexture },
+            button{ buttonTexture },
+            buttonHighlight{ buttonHighlightTexture };
+        const Vector2f buttonPos{ 480.f, 80.f }, buttonSize{ 331.f, 145.f };
 
-        Sprites* const sprites{ new Sprites };
     public:
-        MainMenu() = default;
+        MainMenu();
         MainMenu(const MainMenu&) = delete;
         MainMenu(MainMenu&&) = delete;
-        ~MainMenu();
+        ~MainMenu() = default;
 
-        GameState play(Event& event) override;
+        GameState play() override;
     };
 }
 

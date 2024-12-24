@@ -23,7 +23,7 @@ namespace PvZ {
         Level(Level&&) = delete;
         virtual ~Level() = default;
 
-        virtual GameState play(Event& event) = 0;
+        virtual GameState play() = 0;
     };
 
     Level* makeLevel(LevelState levelState);

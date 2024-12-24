@@ -8,6 +8,7 @@
 #include <string>
 #include <ranges>
 
+
 /*
 This header provides a series of utility functions and variables that are used throughout the project.
 */

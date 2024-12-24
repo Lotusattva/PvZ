@@ -36,6 +36,7 @@ namespace PvZ {
         window.setPosition(Vector2i(posX, posY));
     }
 
+
     Frames::Frames(const vector<Texture>& textures) :
         frameCount{ textures.size() } {
         sprites.reserve(frameCount);

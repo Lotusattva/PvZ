@@ -9,7 +9,7 @@ namespace PvZ {
         topbar.setPosition(topbarPos);
 
         actors.emplace_front(new NullActor);
-        //actors.emplace_front(new RegularZombie{ 1000ms });
+        actors.emplace_front(new RegularZombie{ 1000ms });
     }
 
     Level1::~Level1() {

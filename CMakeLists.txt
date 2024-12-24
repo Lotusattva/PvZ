@@ -16,8 +16,6 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY})
-
 # despite other people's advice not to, I *AM* using GLOB_RECURSE here
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 

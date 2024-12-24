@@ -10,27 +10,19 @@ namespace PvZ {
      */
     class Level1 : public Level {
     private:
-        class Sprites {
-        private:
-            Texture backgroundTexture, topbarTexture;
-        public:
-            Sprite background, topbar;
-            static inline const Vector2f topbarPos{ 280.f, 0.f }, topbarSize{ 522.f, 87.f };
 
-            Sprites();
-            Sprites(const Sprites&) = delete;
-            Sprites(Sprites&&) = delete;
-            ~Sprites() = default;
-        };
+        const Texture backgroundTexture{ "res/img/level/frontyard_3row.jpg" },
+            topbarTexture{ "res/img/topbar/bar4.png" };
+        Sprite background{ backgroundTexture }, topbar{ topbarTexture };
+        const Vector2f topbarPos{ 280.f, 0.f }, topbarSize{ 522.f, 87.f };
 
-        Sprites* const sprites{ new Sprites };
     public:
 
         Level1();
         Level1(const Level1&) = delete;
         Level1(Level1&&) = delete;
         ~Level1();
-        GameState play(Event& event) override;
+        GameState play() override;
     };
 }
 

@@ -2,7 +2,7 @@
 
 namespace PvZ {
     bool hoverOverArea(const Vector2f& spritePos, const Vector2f& spriteSize) {
-        auto mousePos = Mouse::getPosition(window);
+        auto mousePos{ Mouse::getPosition(window) };
         return mousePos.x >= spritePos.x && mousePos.x <= spritePos.x + spriteSize.x &&
             mousePos.y >= spritePos.y && mousePos.y <= spritePos.y + spriteSize.y;
     }
@@ -16,55 +16,32 @@ namespace PvZ {
         window.draw(sprite);
     }
 
-    Cursor& getCustomCursor(bool useCustomCursor) {
+    Cursor getCustomCursor(bool useCustomCursor) {
         if (!useCustomCursor) {
-            static Cursor defaultCursor;
-            defaultCursor.loadFromSystem(Cursor::Arrow);
-            return defaultCursor;
+            return Cursor{ Cursor::Type::Arrow };
         }
-        Image cursorImage;
-        if (!cursorImage.loadFromFile("res/img/cursor/spike.png")) {
-            std::cerr << "Error: Unable to load cursor image from 'res/img/cursor/spike.png'" << std::endl;
-            static Cursor defaultCursor;
-            defaultCursor.loadFromSystem(Cursor::Arrow);
-            return defaultCursor;
-        }
-        Vector2u cursorSize{ cursorImage.getSize() };
-        Vector2u cursorHotspot{ 0u, 0u };
 
-        static Cursor customCursor;
-        customCursor.loadFromPixels(cursorImage.getPixelsPtr(), cursorSize, cursorHotspot);
-
-        return customCursor;
+        Image cursorImage("res/img/cursor/spike.png");
+        return Cursor{ cursorImage.getPixelsPtr(), cursorImage.getSize(), { 0u,0u } };
     }
 
     void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor) {
-        ////// Init window
-        // Set window size
-        window.create(VideoMode(windowSize.x, windowSize.y),
-            "PvZ", Style::Close | Style::Titlebar);
-        // Set frame rate
+        window.create(VideoMode{ windowSize }, "PvZ", Style::Close | Style::Titlebar);
         window.setFramerateLimit(frameRate);
-        // Set VSync
         window.setVerticalSyncEnabled(VSync);
-        // Set custom cursor
         window.setMouseCursor(getCustomCursor(customCursor));
-        // Center the window
-        auto desktop{ VideoMode::getDesktopMode() };
-        auto posX{ (desktop.width - windowSize.x) / 2 };
-        auto posY{ (desktop.height - windowSize.y) / 2 };
+        auto [desktopWidth, desktopHeight] = VideoMode::getDesktopMode().size;
+        auto posX{ (desktopWidth - windowSize.x) / 2 };
+        auto posY{ (desktopHeight - windowSize.y) / 2 };
         window.setPosition(Vector2i(posX, posY));
     }
 
-    Frames::Frames(const short frameCount, const Texture textures[]) :
-        frameCount{ frameCount }, sprites{ new Sprite[frameCount] } {
-        for (short i : range(0, frameCount)) {
-            sprites[i].setTexture(textures[i]);
+    Frames::Frames(const vector<Texture>& textures) :
+        frameCount{ textures.size() } {
+        sprites.reserve(frameCount);
+        for (short i : range(0, textures.size())) {
+            sprites.push_back(Sprite{ textures[i] });
         }
-    }
-
-    Frames::~Frames() {
-        delete[] sprites;
     }
 
     Sprite& Frames::getFrame(Vector2f& position) {

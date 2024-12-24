@@ -23,7 +23,7 @@ namespace PvZ {
     /**
      * @brief Returns a range of numbers from start (inclusive) to end (exclusive)
      */
-    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end); };
+    constexpr inline auto range = [](int start, int end) { return ranges::views::iota(start, end); };
 
     /**
      * @brief Global window variable. Everything should be drawn to this window.
@@ -71,7 +71,7 @@ namespace PvZ {
      * @param useCustomCursor
      * @return a custom cursor if useCustomCursor is true, otherwise returns the default cursor
      */
-    Cursor& getCustomCursor(bool useCustomCursor);
+    Cursor getCustomCursor(bool useCustomCursor);
 
     /**
      * @brief Sets the window size, frame rate, VSync, and custom cursor. Constructs the window.
@@ -82,16 +82,16 @@ namespace PvZ {
 
     class Frames {
     private:
-        Sprite* const sprites;
         short currentFrame{ 0 };
-        const short frameCount;
+        const size_t frameCount;
         time_point lastFrame{ clk::now() };
+        vector<Sprite> sprites;
 
     public:
-        Frames(const short frameCount, const Texture textures[]);
+        Frames(const vector<Texture>& textures);
         Frames(const Frames&) = delete;
         Frames(Frames&&) = delete;
-        ~Frames();
+        ~Frames() = default;
 
         Sprite& getFrame(Vector2f& position);
     };

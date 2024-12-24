@@ -19,7 +19,7 @@ namespace PvZ {
          * @brief Handle events, draw sprites, and update game state.
          * This is the method to be called in each iteration of the main game loop.
          */
-        virtual GameState play(Event& event) = 0;
+        virtual GameState play() = 0;
     };
 
 }

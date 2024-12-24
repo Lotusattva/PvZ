@@ -10,11 +10,12 @@ namespace PvZ {
 
     void Game::run() {
         GameState nextState{ gameState };
+        
         while (window.isOpen()) {
             // always clear window and draw background
             window.clear();
 
-            nextState = stage->play(event);
+            nextState = stage->play();
 
             if (gameState != nextState) {
                 gameState = nextState;

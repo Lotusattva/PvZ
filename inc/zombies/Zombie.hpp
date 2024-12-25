@@ -22,8 +22,8 @@ namespace PvZ {
         ms movementSpeed, attackSpeed; // TODO: maybe there's a better data type for this
         time_point lastAttack{ clk::now() }, lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime;
         bool slowed{ false }, spawned{ false };
-        int x{ 900 }, y;
-        static inline const int cellHeight{ 96 }, offset{ 80 };
+        float x{ 900.f }, y;
+        static inline const float cellHeight{ 96.f }, offset{ 80.f };
 
     public:
         Zombie(short health, ms movementSpeed, ms attackSpeed, ms spawnTime, int col) :

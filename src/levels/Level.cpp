@@ -5,9 +5,11 @@ namespace PvZ {
     Level* makeLevel(LevelState levelState) {
         switch (levelState) {
             case LevelState::LEVEL1:
-                return new Level1;
+                currentLevel = new Level1;
+                break;
             default:
-                return nullptr;
+                currentLevel = nullptr;
         }
+        return currentLevel;
     }
 }

@@ -14,6 +14,7 @@ namespace PvZ {
         NullActor(NullActor&&) = delete;
         ~NullActor() = default;
         bool action() override { return true; }
+        Actor::Type getType() const override { return Actor::Type::NULL_ACTOR; }
     };
 }
 

@@ -2,7 +2,7 @@
 
 namespace PvZ {
     Peashooter::Peashooter(short col) :
-        ShooterPlant{ 6, col, ProjectileType::PEA, 8, 1000ms } {}
+        ShooterPlant{ 6, col, Projectile::Type::PEA, 8, 1000ms } {}
 
     Peashooter::~Peashooter() {}
 

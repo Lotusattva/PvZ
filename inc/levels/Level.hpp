@@ -7,8 +7,6 @@
 
 namespace PvZ {
 
-    inline Level* level;
-
     /**
      * @brief Abstract base class for levels
      */
@@ -29,6 +27,8 @@ namespace PvZ {
 
         list<Actor*>& getActors() { return actors; }
     };
+
+    inline Level* currentLevel{ nullptr };
 
     Level* makeLevel(LevelState levelState);
 }

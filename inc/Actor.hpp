@@ -16,7 +16,8 @@ namespace PvZ {
         enum class Type {
             PLANT,
             ZOMBIE,
-            PROJECTILE
+            PROJECTILE,
+            NULL_ACTOR
         };
 
     public:

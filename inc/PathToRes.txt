@@ -2,7 +2,7 @@
 #define PATHTORES_HPP
 
 namespace PvZ {
-    constexpr inline const char* RES_PATH{ "__RES_PATH__" };
+    constexpr inline const char* RES_PATH_CHAR_ARR{ "__RES_PATH__" };
 }
 
 #endif // PATHTORES_HPP

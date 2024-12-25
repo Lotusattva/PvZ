@@ -54,3 +54,5 @@ CMakeUserPresets.json
 *.pdb
 
 .github/
+
+inc/PathToRes.hpp

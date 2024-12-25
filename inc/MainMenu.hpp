@@ -10,9 +10,10 @@ namespace PvZ {
      */
     class MainMenu : public Stage {
     protected:
-        const Texture backgroundTexture{ "res/img/mainMenu/mainMenu.png" },
-            buttonTexture{ "res/img/mainMenu/button.png" },
-            buttonHighlightTexture{ "res/img/mainMenu/buttonHighlight.png" };
+
+        const Texture backgroundTexture{ RES_PATH + "img/mainMenu/mainMenu.png" },
+            buttonTexture{ RES_PATH + "img/mainMenu/button.png" },
+            buttonHighlightTexture{ RES_PATH + "img/mainMenu/buttonHighlight.png" };
 
         Sprite background{ backgroundTexture },
             button{ buttonTexture },

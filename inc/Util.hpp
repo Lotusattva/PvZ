@@ -8,6 +8,7 @@
 #include <string>
 #include <ranges>
 
+#include "PathToRes.hpp"
 
 /*
 This header provides a series of utility functions and variables that are used throughout the project.
@@ -24,12 +25,14 @@ namespace PvZ {
     /**
      * @brief Returns a range of numbers from start (inclusive) to end (exclusive)
      */
-    constexpr inline auto range = [](int start, int end) { return ranges::views::iota(start, end); };
+    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end); };
 
     /**
      * @brief Global window variable. Everything should be drawn to this window.
      */
     inline RenderWindow window;
+
+    inline const string RES_PATH{ RES_PATH_CHAR_ARR };
 
     enum class GameState {
         MAIN_MENU,

@@ -1,0 +1,8 @@
+#ifndef PATHTORES_HPP
+#define PATHTORES_HPP
+
+namespace PvZ {
+    constexpr inline const char* RES_PATH{ "__RES_PATH__" };
+}
+
+#endif // PATHTORES_HPP

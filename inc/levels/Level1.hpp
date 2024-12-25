@@ -11,8 +11,8 @@ namespace PvZ {
     class Level1 : public Level {
     private:
 
-        const Texture backgroundTexture{ "res/img/level/frontyard_3row.jpg" },
-            topbarTexture{ "res/img/topbar/bar4.png" };
+        const Texture backgroundTexture{ RES_PATH + "img/level/frontyard_3row.jpg" },
+            topbarTexture{ RES_PATH + "img/topbar/bar4.png" };
         Sprite background{ backgroundTexture }, topbar{ topbarTexture };
         const Vector2f topbarPos{ 280.f, 0.f }, topbarSize{ 522.f, 87.f };
 

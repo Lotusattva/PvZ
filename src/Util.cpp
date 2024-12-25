@@ -21,7 +21,7 @@ namespace PvZ {
             return Cursor{ Cursor::Type::Arrow };
         }
 
-        Image cursorImage("res/img/cursor/spike.png");
+        Image cursorImage(RES_PATH + "img/cursor/spike.png");
         return Cursor{ cursorImage.getPixelsPtr(), cursorImage.getSize(), { 0u,0u } };
     }
 

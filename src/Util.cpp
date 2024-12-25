@@ -7,7 +7,7 @@ namespace PvZ {
             mousePos.y >= spritePos.y && mousePos.y <= spritePos.y + spriteSize.y;
     }
 
-    void drawSprite(Sprite& sprite, const Vector2f& position) {
+    void drawSprite(Sprite&& sprite, const Vector2f&& position) {
         sprite.setPosition(position);
         window.draw(sprite);
     }
@@ -37,21 +37,14 @@ namespace PvZ {
     }
 
 
-    Frames::Frames(const vector<Texture>& textures) :
-        frameCount{ textures.size() } {
-        sprites.reserve(frameCount);
-        for (short i : range(0, textures.size())) {
-            sprites.push_back(Sprite{ textures[i] });
-        }
-    }
+    Frames::Frames(const vector<Sprite>* const sprites) : frameCount{ sprites->size() }, sprites{ sprites } {}
 
-    Sprite& Frames::getFrame(Vector2f& position) {
+    Sprite Frames::getFrame() {
         auto now{ clk::now() };
         if (now - lastFrame >= frameInterval) {
             lastFrame = now;
             currentFrame = (currentFrame + 1) % frameCount;
         }
-        sprites[currentFrame].setPosition(position);
-        return sprites[currentFrame];
+        return Sprite{ sprites->at(currentFrame) };
     }
 }

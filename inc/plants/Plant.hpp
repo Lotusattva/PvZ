@@ -25,9 +25,12 @@ namespace PvZ {
         virtual ~Plant() = default;
 
         const short getCol() const { return col; }
+
+        Actor::Type getType() const override { return Actor::Type::PLANT; }
     };
 
     Plant* createPlant(PlantType plantType);
+
 }
 
 #endif // PLANT_HPP

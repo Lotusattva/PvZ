@@ -7,6 +7,8 @@
 
 namespace PvZ {
 
+    inline Level* level;
+
     /**
      * @brief Abstract base class for levels
      */
@@ -24,6 +26,8 @@ namespace PvZ {
         virtual ~Level() = default;
 
         virtual GameState play() = 0;
+
+        list<Actor*>& getActors() { return actors; }
     };
 
     Level* makeLevel(LevelState levelState);

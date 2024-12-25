@@ -9,7 +9,7 @@ namespace PvZ {
         topbar.setPosition(topbarPos);
 
         actors.emplace_front(new NullActor);
-        actors.emplace_front(new RegularZombie{ 1000ms });
+        actors.emplace_front(new RegularZombie{ 1000ms, 200.f });
     }
 
     Level1::~Level1() {
@@ -22,7 +22,6 @@ namespace PvZ {
         drawSprite(background);
         drawSprite(topbar);
 
-        // bool zombieLeft{false};
         for (auto it{ actors.begin() }; it != actors.end();) {
             if (!(*it)->action()) {
                 delete* it;
@@ -30,13 +29,7 @@ namespace PvZ {
             } else {
                 ++it;
             }
-            // else if ((*it)->isZombie()) {
-            //     zombieLeft = true;s
-            // }
         }
-        // if (!zombieLeft) {
-        //     return GameState::GAME_WIN;
-        // }
 
         while (const auto event{ window.pollEvent() }) {
             if (event->is<Event::Closed>()) {

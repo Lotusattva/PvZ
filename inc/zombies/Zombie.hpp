@@ -18,20 +18,21 @@ namespace PvZ {
      * @brief Abstract base class for zombies
      */
     class Zombie : public Actor {
-    private:
+    protected:
         ms movementSpeed, attackSpeed; // TODO: maybe there's a better data type for this
         time_point lastAttack{ clk::now() }, lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime;
         bool slowed{ false }, spawned{ false };
-        Vector2f position;
+        int x{ 900 }, y;
+        static inline const int cellHeight{ 96 }, offset{ 80 };
 
     public:
-        Zombie(short health, ms movementSpeed, ms attackSpeed, ms spawnTime) :
-            Actor{ health }, movementSpeed{ movementSpeed }, attackSpeed{ attackSpeed }, spawnTime{ clk::now() + spawnTime } {}
+        Zombie(short health, ms movementSpeed, ms attackSpeed, ms spawnTime, int col) :
+            Actor{ health }, movementSpeed{ movementSpeed }, attackSpeed{ attackSpeed }, spawnTime{ clk::now() + spawnTime }, y{ col * cellHeight + offset } {}
         Zombie(const Zombie&) = delete;
         Zombie& operator=(const Zombie&) = delete;
         virtual ~Zombie() = default;
 
-        bool isZombie() const override { return true; }
+        Actor::Type getType() const override { return Actor::Type::ZOMBIE; }
     };
 
 }

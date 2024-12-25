@@ -9,7 +9,7 @@ namespace PvZ {
      */
     class NullActor : public Actor {
     public:
-        NullActor() : Actor{ 0, false } {}
+        NullActor() = default;
         NullActor(const NullActor&) = delete;
         NullActor(NullActor&&) = delete;
         ~NullActor() = default;

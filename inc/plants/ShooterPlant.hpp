@@ -11,7 +11,7 @@ namespace PvZ {
      */
     class ShooterPlant : public Plant {
     private:
-        const ProjectileType projectileType;
+        const Projectile::Type projectileType;
         const short range;
         const ms cooldown;
         time_point lastShot;
@@ -30,7 +30,7 @@ namespace PvZ {
         bool withInRange(Actor* actor) const;
 
     public:
-        ShooterPlant(short health, short col, ProjectileType projectileType, short range, ms cooldown) :
+        ShooterPlant(short health, short col, Projectile::Type projectileType, short range, ms cooldown) :
             Plant{ health, col }, projectileType{ projectileType }, range{ range }, cooldown{ cooldown }, lastShot{ clk::now() } {}
         ShooterPlant(const ShooterPlant&) = delete;
         ShooterPlant(ShooterPlant&&) = delete;

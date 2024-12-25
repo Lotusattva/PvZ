@@ -16,6 +16,10 @@ FetchContent_Declare(SFML
     SYSTEM)
 FetchContent_MakeAvailable(SFML)
 
+file(READ inc/PathToRes.txt pathtores_txt)
+string(REPLACE "__RES_PATH__" "${CMAKE_SOURCE_DIR}/res/" pathtores_hpp "${pathtores_txt}")
+file(WRITE inc/PathToRes.hpp "${pathtores_hpp}")
+
 # despite other people's advice not to, I *AM* using GLOB_RECURSE here
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 

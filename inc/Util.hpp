@@ -8,6 +8,7 @@
 #include <string>
 #include <ranges>
 
+#include "PathToRes.hpp"
 
 /*
 This header provides a series of utility functions and variables that are used throughout the project.
@@ -24,12 +25,14 @@ namespace PvZ {
     /**
      * @brief Returns a range of numbers from start (inclusive) to end (exclusive)
      */
-    constexpr inline auto range = [](int start, int end) { return ranges::views::iota(start, end); };
+    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end); };
 
     /**
      * @brief Global window variable. Everything should be drawn to this window.
      */
     inline RenderWindow window;
+
+    inline const string RES_PATH{ RES_PATH_CHAR_ARR };
 
     enum class GameState {
         MAIN_MENU,
@@ -48,7 +51,7 @@ namespace PvZ {
         * @param sprite
         * @param position
         */
-    void drawSprite(Sprite& sprite, const Vector2f& position);
+    void drawSprite(Sprite&& sprite, const Vector2f&& position);
 
     /**
      * @brief Draws a sprite at its current position. Default position is (0, 0)
@@ -86,15 +89,15 @@ namespace PvZ {
         short currentFrame{ 0 };
         const size_t frameCount;
         time_point lastFrame{ clk::now() };
-        vector<Sprite> sprites;
+        const vector<Sprite>* const sprites;
 
     public:
-        Frames(const vector<Texture>& textures);
+        Frames(const vector<Sprite>* const sprites);
         Frames(const Frames&) = delete;
         Frames(Frames&&) = delete;
         ~Frames() = default;
 
-        Sprite& getFrame(Vector2f& position);
+        Sprite getFrame();
     };
 }
 

@@ -9,13 +9,20 @@ namespace PvZ {
      * @brief Abstract base class for plants and zombies.
      */
     class Actor {
-    private:
+    protected:
         short health;
-        bool alive;
+        bool alive{ true };
+
+        enum class Type {
+            PLANT,
+            ZOMBIE,
+            PROJECTILE,
+            NULL_ACTOR
+        };
 
     public:
 
-        Actor(short health, bool alive = true) : health{ health }, alive{ alive } {}
+        Actor(short health = 0) : health{ health } {}
         Actor(const Actor&) = delete;
         Actor& operator=(const Actor&) = delete;
         virtual ~Actor() = default;
@@ -42,7 +49,7 @@ namespace PvZ {
 
         bool isAlive() const { return alive; }
 
-        virtual bool isZombie() const { return false; }
+        virtual Actor::Type getType() const = 0;
     };
 
 }

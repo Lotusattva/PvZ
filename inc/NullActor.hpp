@@ -9,11 +9,12 @@ namespace PvZ {
      */
     class NullActor : public Actor {
     public:
-        NullActor() : Actor{ 0, false } {}
+        NullActor() = default;
         NullActor(const NullActor&) = delete;
         NullActor(NullActor&&) = delete;
         ~NullActor() = default;
         bool action() override { return true; }
+        Actor::Type getType() const override { return Actor::Type::NULL_ACTOR; }
     };
 }
 

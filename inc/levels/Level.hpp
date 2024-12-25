@@ -24,7 +24,11 @@ namespace PvZ {
         virtual ~Level() = default;
 
         virtual GameState play() = 0;
+
+        list<Actor*>& getActors() { return actors; }
     };
+
+    inline Level* currentLevel{ nullptr };
 
     Level* makeLevel(LevelState levelState);
 }

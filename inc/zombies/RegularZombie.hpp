@@ -12,22 +12,22 @@ namespace PvZ {
     class RegularZombie : public Zombie {
     private:
 
-        class Sprites {
+        class Textures {
         private:
             static inline const short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 20 }, DEATH_FRAMES{ 20 };
-            vector<Texture> idleTextures, walkTextures, attackTextures, deathTextures;
+
         public:
-            vector<Sprite> idleSprites, walkSprites, attackSprites, deathSprites;
-            Sprites();
-            Sprites(const Sprites&) = delete;
-            Sprites(Sprites&&) = delete;
-            ~Sprites() = default;
+            vector<Texture> idleTextures, walkTextures, attackTextures, deathTextures;
+            Textures();
+            Textures(const Textures&) = delete;
+            Textures(Textures&&) = delete;
+            ~Textures() = default;
         };
 
-        static inline const Sprites sprites;
+        static inline const Textures sprites;
 
-        Frames idle{ &sprites.idleSprites }, walk{ &sprites.walkSprites }, attack{ &sprites.attackSprites },
-            death{ &sprites.deathSprites };
+        Frames idle{ &sprites.idleTextures }, walk{ &sprites.walkTextures }, attack{ &sprites.attackTextures },
+            death{ &sprites.deathTextures };
 
         // the attack animation is funky
 

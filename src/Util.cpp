@@ -16,13 +16,15 @@ namespace PvZ {
         window.draw(sprite);
     }
 
-    Cursor getCustomCursor(bool useCustomCursor) {
+    Cursor& getCustomCursor(bool useCustomCursor) {
         if (!useCustomCursor) {
-            return Cursor{ Cursor::Type::Arrow };
+            static Cursor cursor{ Cursor::Type::Arrow };
+            return cursor;
         }
 
         Image cursorImage(RES_PATH + "img/cursor/spike.png");
-        return Cursor{ cursorImage.getPixelsPtr(), cursorImage.getSize(), { 0u,0u } };
+        static Cursor cursor{ cursorImage.getPixelsPtr(), cursorImage.getSize(), { 0u,0u } };
+        return cursor;
     }
 
     void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor) {
@@ -37,7 +39,7 @@ namespace PvZ {
     }
 
 
-    Frames::Frames(const vector<Sprite>* const sprites) : frameCount{ sprites->size() }, sprites{ sprites } {}
+    Frames::Frames(const vector<Texture>* const textures) : frameCount{ textures->size() }, textures{ textures } {}
 
     Sprite Frames::getFrame() {
         auto now{ clk::now() };
@@ -45,6 +47,6 @@ namespace PvZ {
             lastFrame = now;
             currentFrame = (currentFrame + 1) % frameCount;
         }
-        return Sprite{ sprites->at(currentFrame) };
+        return Sprite{ textures->at(currentFrame) };
     }
 }

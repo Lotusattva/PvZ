@@ -75,7 +75,7 @@ namespace PvZ {
      * @param useCustomCursor
      * @return a custom cursor if useCustomCursor is true, otherwise returns the default cursor
      */
-    Cursor getCustomCursor(bool useCustomCursor);
+    Cursor& getCustomCursor(bool useCustomCursor);
 
     /**
      * @brief Sets the window size, frame rate, VSync, and custom cursor. Constructs the window.
@@ -89,10 +89,10 @@ namespace PvZ {
         short currentFrame{ 0 };
         const size_t frameCount;
         time_point lastFrame{ clk::now() };
-        const vector<Sprite>* const sprites;
+        const vector<Texture>* const textures;
 
     public:
-        Frames(const vector<Sprite>* const sprites);
+        Frames(const vector<Texture>* const textures);
         Frames(const Frames&) = delete;
         Frames(Frames&&) = delete;
         ~Frames() = default;

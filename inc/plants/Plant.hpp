@@ -5,31 +5,29 @@
 
 namespace PvZ {
 
-    enum class PlantType {
-        SUNFLOWER,
-        PEASHOOTER,
-        WALLNUT,
-        CHERRYBOMB
-    };
-
     /**
      * @brief Base class for plants
      */
     class Plant : public Actor {
     private:
-        const short col;
+        const short row;
     public:
-        Plant(short health, short col) : Actor{ health }, col{ col } {}
+        enum class Type {
+        SUNFLOWER,
+        PEASHOOTER,
+        WALLNUT,
+        CHERRYBOMB
+        };
+
+        Plant(short health, short row) : Actor{ health }, row{ row } {}
         Plant(const Plant&) = delete;
         Plant(Plant&&) = delete;
         virtual ~Plant() = default;
 
-        const short getCol() const { return col; }
-
         Actor::Type getType() const override { return Actor::Type::PLANT; }
     };
 
-    Plant* createPlant(PlantType plantType);
+    Plant* createPlant(Plant::Type plantType);
 
 }
 

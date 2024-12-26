@@ -32,7 +32,7 @@ namespace PvZ {
         // the attack animation is funky
 
     public:
-        RegularZombie(ms spawnTime, int col);
+        RegularZombie(ms spawnTime, int row);
         RegularZombie(const RegularZombie&) = delete;
         RegularZombie(RegularZombie&&) = delete;
         ~RegularZombie() = default;

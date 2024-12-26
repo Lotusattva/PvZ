@@ -21,10 +21,9 @@ namespace PvZ {
         };
 
     public:
-
         Actor(short health = 0) : health{ health } {}
         Actor(const Actor&) = delete;
-        Actor& operator=(const Actor&) = delete;
+        Actor(Actor&&) = delete;
         virtual ~Actor() = default;
 
         /**

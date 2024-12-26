@@ -25,7 +25,7 @@ namespace PvZ {
     /**
      * @brief Returns a range of numbers from start (inclusive) to end (exclusive)
      */
-    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end); };
+    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end+b); };
 
     /**
      * @brief Global window variable. Everything should be drawn to this window.

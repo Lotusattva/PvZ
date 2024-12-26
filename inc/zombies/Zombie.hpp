@@ -5,15 +5,6 @@
 
 namespace PvZ {
 
-    enum class ZombieType {
-        REGULAR,
-        CONEHEAD,
-        BUCKETHEAD,
-        FLAG,
-        POLEVAULT,
-        FOOTBALL
-    };
-
     /**
      * @brief Abstract base class for zombies
      */
@@ -26,10 +17,20 @@ namespace PvZ {
         static inline const float cellHeight{ 96.f }, offset{ 80.f };
 
     public:
-        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int col) :
-            Actor{ health }, movementInterval{ movementInterval }, attackInterval{ attackInterval }, spawnTime{ clk::now() + spawnTime }, y{ col * cellHeight + offset } {}
+
+    enum class Type {
+        REGULAR,
+        CONEHEAD,
+        BUCKETHEAD,
+        FLAG,
+        POLEVAULT,
+        FOOTBALL
+    };
+
+        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row) :
+            Actor{ health }, movementInterval{ movementInterval }, attackInterval{ attackInterval }, spawnTime{ clk::now() + spawnTime }, y{ row * cellHeight + offset } {}
         Zombie(const Zombie&) = delete;
-        Zombie& operator=(const Zombie&) = delete;
+        Zombie(Zombie&&) = delete;
         virtual ~Zombie() = default;
 
         Actor::Type getType() const override { return Actor::Type::ZOMBIE; }

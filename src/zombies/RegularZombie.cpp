@@ -27,7 +27,7 @@ namespace PvZ {
         }
     }
 
-    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, 10ms, 500ms, spawnTime, row } {}
+    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, RegZombMvmtIntrvl, RegZombAttkIntrvl, spawnTime, row } {}
 
     bool RegularZombie::action() {
         if (!spawned) {
@@ -40,7 +40,7 @@ namespace PvZ {
             }
         } else {
             if (clk::now() - lastMove >= movementInterval) {
-                x -= 5;
+                x -= 1;
                 lastMove = clk::now();
             }
             drawSprite(walk.getFrame(), { x, y });

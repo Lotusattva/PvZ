@@ -11,7 +11,7 @@ namespace PvZ {
      */
     class RegularZombie : public Zombie {
     private:
-
+        static inline const ms RegZombMvmtIntrvl{ 20ms }, RegZombAttkIntrvl{ 500ms };
         class Textures {
         private:
             static inline const short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 20 }, DEATH_FRAMES{ 20 };

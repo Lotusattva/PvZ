@@ -25,7 +25,7 @@ namespace PvZ {
     /**
      * @brief Returns a range of numbers from start (inclusive) to end (exclusive)
      */
-    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end+b); };
+    constexpr inline auto range = [](auto start, auto end) { return ranges::views::iota(start, end); };
 
     /**
      * @brief Global window variable. Everything should be drawn to this window.
@@ -82,7 +82,7 @@ namespace PvZ {
      */
     void setWindow(Vector2u windowSize, short frameRate, bool VSync, bool customCursor);
 
-    constexpr inline chrono::duration<double, std::ratio<1, 24>> frameInterval{ 1.0 }; // FIXME: find the correct value/ratio
+    constexpr inline chrono::duration<double, std::ratio<1, 12>> frameInterval{ 1.0 }; // FIXME: find the correct value/ratio
 
     class Frames {
     private:

@@ -51,7 +51,7 @@ namespace PvZ {
         * @param sprite
         * @param position
         */
-    void drawSprite(Sprite&& sprite, const Vector2f&& position);
+    void drawSprite(Sprite&& sprite, const Vector2f& position);
 
     /**
      * @brief Draws a sprite at its current position. Default position is (0, 0)

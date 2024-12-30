@@ -7,7 +7,7 @@ namespace PvZ {
             mousePos.y >= spritePos.y && mousePos.y <= spritePos.y + spriteSize.y;
     }
 
-    void drawSprite(Sprite&& sprite, const Vector2f&& position) {
+    void drawSprite(Sprite&& sprite, const Vector2f& position) {
         sprite.setPosition(position);
         window.draw(sprite);
     }

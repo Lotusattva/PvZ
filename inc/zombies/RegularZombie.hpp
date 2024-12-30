@@ -30,7 +30,7 @@ namespace PvZ {
         Frames idle{ &textures.idleTextures }, walk{ &textures.walkTextures }, attack{ &textures.attackTextures },
             death{ &textures.deathTextures };
 
-        constexpr static inline auto isPlant = [](const Actor* actor) { return actor->getType() == Actor::Type::PLANT; };
+        constexpr static inline auto isAlivePlant = [](const Actor* actor) { return actor->getType() == Actor::Type::PLANT && actor->isAlive(); };
     public:
         RegularZombie(ms spawnTime, int row);
         RegularZombie(const RegularZombie&) = delete;

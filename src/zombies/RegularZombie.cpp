@@ -40,7 +40,7 @@ namespace PvZ {
         } else if (alive) {
             using namespace views;
             // check whether this zombie should attack
-            if (auto collidedPlants = currentLevel->getActors() | filter(isPlant) | drop_while([this](auto actor) { return !collidesWith(actor); });
+            if (auto collidedPlants = currentLevel->getActors() | filter(isAlivePlant) | drop_while([this](auto actor) { return !collidesWith(actor); });
                 !collidedPlants.empty()) {
                 // if a plant is in range, attack it
                 drawSprite(attack.getFrame(), position);

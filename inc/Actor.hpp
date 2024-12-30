@@ -22,7 +22,7 @@ namespace PvZ {
         };
 
     public:
-        Actor(short health = 0, Vector2f position = { 0.f,0.f }, Vector2f hitbox = { 0.f,0.f }) :
+        Actor(short health = 0, Vector2f position = { 0.f,0.f }, Vector2f hitbox = { 0.f,0.f }, Vector2f center = { 0.f,0.f }) :
             health{ health }, position{ position }, hitbox{ hitbox } {}
         Actor(const Actor&) = delete;
         Actor(Actor&&) = delete;

@@ -27,7 +27,7 @@ namespace PvZ {
         }
     }
 
-    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, RegZombMvmtIntrvl, RegZombAttkIntrvl, spawnTime, row, RegZombHitbox } {}
+    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, RegZombMvmtIntrvl, RegZombAttkIntrvl, spawnTime, row, RegZombHitbox, RegZombCenter } {}
 
     bool RegularZombie::action() {
         if (!spawned) {

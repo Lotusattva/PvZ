@@ -26,8 +26,8 @@ namespace PvZ {
             FOOTBALL
         };
 
-        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row, Vector2f hitbox) :
-            Actor{ health, { 900.f,row * cellHeight + offset }, hitbox }, movementInterval{ movementInterval },
+        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row, Vector2f hitbox, Vector2f center) :
+            Actor{ health, { 900.f,row * cellHeight + offset }, hitbox, center }, movementInterval{ movementInterval },
             attackInterval{ attackInterval }, spawnTime{ clk::now() + spawnTime } {}
         Zombie(const Zombie&) = delete;
         Zombie(Zombie&&) = delete;

@@ -54,8 +54,8 @@ namespace PvZ {
          * @param other
          * @return true if the actors collide, false otherwise
          */
-        bool collidesWith(const Actor& other) const {
-            return inRectangle(other.center, position, hitbox) || inRectangle(center, other.position, other.hitbox);
+        virtual bool collidesWith(const Actor* other) const {
+            return inRectangle(other->center, position, hitbox) || inRectangle(center, other->position, other->hitbox);
         }
 
         bool isAlive() const { return alive; }

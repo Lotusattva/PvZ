@@ -1,4 +1,6 @@
 #include "zombies/RegularZombie.hpp"
+#include "levels/Level.hpp"
+#include <ranges>
 
 namespace PvZ {
 
@@ -33,19 +35,32 @@ namespace PvZ {
         if (!spawned) {
             if (clk::now() >= spawnTime) {
                 spawned = true;
-                drawSprite(walk.getFrame(), position);
-                return true;
+            }
+            return true;
+        } else if (alive) {
+            using namespace views;
+            // check whether this zombie should attack
+            if (auto collidedPlants = currentLevel->getActors() | filter(isPlant) | drop_while([this](auto actor) { return !collidesWith(actor); });
+                !collidedPlants.empty()) {
+                // if a plant is in range, attack it
+                drawSprite(attack.getFrame(), position);
+                if (clk::now() - lastAttack >= attackInterval) {
+                    lastAttack = clk::now();
+                    collidedPlants.front()->takeDamage(1);
+                }
             } else {
-                return true;
+                // otherwise walk forward
+                drawSprite(walk.getFrame(), position);
+                if (clk::now() - lastMove >= movementInterval) {
+                    position.x -= 1.f;
+                    lastMove = clk::now();
+                }
             }
+            return true;
         } else {
-            if (clk::now() - lastMove >= movementInterval) {
-                position.x -= 1.f;
-                lastMove = clk::now();
-            }
-            drawSprite(walk.getFrame(), position);
+            // if dead
+            return false;
         }
-        return true;
     }
 
 }

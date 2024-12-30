@@ -12,6 +12,7 @@ namespace PvZ {
     protected:
         short health;
         bool alive{ true };
+        Vector2f position, hitbox;
 
         enum class Type {
             PLANT,
@@ -21,7 +22,8 @@ namespace PvZ {
         };
 
     public:
-        Actor(short health = 0) : health{ health } {}
+        Actor(short health = 0, Vector2f position = { 0.f,0.f }, Vector2f hitbox = { 0.f,0.f }) :
+            health{ health }, position{ position }, hitbox{ hitbox } {}
         Actor(const Actor&) = delete;
         Actor(Actor&&) = delete;
         virtual ~Actor() = default;
@@ -45,6 +47,8 @@ namespace PvZ {
                 alive = false;
             }
         }
+
+        virtual bool collidesWith(const Actor&) const = 0;
 
         bool isAlive() const { return alive; }
 

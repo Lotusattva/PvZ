@@ -61,13 +61,23 @@ namespace PvZ {
     void drawSprite(const Sprite& sprite);
 
     /**
-     * @brief Checks whether the mouse is hovering over a given area
+     * @brief Checks whether the mouse is hovering over a given rectangular area
      *
-     * @param spritePos
-     * @param spriteSize
+     * @param rectanglePos
+     * @param rectangleSize
      * @return true if the mouse is hovering over the area, false otherwise
      */
-    bool hoverOverArea(const Vector2f& spritePos, const Vector2f& spriteSize);
+    bool hoverOverRectangle(const Vector2f& rectanglePos, const Vector2f& rectangleSize);
+
+    /**
+     * @brief Checks whether a point is inside a rectangle
+     *
+     * @param point
+     * @param rectanglePos
+     * @param rectangleSize
+     * @return true if the point is inside the rectangle, false otherwise
+     */
+    bool inRectangle(const Vector2f& point, const Vector2f& rectanglePos, const Vector2f& rectangleSize);
 
     /**
      * @brief Returns a custom cursor if useCustomCursor is true, otherwise returns the default cursor

@@ -12,7 +12,7 @@ namespace PvZ {
     protected:
         short health;
         bool alive{ true };
-        Vector2f position, hitbox;
+        Vector2f position, hitbox, center;
 
         enum class Type {
             PLANT,
@@ -48,7 +48,15 @@ namespace PvZ {
             }
         }
 
-        virtual bool collidesWith(const Actor&) const = 0;
+        /**
+         * @brief checks whether this actor collides with the other actor
+         *
+         * @param other
+         * @return true if the actors collide, false otherwise
+         */
+        bool collidesWith(const Actor& other) const {
+            return inRectangle(other.center, position, hitbox) || inRectangle(center, other.position, other.hitbox);
+        }
 
         bool isAlive() const { return alive; }
 

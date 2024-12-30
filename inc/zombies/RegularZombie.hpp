@@ -2,7 +2,6 @@
 #define REGULARZOMBIE_HPP
 
 #include "Zombie.hpp"
-#include <vector>
 
 namespace PvZ {
 
@@ -39,7 +38,6 @@ namespace PvZ {
         ~RegularZombie() = default;
 
         bool action() override;
-        bool collidesWith(const Actor& other) const override; // TODO: implement
     };
 }
 

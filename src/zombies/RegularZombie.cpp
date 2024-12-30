@@ -27,23 +27,23 @@ namespace PvZ {
         }
     }
 
-    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, RegZombMvmtIntrvl, RegZombAttkIntrvl, spawnTime, row } {}
+    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, RegZombMvmtIntrvl, RegZombAttkIntrvl, spawnTime, row, RegZombHitbox } {}
 
     bool RegularZombie::action() {
         if (!spawned) {
             if (clk::now() >= spawnTime) {
                 spawned = true;
-                drawSprite(walk.getFrame(), { x, y });
+                drawSprite(walk.getFrame(), position);
                 return true;
             } else {
                 return true;
             }
         } else {
             if (clk::now() - lastMove >= movementInterval) {
-                x -= 1;
+                position.x -= 1.f;
                 lastMove = clk::now();
             }
-            drawSprite(walk.getFrame(), { x, y });
+            drawSprite(walk.getFrame(), position);
         }
         return true;
     }

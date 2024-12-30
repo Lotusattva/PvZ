@@ -13,22 +13,22 @@ namespace PvZ {
         ms movementInterval, attackInterval; // TODO: maybe there's a better data type for this
         time_point lastAttack{ clk::now() }, lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime;
         bool slowed{ false }, spawned{ false };
-        float x{ 900.f }, y;
         static inline const float cellHeight{ 96.f }, offset{ 80.f };
 
     public:
 
-    enum class Type {
-        REGULAR,
-        CONEHEAD,
-        BUCKETHEAD,
-        FLAG,
-        POLEVAULT,
-        FOOTBALL
-    };
+        enum class Type {
+            REGULAR,
+            CONEHEAD,
+            BUCKETHEAD,
+            FLAG,
+            POLEVAULT,
+            FOOTBALL
+        };
 
-        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row) :
-            Actor{ health }, movementInterval{ movementInterval }, attackInterval{ attackInterval }, spawnTime{ clk::now() + spawnTime }, y{ row * cellHeight + offset } {}
+        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row, Vector2f hitbox) :
+            Actor{ health, { 900.f,row * cellHeight + offset }, hitbox }, movementInterval{ movementInterval },
+            attackInterval{ attackInterval }, spawnTime{ clk::now() + spawnTime } {}
         Zombie(const Zombie&) = delete;
         Zombie(Zombie&&) = delete;
         virtual ~Zombie() = default;

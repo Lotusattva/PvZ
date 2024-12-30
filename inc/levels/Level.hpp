@@ -12,8 +12,8 @@ namespace PvZ {
      */
     class Level : public Stage {
     protected:
-        static inline const Vector2u gridOrigin{ 260u,80u };
-        static inline const short cellWidth{ 80 }, cellHeight{ 96 };
+        static inline constexpr Vector2u gridOrigin{ 260u,80u };
+        static inline constexpr short cellWidth{ 80 }, cellHeight{ 96 };
 
         const short numRows;
         list<Actor*> actors;

@@ -10,12 +10,12 @@ namespace PvZ {
      */
     class RegularZombie : public Zombie {
     private:
-        static inline const ms RegZombMvmtIntrvl{ 20ms }, RegZombAttkIntrvl{ 500ms };
-        static inline const Vector2f RegZombHitbox{ 90.f,120.f }, RegZombCenter{ 110.f,75.f };
+        static inline constexpr ms RegZombMvmtIntrvl{ 20ms }, RegZombAttkIntrvl{ 500ms };
+        static inline constexpr Vector2f RegZombHitbox{ 90.f,120.f }, RegZombCenter{ 110.f,75.f };
 
         class Textures {
         private:
-            static inline const short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 20 }, DEATH_FRAMES{ 20 };
+            static inline constexpr short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 20 }, DEATH_FRAMES{ 20 };
 
         public:
             vector<Texture> idleTextures, walkTextures, attackTextures, deathTextures;

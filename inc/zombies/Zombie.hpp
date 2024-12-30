@@ -13,7 +13,7 @@ namespace PvZ {
         ms movementInterval, attackInterval; // TODO: maybe there's a better data type for this
         time_point lastAttack{ clk::now() }, lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime;
         bool slowed{ false }, spawned{ false };
-        static inline const float cellHeight{ 96.f }, offset{ 80.f };
+        static inline constexpr float cellHeight{ 96.f }, offset{ 80.f };
 
     public:
 

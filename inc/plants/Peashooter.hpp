@@ -11,15 +11,15 @@ namespace PvZ {
     class Peashooter : public ShooterPlant {
     private:
         class Textures {
-            private:
-                static inline const short IDLE_FRAMES{ 13 };
+        private:
+            static inline constexpr short IDLE_FRAMES{ 13 };
 
-            public:
-                vector<Texture> idleTextures;
-                Textures();
-                Textures(const Textures&) = delete;
-                Textures(Textures&&) = delete;
-                ~Textures() = default;
+        public:
+            vector<Texture> idleTextures;
+            Textures();
+            Textures(const Textures&) = delete;
+            Textures(Textures&&) = delete;
+            ~Textures() = default;
         };
 
         static inline const Textures textures;

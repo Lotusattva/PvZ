@@ -10,8 +10,8 @@ namespace PvZ {
      */
     class RegularZombie : public Zombie {
     private:
-        static inline constexpr ms RegZombMvmtIntrvl{ 20ms }, RegZombAttkIntrvl{ 500ms };
-        static inline constexpr Vector2f RegZombHitbox{ 90.f,120.f }, RegZombCenter{ 110.f,75.f };
+        static inline constexpr ms movementInterval{ 20ms }, attackInterval{ 500ms };
+        static inline constexpr Vector2f hitbox{ 90.f,120.f }, center{ 110.f,75.f };
 
         class Textures {
         private:

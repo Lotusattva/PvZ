@@ -29,7 +29,7 @@ namespace PvZ {
         }
     }
 
-    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, RegZombMvmtIntrvl, RegZombAttkIntrvl, spawnTime, row, RegZombHitbox, RegZombCenter } {}
+    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, movementInterval, attackInterval, spawnTime, row, hitbox, center } {}
 
     bool RegularZombie::action() {
         if (!spawned) {
@@ -39,14 +39,15 @@ namespace PvZ {
             return true;
         } else if (alive) {
             using namespace views;
+            static auto notInRange = [this](const Actor* actor) { return !inRange(actor); };
             // check whether this zombie should attack
-            if (auto collidedPlants = currentLevel->getActors() | filter(isAlivePlant) | drop_while([this](auto actor) { return !collidesWith(actor); });
-                !collidedPlants.empty()) {
+            if (auto inRangePlant = currentLevel->getActors() | filter(isAlivePlant) | drop_while(notInRange) | take(1);
+                !inRangePlant.empty()) {
                 // if a plant is in range, attack it
                 drawSprite(attack.getFrame(), position);
                 if (clk::now() - lastAttack >= attackInterval) {
                     lastAttack = clk::now();
-                    collidedPlants.front()->takeDamage(1);
+                    inRangePlant.front()->takeDamage(1);
                 }
             } else {
                 // otherwise walk forward

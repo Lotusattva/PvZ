@@ -49,12 +49,12 @@ namespace PvZ {
         }
 
         /**
-         * @brief checks whether this actor collides with the other actor
+         * @brief checks whether the other actor is in range of this actor
          *
          * @param other
-         * @return true if the actors collide, false otherwise
+         * @return true if the other actor is in range
          */
-        virtual bool collidesWith(const Actor* other) const {
+        virtual bool inRange(const Actor* other) const {
             return inRectangle(other->center, position, hitbox) || inRectangle(center, other->position, other->hitbox);
         }
 

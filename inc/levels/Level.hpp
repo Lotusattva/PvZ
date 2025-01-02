@@ -12,12 +12,11 @@ namespace PvZ {
      */
     class Level : public Stage {
     protected:
-        static inline constexpr Vector2u gridOrigin{ 260u,80u };
-        static inline constexpr short cellWidth{ 80 }, cellHeight{ 96 };
-
         const short numRows;
         list<Actor*> actors;
     public:
+        static inline constexpr Vector2f gridOrigin{ 260.f,80.f };
+        static inline constexpr float cellWidth{ 80.f }, cellHeight{ 96.f };
         Level(short numRows) : numRows(numRows) {}
         Level(const Level&) = delete;
         Level(Level&&) = delete;

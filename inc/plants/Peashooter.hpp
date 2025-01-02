@@ -25,7 +25,7 @@ namespace PvZ {
         static inline const Textures textures;
         Frames idle{ &textures.idleTextures };
     public:
-        Peashooter(short col);
+        Peashooter(short col, short row);
         Peashooter(const Peashooter&) = delete;
         Peashooter(Peashooter&&) = delete;
         ~Peashooter() = default;

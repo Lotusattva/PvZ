@@ -2,6 +2,7 @@
 #define ZOMBIE_HPP
 
 #include "Actor.hpp"
+#include "levels/Level.hpp"
 
 namespace PvZ {
 
@@ -13,7 +14,6 @@ namespace PvZ {
         ms movementInterval, attackInterval; // TODO: maybe there's a better data type for this
         time_point lastAttack{ clk::now() }, lastMove{ clk::now() }, lastSlowed{ clk::now() }, spawnTime;
         bool slowed{ false }, spawned{ false };
-        static inline constexpr float cellHeight{ 96.f }, offset{ 80.f };
 
     public:
 
@@ -27,7 +27,7 @@ namespace PvZ {
         };
 
         Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row, Vector2f hitbox, Vector2f center) :
-            Actor{ health, { 900.f,row * cellHeight + offset }, hitbox, center }, movementInterval{ movementInterval },
+            Actor{ health, { 870.f, row * Level::cellHeight + Level::gridOrigin.y }, hitbox, center }, movementInterval{ movementInterval },
             attackInterval{ attackInterval }, spawnTime{ clk::now() + spawnTime } {}
         Zombie(const Zombie&) = delete;
         Zombie(Zombie&&) = delete;

@@ -30,8 +30,8 @@ namespace PvZ {
         bool withInRange(Actor* actor) const;
 
     public:
-        ShooterPlant(short health, short row, Projectile::Type projectileType, short attackRange, ms cooldown) :
-            Plant{ health, row }, projectileType{ projectileType }, attackRange{ attackRange }, cooldown{ cooldown }, lastShot{ clk::now() } {}
+        ShooterPlant(short health, short col, short row, Projectile::Type projectileType, short attackRange, ms cooldown) :
+            Plant{ health, col, row }, projectileType{ projectileType }, attackRange{ attackRange }, cooldown{ cooldown }, lastShot{ clk::now() } {}
         ShooterPlant(const ShooterPlant&) = delete;
         ShooterPlant(ShooterPlant&&) = delete;
         virtual ~ShooterPlant() = default;

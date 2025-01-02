@@ -11,8 +11,8 @@ namespace PvZ {
         }
     }
 
-    Peashooter::Peashooter(short row) :
-        ShooterPlant{ 6, row, Projectile::Type::PEA, 8, 1000ms } {}
+    Peashooter::Peashooter(short col, short row) :
+        ShooterPlant{ 6, col, row, Projectile::Type::PEA, 8, 1000ms } {}
 
     bool Peashooter::action() {
         if (!isAlive()) {

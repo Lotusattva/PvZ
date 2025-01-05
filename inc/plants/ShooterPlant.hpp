@@ -2,7 +2,7 @@
 #define SHOOTER_PLANT_HPP
 
 #include "Plant.hpp"
-#include "Projectile.hpp"
+#include "projectiles/Projectile.hpp"
 
 namespace PvZ {
 
@@ -10,51 +10,32 @@ namespace PvZ {
      * @brief Base class for plants that shoot projectiles
      */
     class ShooterPlant : public Plant {
-    private:
+    protected:
         const Projectile::Type projectileType;
-        const short attackRange;
-        const ms cooldown;
-        time_point lastShot;
+        const short attackRange; // unit: number of cells
+        const ms attackInterval;
+        time_point lastAttack{ clk::now() };
 
         /**
         * @brief Updates the last shot time to the current time
         */
-        void updateLastShot() { lastShot = clk::now(); }
+        void updateLastShot() { lastAttack = clk::now(); }
 
-        /**
-        * @brief Checks if an actor is within range of the plant
-        *
-        * @param actor
-        * @return true if the actor is within range
-        */
-        bool withInRange(Actor* actor) const;
-
+        constexpr static inline auto isZombie = [](Actor* actor) { return actor->getType() == Actor::Type::ZOMBIE; };
     public:
-        ShooterPlant(short health, short col, short row, Projectile::Type projectileType, short attackRange, ms cooldown) :
-            Plant{ health, col, row }, projectileType{ projectileType }, attackRange{ attackRange }, cooldown{ cooldown }, lastShot{ clk::now() } {}
+        ShooterPlant(short health, short col, short row, Projectile::Type projectileType, short attackRange, ms attackInterval) :
+            Plant{ health, col, row }, projectileType{ projectileType }, attackRange{ attackRange }, attackInterval{ attackInterval } {}
         ShooterPlant(const ShooterPlant&) = delete;
         ShooterPlant(ShooterPlant&&) = delete;
         virtual ~ShooterPlant() = default;
 
-        /**
-         * @brief plant shoots a projectile
-         */
+        const Rectangle getHitbox() const override { return { {position.x + Plant::size.x, position.y}, {attackRange * Level::cellWidth, Plant::size.y} }; }
+        const Vector2f getCenter() const override { return position + centerOffset; }
+
+        bool action() override;
+
         virtual void shoot() = 0;
-
-        /**
-         * @brief Get the range of the plant
-         *
-         * @return the range of the plant
-         */
-        const short getRange() const { return attackRange; }
-
-        /**
-         * @brief Checks if the plant is on cooldown
-         *
-         * @return true if the plant is on cooldown
-         */
-        bool onCooldown() const { return clk::now() - lastShot < cooldown; }
-
+        virtual Frames& getFrames() = 0;
     };
 }
 

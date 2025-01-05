@@ -10,8 +10,8 @@ namespace PvZ {
      */
     class RegularZombie : public Zombie {
     private:
-        static inline constexpr ms movementInterval{ 20ms }, attackInterval{ 500ms };
-        static inline constexpr Vector2f hitbox{ 90.f,120.f }, center{ 110.f,75.f };
+        static inline constexpr ms RegZombMovementInterval{ 20ms }, RegZombAttackInterval{ 500ms };
+        static inline constexpr Vector2f hitboxSize{ 90.f,120.f }, centerOffset{ 110.f,75.f };
 
         class Textures {
         private:
@@ -30,7 +30,7 @@ namespace PvZ {
         Frames idle{ &textures.idleTextures }, walk{ &textures.walkTextures }, attack{ &textures.attackTextures },
             death{ &textures.deathTextures };
 
-        constexpr static inline auto isAlivePlant = [](const Actor* actor) { return actor->getType() == Actor::Type::PLANT && actor->isAlive(); };
+        constexpr static inline auto isAlivePlant = [](Actor* actor) { return actor->getType() == Actor::Type::PLANT && actor->isAlive(); };
     public:
         RegularZombie(ms spawnTime, int row);
         RegularZombie(const RegularZombie&) = delete;
@@ -38,6 +38,8 @@ namespace PvZ {
         ~RegularZombie() = default;
 
         bool action() override;
+        const Rectangle getHitbox() const override { return { position, hitboxSize }; }
+        const Vector2f getCenter() const override { return position + centerOffset; }
     };
 }
 

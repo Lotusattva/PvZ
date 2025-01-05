@@ -15,8 +15,8 @@ namespace PvZ {
         const short numRows;
         list<Actor*> actors;
     public:
-        static inline constexpr Vector2f gridOrigin{ 260.f,80.f };
-        static inline constexpr float cellWidth{ 80.f }, cellHeight{ 96.f };
+        static constexpr inline Vector2f gridOrigin{ 260.f,80.f };
+        static constexpr inline float cellWidth{ 80.f }, cellHeight{ 96.f };
         Level(short numRows) : numRows(numRows) {}
         Level(const Level&) = delete;
         Level(Level&&) = delete;
@@ -25,6 +25,7 @@ namespace PvZ {
         virtual GameState play() = 0;
 
         list<Actor*>& getActors() { return actors; }
+        void addActor(Actor* actor) { actors.push_back(actor); }
     };
 
     inline Level* currentLevel{ nullptr };

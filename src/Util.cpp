@@ -1,15 +1,15 @@
 #include "Util.hpp"
 
 namespace PvZ {
-    bool hoverOverRectangle(const Vector2f& rectanglePos, const Vector2f& rectangleSize) {
+    bool hoverOverRectangle(const Rectangle& rectangle) {
         Vector2i mousePos{ Mouse::getPosition(window) };
         Vector2f mousePosF{ static_cast<float>(mousePos.x), static_cast<float>(mousePos.y) };
-        return inRectangle(mousePosF, rectanglePos, rectangleSize);
+        return inRectangle(mousePosF, rectangle);
     }
 
-    bool inRectangle(const Vector2f& point, const Vector2f& rectanglePos, const Vector2f& rectangleSize) {
-        return point.x >= rectanglePos.x && point.x <= rectanglePos.x + rectangleSize.x &&
-            point.y >= rectanglePos.y && point.y <= rectanglePos.y + rectangleSize.y;
+    bool inRectangle(const Vector2f& point, const Rectangle& rectangle) {
+        return point.x >= rectangle.position.x && point.x <= rectangle.position.x + rectangle.size.x &&
+            point.y >= rectangle.position.y && point.y <= rectangle.position.y + rectangle.size.y;
     }
 
     void drawSprite(Sprite&& sprite, const Vector2f& position) {

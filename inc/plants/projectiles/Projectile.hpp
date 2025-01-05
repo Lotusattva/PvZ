@@ -1,6 +1,8 @@
 #ifndef PROJECTILE_HPP
 #define PROJECTILE_HPP
 
+#include "Actor.hpp"
+
 namespace PvZ {
 
 
@@ -8,15 +10,14 @@ namespace PvZ {
      * @brief Base class for projectiles
      */
     class Projectile : public Actor {
-    private:
+    protected:
         const short damage;
     public:
         enum class Type {
-            PEA,
-            SNOWPEA
+            PEA
         };
 
-        Projectile(short damage) : damage{ damage } {}
+        Projectile(Vector2f& position, short damage) : Actor{ position }, damage{ damage } {}
         Projectile(const Projectile&) = delete;
         Projectile(Projectile&&) = delete;
         virtual ~Projectile() = default;
@@ -24,9 +25,11 @@ namespace PvZ {
         void takeDamage(short damage) override { return; }
 
         Actor::Type getType() const override { return Actor::Type::PROJECTILE; }
+
+        static Projectile* create(Projectile::Type projectileType, Vector2f& position);
     };
 
-    Projectile* createProjectile(Projectile::Type projectileType);
+
 }
 
 #endif // PROJECTILE_HPP

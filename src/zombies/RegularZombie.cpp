@@ -29,7 +29,8 @@ namespace PvZ {
         }
     }
 
-    RegularZombie::RegularZombie(ms spawnTime, int row) : Zombie{ 10, movementInterval, attackInterval, spawnTime, row, hitbox, center } {}
+    RegularZombie::RegularZombie(ms spawnTime, int row) :
+        Zombie{ 10, RegZombMovementInterval, RegZombAttackInterval, spawnTime, row } {}
 
     bool RegularZombie::action() {
         if (!spawned) {
@@ -39,7 +40,7 @@ namespace PvZ {
             return true;
         } else if (alive) {
             using namespace views;
-            static auto notInRange = [this](const Actor* actor) { return !inRange(actor); };
+            static auto notInRange = [this](Actor* actor) { return !inRange(actor); };
             // check whether this zombie should attack
             if (auto inRangePlant = currentLevel->getActors() | filter(isAlivePlant) | drop_while(notInRange) | take(1);
                 !inRangePlant.empty()) {
@@ -63,5 +64,4 @@ namespace PvZ {
             return false;
         }
     }
-
 }

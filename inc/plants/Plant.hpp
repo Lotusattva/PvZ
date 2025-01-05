@@ -4,32 +4,30 @@
 #include "Actor.hpp"
 #include "levels/Level.hpp"
 
+
 namespace PvZ {
 
     /**
      * @brief Base class for plants
      */
     class Plant : public Actor {
-    private:
-        static inline const Vector2f hitbox{ 75.f, 75.f }, center{ 37.5f, 37.5f };
+    protected:
+        static constexpr inline Vector2f size{ 75.f, 75.f }, centerOffset{ 37.5f, 37.5f };
     public:
         enum class Type {
-            SUNFLOWER,
-            PEASHOOTER,
-            WALLNUT,
-            CHERRYBOMB
+            PEASHOOTER
         };
 
         Plant(short health, short col, short row) :
-            Actor{ health, Level::gridOrigin + Vector2f{col * Level::cellWidth, row * Level::cellHeight}, hitbox, center } {}
+            Actor{ {col * Level::cellWidth + Level::gridOrigin.x, row * Level::cellHeight + Level::gridOrigin.y}, health } {}
         Plant(const Plant&) = delete;
         Plant(Plant&&) = delete;
         virtual ~Plant() = default;
 
         Actor::Type getType() const override { return Actor::Type::PLANT; }
-    };
 
-    Plant* createPlant(Plant::Type plantType);
+        Plant* create(Plant::Type plantType, short col, short row);
+    };
 
 }
 

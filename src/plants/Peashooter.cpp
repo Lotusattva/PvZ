@@ -11,17 +11,7 @@ namespace PvZ {
         }
     }
 
-    Peashooter::Peashooter(short col, short row) :
-        ShooterPlant{ 6, col, row, Projectile::Type::PEA, 8, 1000ms } {}
-
-    bool Peashooter::action() {
-        if (!isAlive()) {
-            return false;
-        }
-        return true;
-    }
-
     void Peashooter::shoot() {
-
+        // TODO: implement this
     }
 }

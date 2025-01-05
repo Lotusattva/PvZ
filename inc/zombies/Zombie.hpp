@@ -26,9 +26,10 @@ namespace PvZ {
             FOOTBALL
         };
 
-        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row, Vector2f hitbox, Vector2f center) :
-            Actor{ health, { 870.f, row * Level::cellHeight + Level::gridOrigin.y }, hitbox, center }, movementInterval{ movementInterval },
-            attackInterval{ attackInterval }, spawnTime{ clk::now() + spawnTime } {}
+        Zombie(short health, ms movementInterval, ms attackInterval, ms spawnTime, int row) :
+            Actor{ { 870.f, row * Level::cellHeight + Level::gridOrigin.y }, health },
+            movementInterval{ movementInterval }, attackInterval{ attackInterval },
+            spawnTime{ clk::now() + spawnTime } {}
         Zombie(const Zombie&) = delete;
         Zombie(Zombie&&) = delete;
         virtual ~Zombie() = default;

@@ -25,13 +25,13 @@ namespace PvZ {
             if (const auto * mouseButtonPressed{ event->getIf<Event::MouseButtonPressed>() }) {
                 if (mouseButtonPressed->button == Mouse::Button::Left) {
                     holdingClick = true;
-                    if (hoverOverRectangle(buttonPos, buttonSize))
+                    if (hoverOverRectangle({ buttonPos, buttonSize }))
                         clickedStart = true;
                 }
             }
             if (const auto * mouseButtonReleased{ event->getIf<Event::MouseButtonReleased>() }) {
                 if (mouseButtonReleased->button == Mouse::Button::Left) {
-                    if (clickedStart && hoverOverRectangle(buttonPos, buttonSize)) {
+                    if (clickedStart && hoverOverRectangle({ buttonPos, buttonSize })) {
                         clickedStart = false;
                         return GameState::PLAY;
                     }
@@ -40,7 +40,7 @@ namespace PvZ {
             }
         }
 
-        if (hoverOverRectangle(buttonPos, buttonSize)) {
+        if (hoverOverRectangle({ buttonPos, buttonSize })) {
             if (holdingClick && clickedStart)
                 drawSprite(button);
             else

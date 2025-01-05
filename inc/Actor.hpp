@@ -12,7 +12,7 @@ namespace PvZ {
     protected:
         short health;
         bool alive{ true };
-        Vector2f position, hitbox, center;
+        Vector2f position;
 
         enum class Type {
             PLANT,
@@ -22,8 +22,7 @@ namespace PvZ {
         };
 
     public:
-        Actor(short health = 0, Vector2f position = { 0.f,0.f }, Vector2f hitbox = { 0.f,0.f }, Vector2f center = { 0.f,0.f }) :
-            health{ health }, position{ position }, hitbox{ hitbox } {}
+        Actor(Vector2f position = { 0.f,0.f }, short health = 0) : health{ health }, position{ position } {}
         Actor(const Actor&) = delete;
         Actor(Actor&&) = delete;
         virtual ~Actor() = default;
@@ -54,9 +53,13 @@ namespace PvZ {
          * @param other
          * @return true if the other actor is in range
          */
-        virtual bool inRange(const Actor* other) const {
-            return inRectangle(other->center, position, hitbox) || inRectangle(center, other->position, other->hitbox);
+        virtual bool inRange(const Actor* const other) const {
+            return inRectangle(other->getCenter(), getHitbox());
         }
+
+        const Vector2f& getPosition() const { return position; }
+        virtual const Rectangle getHitbox() const = 0;
+        virtual const Vector2f getCenter() const = 0;
 
         bool isAlive() const { return alive; }
 

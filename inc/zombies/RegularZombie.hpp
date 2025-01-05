@@ -10,12 +10,12 @@ namespace PvZ {
      */
     class RegularZombie : public Zombie {
     private:
-        static inline constexpr ms RegZombMovementInterval{ 20ms }, RegZombAttackInterval{ 500ms };
-        static inline constexpr Vector2f hitboxSize{ 90.f,120.f }, centerOffset{ 110.f,75.f };
+        static constexpr inline ms RegZombMovementInterval{ 20ms }, RegZombAttackInterval{ 500ms };
+        static constexpr inline Vector2f hitboxSize{ 90.f,120.f }, centerOffset{ 110.f,75.f };
 
         class Textures {
         private:
-            static inline constexpr short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 20 }, DEATH_FRAMES{ 20 };
+            static constexpr inline short IDLE_FRAMES{ 11 }, WALK_FRAMES{ 22 }, ATTACK_FRAMES{ 20 }, DEATH_FRAMES{ 20 };
 
         public:
             vector<Texture> idleTextures, walkTextures, attackTextures, deathTextures;
@@ -30,7 +30,7 @@ namespace PvZ {
         Frames idle{ &textures.idleTextures }, walk{ &textures.walkTextures }, attack{ &textures.attackTextures },
             death{ &textures.deathTextures };
 
-        constexpr static inline auto isAlivePlant = [](Actor* actor) { return actor->getType() == Actor::Type::PLANT && actor->isAlive(); };
+        static constexpr inline auto isAlivePlant = [](Actor* actor) { return actor->getType() == Actor::Type::PLANT && actor->isAlive(); };
     public:
         RegularZombie(ms spawnTime, int row);
         RegularZombie(const RegularZombie&) = delete;

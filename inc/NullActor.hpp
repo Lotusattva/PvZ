@@ -5,7 +5,7 @@
 
 namespace PvZ {
     /**
-     * @brief Null actor for placeholders after plants and zombies die
+     * @brief Null actor for debugging purposes
      */
     class NullActor : public Actor {
     public:

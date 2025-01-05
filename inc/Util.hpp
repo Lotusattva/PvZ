@@ -61,8 +61,8 @@ namespace PvZ {
     void drawSprite(const Sprite& sprite);
 
     struct Rectangle {
-        Vector2f position{};
-        Vector2f size{};
+        Vector2f position;
+        Vector2f size;
     };
 
     /**

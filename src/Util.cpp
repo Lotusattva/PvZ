@@ -44,7 +44,7 @@ namespace PvZ {
     }
 
 
-    Frames::Frames(const vector<Texture>* const textures) : frameCount{ textures->size() }, textures{ textures } {}
+    Frames::Frames(const vector<Texture>& textures) : frameCount{ textures.size() }, textures{ textures } {}
 
     Sprite Frames::getFrame() {
         auto now{ clk::now() };
@@ -52,6 +52,6 @@ namespace PvZ {
             lastFrame = now;
             currentFrame = (currentFrame + 1) % frameCount;
         }
-        return Sprite{ textures->at(currentFrame) };
+        return Sprite{ textures.at(currentFrame) };
     }
 }

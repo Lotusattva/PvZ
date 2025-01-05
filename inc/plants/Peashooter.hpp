@@ -29,7 +29,7 @@ namespace PvZ {
         static constexpr inline ms attackInterval{ 1000ms };
 
         static inline const Textures textures;
-        Frames idle{ &textures.idleTextures };
+        Frames idle{ textures.idleTextures };
 
     public:
         Peashooter(short col, short row) : ShooterPlant{ peashooterHealth, col, row, peaType, attackRange, attackInterval } {}

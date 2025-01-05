@@ -27,8 +27,7 @@ namespace PvZ {
 
         static inline const Textures textures;
 
-        Frames idle{ &textures.idleTextures }, walk{ &textures.walkTextures }, attack{ &textures.attackTextures },
-            death{ &textures.deathTextures };
+        Frames idle{ textures.idleTextures }, walk{ textures.walkTextures }, attack{ textures.attackTextures }, death{ textures.deathTextures };
 
         static constexpr inline auto isAlivePlant = [](Actor* actor) { return actor->getType() == Actor::Type::PLANT && actor->isAlive(); };
     public:

@@ -102,10 +102,10 @@ namespace PvZ {
         short currentFrame{ 0 };
         const size_t frameCount;
         time_point lastFrame{ clk::now() };
-        const vector<Texture>* const textures;
+        const vector<Texture>& textures;
 
     public:
-        Frames(const vector<Texture>* const textures);
+        Frames(const vector<Texture>& textures);
         Frames(const Frames&) = delete;
         Frames(Frames&&) = delete;
         ~Frames() = default;

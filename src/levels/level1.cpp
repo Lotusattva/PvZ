@@ -1,6 +1,7 @@
 #include "levels/Level1.hpp"
 #include "NullActor.hpp"
 #include "zombies/RegularZombie.hpp"
+#include "plants/projectiles/Pea.hpp"
 
 namespace PvZ {
 
@@ -9,6 +10,8 @@ namespace PvZ {
         topbar.setPosition(topbarPos);
 
         actors.emplace_front(new NullActor);
+        // auto position = Vector2f{ 100.f, 100.f };
+        actors.emplace_front(new Pea(Vector2f{ 300.f, 350.f }));
         actors.emplace_front(new RegularZombie{ 1000ms, 2 });
     }
 

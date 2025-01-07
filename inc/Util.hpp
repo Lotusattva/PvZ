@@ -51,6 +51,7 @@ namespace PvZ {
         * @param sprite
         * @param position
         */
+    void drawSprite(Sprite& sprite, const Vector2f& position);
     void drawSprite(Sprite&& sprite, const Vector2f& position);
 
     /**
@@ -61,7 +62,7 @@ namespace PvZ {
     void drawSprite(const Sprite& sprite);
 
     struct Rectangle {
-        Vector2f position;
+        Vector2f position; // top left corner
         Vector2f size;
     };
 

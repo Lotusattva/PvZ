@@ -12,6 +12,11 @@ namespace PvZ {
             point.y >= rectangle.position.y && point.y <= rectangle.position.y + rectangle.size.y;
     }
 
+    void drawSprite(Sprite& sprite, const Vector2f& position) {
+        sprite.setPosition(position);
+        window.draw(sprite);
+    }
+
     void drawSprite(Sprite&& sprite, const Vector2f& position) {
         sprite.setPosition(position);
         window.draw(sprite);

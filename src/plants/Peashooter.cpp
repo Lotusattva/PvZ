@@ -13,5 +13,8 @@ namespace PvZ {
 
     void Peashooter::shoot() {
         // TODO: implement this
+        static const Vector2f spawnOffset{ 60.f, 10.f };
+        auto newPea = Projectile::create(peaType, position + spawnOffset);
+        currentLevel->addActor(newPea);
     }
 }

@@ -7,8 +7,12 @@ namespace PvZ {
     class Pea : public Projectile {
     private:
         static constexpr inline short peaDamage{ 1 };
+        static constexpr inline auto isAliveZombie = [](Actor* actor) { return actor->getType() == Actor::Type::ZOMBIE && actor->isAlive(); };
+        static const inline Texture texture{ RES_PATH + "img/bullets/bullet_normal.png" };
+        Sprite sprite{ texture };
     public:
         Pea(Vector2f& position) : Projectile{ position, peaDamage } {}
+        Pea(Vector2f&& position) : Projectile{ position, peaDamage } {}
         Pea(const Pea&) = delete;
         Pea(Pea&&) = delete;
         ~Pea() = default;

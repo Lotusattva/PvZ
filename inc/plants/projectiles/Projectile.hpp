@@ -26,7 +26,7 @@ namespace PvZ {
 
         Actor::Type getType() const override { return Actor::Type::PROJECTILE; }
 
-        static Projectile* create(Projectile::Type projectileType, Vector2f& position);
+        static Projectile* create(Projectile::Type projectileType, Vector2f&& position);
     };
 
 
